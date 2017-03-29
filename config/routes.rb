@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
   
+  get 'groups/index'
+
+  get 'groups/new'
+
+  get 'groups/edit'
+
+  get 'groups/create'
+
+  get 'groups/update'
+
+  get 'groups/delete'
+
   get 'home/index'
 
   devise_for :users, :controllers => { registrations: 'users/registrations' }
