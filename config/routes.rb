@@ -1,16 +1,20 @@
 Rails.application.routes.draw do
   
-  get 'groups/index'
+  get '/user_home' => 'home#user_home'
 
-  get 'groups/new'
+  get 'groups' => 'groups#index'
 
-  get 'groups/edit'
+  post 'groups' => 'groups#create'
 
-  get 'groups/create'
+  get 'groups/new' => 'groups#new'
 
-  get 'groups/update'
+  get 'groups/:id/edit' => 'groups#edit'
 
-  get 'groups/delete'
+  patch 'groups/:id/update' => 'groups#update', :as => "group"
+
+  put 'groups/:id/update' => 'groups#update'
+
+  delete 'groups/:id/delete' => 'groups#delete'
 
   get 'home/index'
 
