@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329144837) do
+ActiveRecord::Schema.define(version: 20170330051826) do
+
+  create_table "group_admin_mappings", force: :cascade do |t|
+    t.integer  "admin_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "group_admin_mappings", ["admin_id"], name: "index_group_admin_mappings_on_admin_id"
+  add_index "group_admin_mappings", ["group_id"], name: "index_group_admin_mappings_on_group_id"
 
   create_table "group_user_mappings", force: :cascade do |t|
     t.integer  "user_id"

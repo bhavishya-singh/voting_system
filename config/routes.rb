@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get 'home/index'
 
+  get 'user_json' => 'home#user_json'
+
   devise_for :users, :controllers => { registrations: 'users/registrations' }
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
