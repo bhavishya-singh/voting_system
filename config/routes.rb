@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get 'groups/:id/add_users' => 'groups#add_user_to_group'
 
+  post 'groups/searchuser' => 'groups#search_json'
+
   get 'home/index'
 
   get 'user_json' => 'home#user_json'

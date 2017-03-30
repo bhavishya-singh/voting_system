@@ -1,8 +1,8 @@
 <h1>add users to <%= @group.name%></h1>
 
-<%= form_tag "/groups/#{@group.id}/add_users", :method => "GET" do%>
+<%= form_tag "/groups/#{@group.id}/add_users", :method => "GET" , :id => "search_user" do%>
 
-<%= text_field_tag "search_user_name"%>
+<%= text_field_tag :search_user_name %>
 <%= submit_tag 'search'%>
 <% end %>
 
@@ -11,3 +11,7 @@
  <%= render "suser", :user => user %>
 	<% end %> 
 	<% end %>
+
+<div class="searched" id="search_user_div">
+	
+</div>

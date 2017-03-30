@@ -35,6 +35,14 @@ class GroupsController < ApplicationController
     end
   end
 
+  def search_json
+    # console.log(params[:content])
+    search_user = params[:content]
+    query = "user_name like '%#{search_user}%'"
+    @search_user = User.where(query)
+    render :json => @search_user
+  end
+
   private
 
   def group_params

@@ -1,6 +1,7 @@
 <h1>welcome # <%= @user.user_name%> </h1>
 
 <%= link_to "logout",  :destroy_user_session , :method => "DELETE"%>
+<%= link_to "create group", :groups_new %>
 
 <h2>GROUPS</h2>
 <% @groups.each do |group| %>
