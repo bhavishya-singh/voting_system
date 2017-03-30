@@ -1,0 +1,13 @@
+<h1>add users to <%= @group.name%></h1>
+
+<%= form_tag "/groups/#{@group.id}/add_users", :method => "GET" do%>
+
+<%= text_field_tag "search_user_name"%>
+<%= submit_tag 'search'%>
+<% end %>
+
+<% if @search_user %>
+<% @search_user.each do |user| %>
+ <%= render "suser", :user => user %>
+	<% end %> 
+	<% end %>

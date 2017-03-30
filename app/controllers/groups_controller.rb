@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   
-  before_action :set_group, :only => [:edit,:update,:delete]
+  before_action :set_group, :only => [:edit,:update,:delete,:add_user_to_group]
 
   def index
   end
@@ -25,6 +25,14 @@ class GroupsController < ApplicationController
 
   def delete
     @group.destroy
+  end
+
+  def add_user_to_group
+    search_user = params[:search_user_name]
+    if(search_user)
+      query = "user_name like '%#{search_user}%'"
+      @search_user = User.where(query)
+    end
   end
 
   private

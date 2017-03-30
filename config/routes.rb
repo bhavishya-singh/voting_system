@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   delete 'groups/:id/delete' => 'groups#delete'
 
+  get 'groups/:id/add_users' => 'groups#add_user_to_group'
+
   get 'home/index'
 
   get 'user_json' => 'home#user_json'
