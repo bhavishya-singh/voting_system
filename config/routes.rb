@@ -20,6 +20,10 @@ Rails.application.routes.draw do
 
   post 'groups/searchuser' => 'groups#search_json'
 
+  post '/add_user' => 'groups#add_user'
+
+  post '/remove_user' => 'groups#remove_user'
+
   get 'home/index'
 
   get 'user_json' => 'home#user_json'

@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   
-  before_action :set_group, :only => [:edit,:update,:delete,:add_user_to_group]
+  before_action :set_group, :only => [:edit,:update,:delete,:add_user_to_group,]
 
   def index
   end
@@ -33,6 +33,7 @@ class GroupsController < ApplicationController
       query = "user_name like '%#{search_user}%'"
       @search_user = User.where(query)
     end
+    @group_users = @group.users
   end
 
   def search_json
@@ -41,6 +42,24 @@ class GroupsController < ApplicationController
     query = "user_name like '%#{search_user}%'"
     @search_user = User.where(query)
     render :json => @search_user
+  end
+
+  def remove_user
+    @mapp = GroupUserMapping.where(:user_id => params[:user_id], :group_id => @group.id).first
+    if(@mapp)
+      @mapp.destroy
+    end
+
+    render :json => @mapp
+
+  end
+
+  def add_user
+    @mapp = GroupUserMapping.where(:user_id => params[:user_id], :group_id => params[:group_id]).first
+    if(!@mapp)
+      @mapp = GroupUserMapping.create(:user_id => params[:user_id], :group_id => params[:group_id])
+    end
+    render :json => @mapp
   end
 
   private

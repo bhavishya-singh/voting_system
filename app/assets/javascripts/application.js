@@ -36,9 +36,35 @@ function onload(){
  			data: data,
  			success: function(result){
  				console.log(result);
- 				$("#search_user_div").empty();
+ 				$("#result").empty();
  				for(var i = 0; i < result.length; i++){
- 					$("#search_user_div").append("<div><h2>"+result[i].user_name+"<h2></div>")
+ 					$("#result").append("<div class='search' id="+result[i].id+"><h2>"+result[i].user_name+"</h2></div>");
+ 					console.log("should work");
+ 					$("#"+result[i].id).click(function(){
+ 						event.preventDefault();
+ 						var group_id = $(this).parent().prop('className');
+ 						console.log(group_id);
+ 						var url ="/groups/searchuser";
+				 		var data ={
+				 			user_id: this.id ,
+				 			group_id: group_id	
+				 		}
+				 		var url = "/add_user";
+				 		console.log(data);
+				 		$.ajax({
+				 				url: url,
+				 				method: "POST",
+				 				data: data,
+				 				success: function(result){
+				 					console.log(result);
+				 				},
+				 				error: function(error){
+				 					console.log(error);
+				 				}
+
+				 			});
+
+ 					});
  				};
  			},
  			error: function(error){
@@ -47,6 +73,7 @@ function onload(){
  		});
 
  	});
+
 	
 };
 

@@ -11,7 +11,13 @@
  <%= render "suser", :user => user %>
 	<% end %> 
 	<% end %>
+	<h1>searched users</h1>
+<div class="<%=@group.id%>" id="result">
+</div>
 
-<div class="searched" id="search_user_div">
-	
+<h1>Users</h1>
+<div id="group_users">
+	<% @group_users.each do |user| %>
+	<%= render "suser" , :user => user %>
+	<% end %>
 </div>
