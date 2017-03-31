@@ -6,17 +6,18 @@
 <%= submit_tag 'search'%>
 <% end %>
 
-<% if @search_user %>
-<% @search_user.each do |user| %>
- <%= render "suser", :user => user %>
-	<% end %> 
-	<% end %>
+				<% if @search_user %>
+				<% @search_user.each do |user| %>
+				 <%= render "suser", :user => user %>
+					<% end %> 
+					<% end %>
+
 	<h1>searched users</h1>
-<div class="<%=@group.id%>" id="result">
+<div class="group_id:<%=@group.id%>" id="result">
 </div>
 
 <h1>Users</h1>
-<div id="group_users">
+<div class="group_id:<%=@group.id%>" id="group_users">
 	<% @group_users.each do |user| %>
 	<%= render "suser" , :user => user %>
 	<% end %>

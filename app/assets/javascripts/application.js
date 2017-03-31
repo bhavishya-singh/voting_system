@@ -38,33 +38,79 @@ function onload(){
  				console.log(result);
  				$("#result").empty();
  				for(var i = 0; i < result.length; i++){
- 					$("#result").append("<div class='search' id="+result[i].id+"><h2>"+result[i].user_name+"</h2></div>");
- 					console.log("should work");
- 					$("#"+result[i].id).click(function(){
+ 					var div_id = "user_id:" + result[i].id;
+ 					console.log(div_id);
+ 					$("#result").append("<div class='search' id="+div_id+"><h2>"+result[i].user_name+"</h2></div>");
+ 					var div = "#" + div_id;
+ 					var add_event = document.getElementById(div_id);
+ 					add_event.addEventListener("click",function(event){
+ 						// console.log("clicked");
  						event.preventDefault();
- 						var group_id = $(this).parent().prop('className');
- 						console.log(group_id);
- 						var url ="/groups/searchuser";
-				 		var data ={
-				 			user_id: this.id ,
+ 						// console.log(this.firstChild.innerHTML);
+ 						var user_namee = this.firstChild.innerHTML;
+ 						var group_id = this.parentNode.getAttribute('class').slice(9);
+ 						// console.log(group_id);
+ 						var user_id = this.getAttribute('id').slice(8);
+ 						// console.log(user_id);
+ 						var data ={
+				 			user_id: user_id ,
 				 			group_id: group_id	
 				 		}
 				 		var url = "/add_user";
-				 		console.log(data);
 				 		$.ajax({
-				 				url: url,
-				 				method: "POST",
-				 				data: data,
-				 				success: function(result){
-				 					console.log(result);
-				 				},
-				 				error: function(error){
-				 					console.log(error);
-				 				}
+				 			url: url,
+				 			method: "POST",
+				 			data: data,
+				 			success: function(result){
+								var user_id = "user_id:"+ result.user_id;
+								var div = GetElementInsideContainer("group_users", user_id);
+								console.log(div);
+								if(!div){
+			 						$("#group_users").prepend("<div id="+user_id+"><h2>"+user_namee+"</h2></div>");
+			 					}else{
+			 						console.log("already present");
+			 					}
 
-				 			});
+			 				},
+				 			error: function(error){
+			 					console.log(error);	
+			 				}
+
+				 		});
+
 
  					});
+ 					// $(div_id).click(function(){
+ 					// 	event.preventDefault();
+ 					// 	console.log("***");
+ 					// 	console.log($(this).children("h2:first").html());
+ 					// 	var user_namee = $(this).children("h2:first").html();
+ 					// 	var group_id = $(this).parent().prop('className').slice(9);
+ 					// 	var user_id = this.id.slice(8);
+ 					// 	console.log("group_id: "+ group_id);
+ 					// 	console.log("user_id: "+ this.id.slice(8));
+				 	// 	var data ={
+				 	// 		user_id: user_id ,
+				 	// 		group_id: group_id	
+				 	// 	}
+				 	// 	var url = "/add_user";
+				 	// 	$.ajax({
+				 	// 			url: url,
+				 	// 			method: "POST",
+				 	// 			data: data,
+				 	// 			success: function(result){
+				 	// 				var user_id = result.user_id;
+				 	// 				$("#group_users").prepend("<div id="+user_id+"><h2>"+user_namee+"</h2></div>");
+				 	// 				console.log("done");
+
+				 	// 			},
+				 	// 			error: function(error){
+				 	// 				console.log(error);
+				 	// 			}
+
+				 	// 		});
+
+ 					// });
  				};
  			},
  			error: function(error){
@@ -76,5 +122,16 @@ function onload(){
 
 	
 };
-
+function GetElementInsideContainer(containerID, childID) {
+    var elm = null;
+    var elms = document.getElementById(containerID).getElementsByTagName("*");
+    console.log(elms);
+    for (var i = 0; i < elms.length; i++) {
+        if (elms[i].id === childID) {
+            elm = elms[i];
+            break;
+        }
+    }
+    return elm;
+}
 window.addEventListener('load',onload);
