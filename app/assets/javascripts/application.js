@@ -64,9 +64,11 @@ function onload(){
 				 			success: function(result){
 								var user_id = "user_id:"+ result.user_id;
 								var div = GetElementInsideContainer("group_users", user_id);
-								console.log(div);
+								// console.log(div);
 								if(!div){
 			 						$("#group_users").prepend("<div id="+user_id+"><h2>"+user_namee+"</h2></div>");
+			 						var group_user = GetElementInsideContainer("group_users", user_id);
+			 						group_user.addEventListener("click",remove_user);
 			 					}else{
 			 						console.log("already present");
 			 					}
@@ -119,6 +121,48 @@ function onload(){
  		});
 
  	});
+
+
+ 	var group_users =  document.getElementById("group_users").getElementsByTagName("div");
+
+ 	for(var i = 0 ;i < group_users.length ; i++){
+ 		group_users[i].addEventListener("click",remove_user);
+ 	}
+
+ 	console.log(group_users);
+
+ 	function remove_user(event){
+ 		event.stopPropagation();
+ 		console.log("*****");
+ 		console.log(this);
+ 		var url = "/remove_user";
+ 		var group_id = this.parentNode.getAttribute('class').slice(9);
+ 		var user_id = this.getAttribute('id').slice(8);
+ 		var data ={
+			user_id: user_id ,
+		    group_id: group_id	
+		};
+		console.log(group_id);
+		console.log(user_id);
+		console.log(data);
+ 		$.ajax({
+			url: url,
+			method: "POST",
+			data: data,
+			success: function(result){
+				console.log(result);
+				var user_id = "user_id:" + result.user_id; 
+				var user_div = GetElementInsideContainer("group_users",user_id);
+				user_div.parentNode.removeChild(user_div);
+
+			},
+			error: function(error){
+			 	console.log(error);	
+			}
+
+		});
+
+ 	};
 
 	
 };

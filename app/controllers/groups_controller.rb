@@ -42,15 +42,6 @@ class GroupsController < ApplicationController
     query = "user_name like '%#{search_user}%'"
     @search_user = User.where(query)
     render :json => @search_user
-  end
-
-  def remove_user
-    @mapp = GroupUserMapping.where(:user_id => params[:user_id], :group_id => @group.id).first
-    if(@mapp)
-      @mapp.destroy
-    end
-
-    render :json => @mapp
 
   end
 
@@ -59,6 +50,15 @@ class GroupsController < ApplicationController
     if(!@mapp)
       @mapp = GroupUserMapping.create(:user_id => params[:user_id], :group_id => params[:group_id])
     end
+    render :json => @mapp
+  end
+
+  def remove_user
+    @mapp = GroupUserMapping.where(:user_id => params[:user_id], :group_id => params[:group_id]).first
+    if(@mapp)
+      @mapp.destroy
+    end
+
     render :json => @mapp
   end
 
