@@ -17,6 +17,8 @@
 
 
 function onload(){
+
+	console.log("loaded");
  	form = document.getElementById("search_user")
  	form.addEventListener('submit',function(event){
  		console.log("tried submitting");
@@ -113,6 +115,8 @@ function onload(){
 				 	// 		});
 
  					// });
+
+
  				};
  			},
  			error: function(error){
@@ -128,8 +132,6 @@ function onload(){
  	for(var i = 0 ;i < group_users.length ; i++){
  		group_users[i].addEventListener("click",remove_user);
  	}
-
- 	console.log(group_users);
 
  	function remove_user(event){
  		event.stopPropagation();

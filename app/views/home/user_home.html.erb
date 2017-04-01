@@ -4,6 +4,8 @@
 <%= link_to "create group", :groups_new %>
 
 <h2>GROUPS</h2>
-<% @groups.each do |group| %>
-<%= render "group", :group => group %>
-<% end %>
+<div id="cuurent_user_groups">
+	<% @groups.each do |group| %>
+	<%= render "group", :group => group %>
+	<% end %>
+</div>

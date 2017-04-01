@@ -14,9 +14,11 @@ Rails.application.routes.draw do
 
   put 'groups/:id/update' => 'groups#update'
 
-  delete 'groups/:id/delete' => 'groups#delete'
+  get 'groups/:id/leave' => 'groups#leave_group'
 
-  get 'groups/:id/add_users' => 'groups#add_user_to_group'
+  get 'groups/:id/delete' => 'groups#delete'
+
+  get 'groups/:id/add_users' => 'groups#add_user_to_group', :as => "group_users"
 
   post 'groups/searchuser' => 'groups#search_json'
 
@@ -25,6 +27,8 @@ Rails.application.routes.draw do
   post '/remove_user' => 'groups#remove_user'
 
   get 'home/index'
+
+  get 'group/:id/show' => 'home#group' 
 
   get 'user_json' => 'home#user_json'
 

@@ -1,0 +1,4 @@
+<div id="group_name"><h2><%= @group.name %></h2></div>
+
+<a href="/groups/<%= @group.id %>/add_users">second link</a>
+<%= link_to "USERS" , url_for(:controller => "groups", :action => "add_user_to_group", :id => @group.id) %>

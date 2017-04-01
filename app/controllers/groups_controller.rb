@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   
-  before_action :set_group, :only => [:edit,:update,:delete,:add_user_to_group,]
+  before_action :set_group, :only => [:edit,:update,:delete,:add_user_to_group,:leave_group]
+  before_action :set_current_user => [:leave_group, :add_user, :remove_user]
 
   def index
   end
@@ -15,6 +16,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.create(group_params)
     GroupUserMapping.create(:user_id => current_user.id, :group_id => @group.id)
+    GroupAdminMapping.create(:admin_id => current_user.id, :group_id => @group.id)
     return redirect_to "/user_home"
   end
 
@@ -24,7 +26,10 @@ class GroupsController < ApplicationController
   end
 
   def delete
+
     @group.destroy
+    return redirect_to "/user_home"
+
   end
 
   def add_user_to_group
@@ -37,11 +42,22 @@ class GroupsController < ApplicationController
   end
 
   def search_json
-    # console.log(params[:content])
+
     search_user = params[:content]
     query = "user_name like '%#{search_user}%'"
     @search_user = User.where(query)
     render :json => @search_user
+
+  end
+
+  def leave_group
+
+    user = current_user
+    @mapping = GroupUserMapping.where(:group_id => @group.id, :user_id => user.id).first
+    if @mapping
+      @mapping.destroy
+    end
+    return redirect_to '/user_home'
 
   end
 
@@ -58,7 +74,6 @@ class GroupsController < ApplicationController
     if(@mapp)
       @mapp.destroy
     end
-
     render :json => @mapp
   end
 
@@ -70,6 +85,10 @@ class GroupsController < ApplicationController
 
   def set_group
     @group = Group.find(params[:id])
+  end
+
+  def set_current_user
+    @current_user = current_user
   end
 
 end
