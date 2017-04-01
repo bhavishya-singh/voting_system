@@ -1,0 +1,2 @@
+module GroupPollsHelper
+end

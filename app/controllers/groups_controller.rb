@@ -1,8 +1,8 @@
 class GroupsController < ApplicationController
   
-  before_action :set_group, :only => [:edit,:update,:delete,:add_user_to_group,:leave_group]
+  before_action :set_group, :only => [:edit,:update,:delete,:add_user_to_group,:leave_group,:group_users]
 
-  def index
+  def index     
   end
 
   def new
@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
+
   end
 
   def create
@@ -29,7 +30,6 @@ class GroupsController < ApplicationController
       @group.destroy
     end
     return redirect_to "/user_home"
-
   end
 
   def add_user_to_group
@@ -73,6 +73,10 @@ class GroupsController < ApplicationController
       end
     end
     render :json => @mapp
+  end
+
+  def group_users
+    @users = @group.users
   end
 
   def remove_user

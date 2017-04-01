@@ -8,6 +8,10 @@ class Group < ActiveRecord::Base
 
 	has_many :group_admin_mappings
 	has_many :admins, :through => :group_admin_mappings
+
+	has_many :group_polls
+
+	
 	private 
 	def set_no_users
 		self.no_users ||= 0;

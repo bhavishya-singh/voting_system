@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  get 'group_polls/index'
+
+  get 'group_polls/create'
+
+  get 'group_polls/vote'
+
+  get 'group_polls/result'
+
   get '/user_home' => 'home#user_home'
 
   get 'groups' => 'groups#index'
@@ -34,7 +42,8 @@ Rails.application.routes.draw do
 
   get 'user_json' => 'home#user_json'
 
-  devise_for :users, :controllers => { registrations: 'users/registrations' }
+  devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions'}
+  
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
