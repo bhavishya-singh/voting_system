@@ -49,16 +49,10 @@ class GroupsController < ApplicationController
   end
 
   def leave_group
-    puts "00000000000000000000000000000000000000000000000000"
-    puts "00000000000000000000000000000000000000000000000000"
-    puts "00000000000000000000000000000000000000000000000000"
     @mapping = GroupUserMapping.where(:group_id => @group.id, :user_id => current_user.id).first
     if @mapping
-      puts "1111111111111111111111111111111111111111111111111111"
       if isUserAdmin? current_user, @group
-        puts "222222222222222222222222222222222222222222222222222"
         if @group.admins.length < 2 && @group.users.length > 1
-          puts "33333333333333333333333333333333333333333333333333333333"
           admin_user = (@group.users - [current_user]).first
           puts admin_user.id
           puts (@group.users - [current_user])
@@ -85,6 +79,9 @@ class GroupsController < ApplicationController
     @mapp = GroupUserMapping.where(:user_id => params[:user_id], :group_id => params[:group_id]).first
     if(@mapp)
       if isUserAdmin? current_user, Group.find(params[:group_id])
+        if isUserAdmin? User.find(params[:user_id]), Group.find(params[:group_id])
+          GroupAdminMapping.where(:admin_id => params[:user_id], :group_id => params[:group_id]).first.destroy
+        end
         @mapp.destroy
       else
         @mapp = nil
