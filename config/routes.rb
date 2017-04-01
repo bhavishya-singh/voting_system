@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
   get 'groups/:id/delete' => 'groups#delete'
 
-  get 'groups/:id/add_users' => 'groups#add_user_to_group', :as => "group_users"
+  get 'groups/:id/users' => 'groups#group_users', :as => "group_users"
+
+  get 'groups/:id/add_users' => 'groups#add_user_to_group', :as => "add_group_users"
 
   post 'groups/searchuser' => 'groups#search_json'
 

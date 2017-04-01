@@ -41,7 +41,7 @@ function onload(){
  				$("#result").empty();
  				for(var i = 0; i < result.length; i++){
  					var div_id = "user_id:" + result[i].id;
- 					console.log(div_id);
+ 					// console.log(div_id);
  					$("#result").append("<div class='search' id="+div_id+"><h2>"+result[i].user_name+"</h2></div>");
  					var div = "#" + div_id;
  					var add_event = document.getElementById(div_id);
@@ -64,6 +64,10 @@ function onload(){
 				 			method: "POST",
 				 			data: data,
 				 			success: function(result){
+				 				if(result === null){
+				 					console.log("you are not admin of the group");
+				 					return;
+				 				}
 								var user_id = "user_id:"+ result.user_id;
 								var div = GetElementInsideContainer("group_users", user_id);
 								// console.log(div);
@@ -152,6 +156,10 @@ function onload(){
 			method: "POST",
 			data: data,
 			success: function(result){
+				if(result === null){
+					console.log("you are not the admin of the group");
+					return;
+				}
 				console.log(result);
 				var user_id = "user_id:" + result.user_id; 
 				var user_div = GetElementInsideContainer("group_users",user_id);

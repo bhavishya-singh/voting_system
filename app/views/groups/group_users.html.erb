@@ -1,0 +1,4 @@
+<div id="group_name"><h2>users for <%= @group.name %></h2></div>
+<% @users.each do |user| %>
+	<%= render "suser" , :user => user %>
+	<% end %>
