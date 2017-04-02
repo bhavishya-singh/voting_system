@@ -8,8 +8,6 @@ Rails.application.routes.draw do
 
   get 'group_polls/result'
 
-  get '/user_home' => 'home#user_home'
-
   get 'groups' => 'groups#index'
 
   post 'groups' => 'groups#create'
@@ -35,6 +33,8 @@ Rails.application.routes.draw do
   post '/add_user' => 'groups#add_user'
 
   post '/remove_user' => 'groups#remove_user'
+
+  get '/user_home' => 'home#user_home'
 
   get 'home/index'
 
