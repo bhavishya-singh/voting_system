@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170401200514) do
+ActiveRecord::Schema.define(version: 20170402061825) do
 
   create_table "group_admin_mappings", force: :cascade do |t|
     t.integer  "admin_id"
@@ -26,12 +26,23 @@ ActiveRecord::Schema.define(version: 20170401200514) do
   create_table "group_poll_competitor_mappings", force: :cascade do |t|
     t.integer  "competitor_id"
     t.integer  "group_poll_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "votes",         default: 0
   end
 
   add_index "group_poll_competitor_mappings", ["competitor_id"], name: "index_group_poll_competitor_mappings_on_competitor_id"
   add_index "group_poll_competitor_mappings", ["group_poll_id"], name: "index_group_poll_competitor_mappings_on_group_poll_id"
+
+  create_table "group_poll_voter_mappings", force: :cascade do |t|
+    t.integer  "group_poll_id"
+    t.integer  "voter_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "group_poll_voter_mappings", ["group_poll_id"], name: "index_group_poll_voter_mappings_on_group_poll_id"
+  add_index "group_poll_voter_mappings", ["voter_id"], name: "index_group_poll_voter_mappings_on_voter_id"
 
   create_table "group_polls", force: :cascade do |t|
     t.string   "name"

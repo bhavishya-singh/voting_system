@@ -179,6 +179,20 @@ function onload(){
 
  	};
 
+ 	var vote_form = document.getElementById("vote_form")
+ 	if(vote_form){
+ 		console.log("tag");
+ 		vote_form.addEventListener("submit", function(event){
+ 			event.preventDefault();
+ 			if ($('input[name=your_fav]:checked').length) {
+           		vote_form.submit();
+      		}
+      		else {
+           		console.log("Atleast one is to be selected"); 
+      		}
+ 		});
+ 	}
+
 	
 };
 function GetElementInsideContainer(containerID, childID) {

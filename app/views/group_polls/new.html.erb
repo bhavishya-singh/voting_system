@@ -1,0 +1,12 @@
+
+<h1>form for new Group poll</h1>
+
+<%= form_tag "/group_polls/create", :method => "POST" do %>
+<%= hidden_field_tag :group_id, @group.id %>
+NAME:
+<%= text_field_tag :name %><br>
+<% @members.each do |member|%>
+<%= render "members", :member => member%>
+<% end %>
+<%= submit_tag "submit" %>
+<% end %>

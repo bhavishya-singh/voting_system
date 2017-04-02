@@ -1,4 +1,7 @@
 <div id="group_name"><h2><%= @group.name %></h2></div>
 <%= link_to "User" , url_for(:controller => "groups", :action => "group_users", :id => @group.id)%>
-<a href="/groups/<%= @group.id %>/add_users">add User</a>
-<%= link_to "add_users" , url_for(:controller => "groups", :action => "add_user_to_group", :id => @group.id) %>
+<%= link_to "add_users" , add_group_users_path(:id => @group.id) %>
+<%= link_to "new poll", new_poll_path(:group_id => @group.id) %>
+<% @group_polls.each do |group_poll| %>
+<%= render "group_polls", :group_poll => group_poll %>
+<% end %>

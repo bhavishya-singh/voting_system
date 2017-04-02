@@ -2,11 +2,15 @@ Rails.application.routes.draw do
   
   get 'group_polls/index'
 
-  get 'group_polls/create'
+  get 'group_polls/:group_id/new' => "group_polls#new", as: "new_poll"
 
-  get 'group_polls/vote'
+  post 'group_polls/create'
 
-  get 'group_polls/result'
+  get 'group_polls/:id/vote' => 'group_polls#vote'
+
+  get 'group_polls/:id/result' => 'group_polls#result'
+
+  post 'contribute' => 'group_polls#contribute'
 
   get 'groups' => 'groups#index'
 

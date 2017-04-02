@@ -22,6 +22,7 @@ class HomeController < ApplicationController
     unless (@belongs)
       return redirect_to '/user_home'
     end
+    @group_polls = @group.group_polls.order(created_at: :desc)
   end
 
   private

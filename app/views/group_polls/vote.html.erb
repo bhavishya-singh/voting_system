@@ -1,2 +1,9 @@
-<h1>GroupPolls#vote</h1>
-<p>Find me in app/views/group_polls/vote.html.erb</p>
+<h1>Vote for your favourite candidate</h1>
+<%= form_tag "/contribute" , :method => "POST", :id => "vote_form" do %>
+<%= hidden_field_tag :group_poll_id , @group_poll.id %>
+<% @poll_contestants.each do |contestant| %>
+<%= label_tag contestant.user_name %>
+<%= radio_button_tag "your_fav" , contestant.id %><br>
+<% end %>
+<%= submit_tag "vote"%>
+	<%end%>
