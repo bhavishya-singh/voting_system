@@ -6,9 +6,9 @@ Rails.application.routes.draw do
 
   post 'group_polls/create'
 
-  get 'group_polls/:id/vote' => 'group_polls#vote'
+  get 'group_polls/:group_poll_id/vote' => 'group_polls#vote'
 
-  get 'group_polls/:id/result' => 'group_polls#result'
+  get 'group_polls/:group_poll_id/result' => 'group_polls#result'
 
   post 'contribute' => 'group_polls#contribute'
 

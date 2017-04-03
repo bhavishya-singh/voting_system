@@ -1,6 +1,8 @@
 class GroupPollsController < ApplicationController
-  
+
+  before_action :authenticate_user!  
   before_action :set_group, :only => [:new,:create]
+  before_action :set_group_poll, :only => [:vote, :result, :contribute]
 
   def index
   end
@@ -25,19 +27,18 @@ class GroupPollsController < ApplicationController
   end
 
   def vote
-    poll_voter_mapping = GroupPollVoterMapping.where(:group_poll_id => params[:id], :voter_id => current_user.id).first
+    poll_voter_mapping = GroupPollVoterMapping.where(:group_poll_id => params[:group_poll_id], :voter_id => current_user.id).first
     if poll_voter_mapping
-      return redirect_to "/group_polls/#{params[:id]}/result"     
-    end 
-    @group_poll = GroupPoll.find(params[:id])   
+      return redirect_to "/group_polls/#{params[:group_poll_id]}/result"     
+    end  
     @poll_contestants = @group_poll.competitors
 
 
   end
 
   def contribute
-    group_poll = GroupPoll.find(params[:group_poll_id])
-    if check_user_belongs_to_group current_user, group_poll.group
+    @group_poll = GroupPoll.find(params[:group_poll_id])
+    if check_user_belongs_to_group current_user, @group_poll.group
       poll_voter_mapping = GroupPollVoterMapping.where(:group_poll_id => params[:group_poll_id], :voter_id => current_user.id).first
       unless poll_voter_mapping
         contestant_mapping = GroupPollCompetitorMapping.where(:group_poll_id => params[:group_poll_id],:competitor_id => params[:your_fav]).first
@@ -65,6 +66,10 @@ class GroupPollsController < ApplicationController
     else
       return false
     end
+  end
+
+  def set_group_poll
+    @group_poll = GroupPoll.find(params[:group_poll_id])
   end
 
 end
