@@ -2,7 +2,7 @@ class GroupPollsController < ApplicationController
 
   before_action :authenticate_user!  
   before_action :set_group, :only => [:new,:create]
-  before_action :set_group_poll, :only => [:vote, :result, :contribute]
+  before_action :set_group_poll, :only => [:vote, :result, :contribute,:delete_group_poll_for_user]
 
   def index
   end
@@ -11,7 +11,7 @@ class GroupPollsController < ApplicationController
     if isUserAdmin? current_user, @group
       @members = @group.users
     else
-      return redirect_to '/user_home'
+      return redirect_to "/group/#{@group.id}/show"
     end
   end
 
@@ -23,7 +23,12 @@ class GroupPollsController < ApplicationController
         @group_poll.group_poll_competitor_mappings.create(:competitor_id => contestant_id)
       end
     end
-    return redirect_to '/user_home'
+    return redirect_to "/group/#{@group.id}/show"
+  end
+
+  def delete_group_poll_for_user
+     GroupPollDeleteMapping.create(:user_id => current_user.id, :group_poll_id => @group_poll.id)
+     return redirect_to "/group/#{@group_poll.group.id}/show"
   end
 
   def vote
@@ -45,7 +50,7 @@ class GroupPollsController < ApplicationController
         vote = contestant_mapping.votes + 1;
         contestant_mapping.update(:votes => vote)
         GroupPollVoterMapping.create(:group_poll_id => params[:group_poll_id],:voter_id => current_user.id) 
-        return redirect_to "/user_home"
+        return redirect_to "/group_polls/#{params[:group_poll_id]}/result"
       end 
     end
     return redirect_to "/user_home"

@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
 
 	has_many :group_poll_competitor_mappings
     has_many :group_polls, :through => :group_poll_competitor_mappings
+
+    has_many :group_poll_delete_mappings
+    has_many :group_polls_deleted, :through => :group_poll_delete_mappings, :source => :group_poll
 	
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

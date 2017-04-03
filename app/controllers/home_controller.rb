@@ -22,7 +22,9 @@ class HomeController < ApplicationController
     unless (@belongs)
       return redirect_to '/user_home'
     end
-    @group_polls = @group.group_polls.order(created_at: :desc)
+    group_polls = @group.group_polls.order(created_at: :desc)
+    group_polls_deleted = current_user.group_polls_deleted.pluck(:group_poll_id)
+    @group_polls = group_polls.where('id NOT IN (?)',group_polls_deleted)
   end
 
   private

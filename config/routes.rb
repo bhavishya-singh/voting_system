@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   post 'contribute' => 'group_polls#contribute'
 
+  get 'group_polls/:group_poll_id/delete_user' => 'group_polls#delete_group_poll_for_user', as: "delete_poll"
+
   get 'groups' => 'groups#index'
 
   post 'groups' => 'groups#create'
