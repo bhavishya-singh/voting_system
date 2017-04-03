@@ -52,6 +52,8 @@ class GroupPollsController < ApplicationController
   end
 
   def result
+    @group_poll_competitor_mappings = @group_poll.group_poll_competitor_mappings
+    @competitors = @group_poll.competitors
   end
 
   private

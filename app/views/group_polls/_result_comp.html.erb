@@ -1,0 +1,3 @@
+<div>
+	<h2><%= competitor.user_name%>:</h2><span><%= @group_poll_competitor_mappings.where(:competitor_id => competitor.id).first.votes%></span><br>
+</div>
