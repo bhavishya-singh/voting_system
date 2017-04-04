@@ -24,7 +24,11 @@ class HomeController < ApplicationController
     end
     group_polls = @group.group_polls.order(created_at: :desc)
     group_polls_deleted = current_user.group_polls_deleted.pluck(:group_poll_id)
-    @group_polls = group_polls.where('id NOT IN (?)',group_polls_deleted)
+    if group_polls_deleted.length != 0
+      @group_polls = group_polls.where('id NOT IN (?)',group_polls_deleted)
+    else
+      @group_polls = group_polls
+    end
   end
 
   private
