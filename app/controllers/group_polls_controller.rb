@@ -2,7 +2,7 @@ class GroupPollsController < ApplicationController
 
   before_action :authenticate_user!  
   before_action :set_group, :only => [:new,:create]
-  before_action :set_group_poll, :only => [:vote, :result, :contribute,:delete_group_poll_for_user]
+  before_action :set_group_poll, :only => [:stop_poll, :vote, :result, :contribute,:delete_group_poll_for_user]
 
   def index
   end
@@ -33,11 +33,20 @@ class GroupPollsController < ApplicationController
 
   def vote
     poll_voter_mapping = GroupPollVoterMapping.where(:group_poll_id => params[:group_poll_id], :voter_id => current_user.id).first
-    if poll_voter_mapping
+    if poll_voter_mapping || @group_poll.poll_end
       return redirect_to "/group_polls/#{params[:group_poll_id]}/result"     
     end  
     @poll_contestants = @group_poll.competitors
 
+
+  end
+
+  def stop_poll
+    group = @group_poll.group
+    if isUserAdmin? current_user, group
+      @group_poll.update(:poll_end => true)
+    end
+    return redirect_to "/group_polls/#{@group_poll.id}/vote"
 
   end
 

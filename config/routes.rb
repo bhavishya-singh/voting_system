@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   get 'group_polls/:group_poll_id/vote' => 'group_polls#vote'
 
+  get 'group_polls/:group_poll_id/stop_poll' => 'group_polls#stop_poll', :as => "stop_poll"
+
   get 'group_polls/:group_poll_id/result' => 'group_polls#result'
 
   post 'contribute' => 'group_polls#contribute'

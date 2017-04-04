@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404064737) do
+ActiveRecord::Schema.define(version: 20170404173635) do
 
   create_table "group_admin_mappings", force: :cascade do |t|
     t.integer  "admin_id"
@@ -57,8 +57,9 @@ ActiveRecord::Schema.define(version: 20170404064737) do
   create_table "group_polls", force: :cascade do |t|
     t.string   "name"
     t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "poll_end",   default: false
   end
 
   add_index "group_polls", ["group_id"], name: "index_group_polls_on_group_id"
