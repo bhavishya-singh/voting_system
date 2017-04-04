@@ -8,9 +8,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    initialize_image resource
+
+  end
 
   # GET /resource/edit
   # def edit
@@ -38,9 +40,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 protected
 
+  def after_sign_up_path_for(resource)
+      stored_location_for(resource) || :user_home
+  end
+
+  def initialize_image resource
+    original_filename = params["user"]["image"].original_filename
+    @image = Image.create(:filename => original_filename, :user_id => resource.id)
+
+    file_name = resource.id.to_s + "_" + original_filename
+    temp_file = params["user"]["image"]
+    File.open(Rails.root.join('public', 'uploads', file_name), 'wb') do |file|
+      file.write(temp_file.read)
+    end
+
+  end
+
   # If you have extra params to permit, append them to the sanitizer.
   def sign_up_params
-    params.require(:user).permit(:email, :password, :password_confirmation,:first_name, :last_name,:user_name)
+    return params.require(:user).permit(:email, :password, :password_confirmation,:first_name, :last_name,:user_name)
   end
 
   # If you have extra params to permit, append them to the sanitizer.

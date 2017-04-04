@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  get 'image/new'
+
+  get 'image/create'
+
+  get 'image/edit'
+
+  get 'image/update'
+
   get 'group_polls/index'
 
   get 'group_polls/:group_id/new' => "group_polls#new", as: "new_poll"

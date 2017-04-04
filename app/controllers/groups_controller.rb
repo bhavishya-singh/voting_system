@@ -44,8 +44,8 @@ class GroupsController < ApplicationController
 
   def search_json
     search_user = params[:content]
-    query = "user_name like '%#{search_user}%'"
-    @search_user = User.where(query) - [current_user]
+    query  = "%#{search_user}%"
+    @search_user = User.where("user_name LIKE ?",query).all - [current_user]
     render :json => @search_user
   end
 
