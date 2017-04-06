@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
 
     has_many :group_poll_delete_mappings
     has_many :group_polls_deleted, :through => :group_poll_delete_mappings, :source => :group_poll
+
+    has_many :uni_poll_delete_mappings
+    has_many :uni_polls_deleted, :through => :uni_poll_delete_mappings, :source => :uni_poll
 	
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406142149) do
+ActiveRecord::Schema.define(version: 20170406144949) do
 
   create_table "group_admin_mappings", force: :cascade do |t|
     t.integer  "admin_id"
@@ -99,6 +99,37 @@ ActiveRecord::Schema.define(version: 20170406142149) do
 
   add_index "uni_poll_admin_mappings", ["admin_id"], name: "index_uni_poll_admin_mappings_on_admin_id"
   add_index "uni_poll_admin_mappings", ["uni_poll_id"], name: "index_uni_poll_admin_mappings_on_uni_poll_id"
+
+  create_table "uni_poll_competitor_mappings", force: :cascade do |t|
+    t.integer  "competitor_id"
+    t.integer  "uni_poll_id"
+    t.integer  "votes"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "uni_poll_competitor_mappings", ["competitor_id"], name: "index_uni_poll_competitor_mappings_on_competitor_id"
+  add_index "uni_poll_competitor_mappings", ["uni_poll_id"], name: "index_uni_poll_competitor_mappings_on_uni_poll_id"
+
+  create_table "uni_poll_delete_mappings", force: :cascade do |t|
+    t.integer  "uni_poll_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "uni_poll_delete_mappings", ["uni_poll_id"], name: "index_uni_poll_delete_mappings_on_uni_poll_id"
+  add_index "uni_poll_delete_mappings", ["user_id"], name: "index_uni_poll_delete_mappings_on_user_id"
+
+  create_table "uni_poll_voter_mappings", force: :cascade do |t|
+    t.integer  "voter_id"
+    t.integer  "uni_poll_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "uni_poll_voter_mappings", ["uni_poll_id"], name: "index_uni_poll_voter_mappings_on_uni_poll_id"
+  add_index "uni_poll_voter_mappings", ["voter_id"], name: "index_uni_poll_voter_mappings_on_voter_id"
 
   create_table "uni_polls", force: :cascade do |t|
     t.string   "name"
