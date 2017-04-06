@@ -131,6 +131,24 @@ function onload(){
 
 	 	});
 	}
+	var added =0;
+	var add_public_contestant = document.getElementById("add_public_contestant");
+	if(add_public_contestant){
+		add_public_contestant.addEventListener('click',function(){
+			console.log("clicked!");
+			event.stopPropagation();
+			event.preventDefault();
+			added++;
+			var id = "added:" + added;
+			contestant_element = "<div><label for='contestant_name'>Contestant name</label><input type='text' name='contestant_name[]' class='added_contestant_name'><span id="+id+">delete</span><br></div>";
+			$(contestant_element).insertBefore("#submit");
+			var delete_icon = document.getElementById(id);
+			delete_icon.addEventListener('click', function(){
+				var parent = this.parentNode;
+				this.parentNode.parentNode.removeChild(parent);
+			});
+		});
+	}
 
  	var group_users =  document.getElementById("group_users");
  	if(group_users){

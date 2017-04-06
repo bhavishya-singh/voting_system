@@ -1,0 +1,31 @@
+<h2>Form for new universal polls</h2>
+<%= form_tag "/uni_poll_dummie", :method => "GET" , :id => "search_user_poll" do%>
+<%= text_field_tag :search_user_name %>
+<%= submit_tag 'search'%>
+<% end %>
+
+
+
+<%= form_tag "/unipoll/create", :method => "POST", :id => "unipoll_form" do %>
+<div>
+	<%= label_tag :poll_name %>
+	<%= text_field_tag :poll_name %><br>
+</div>
+<div>
+	<%= label_tag :contestant_name %>
+	<%= text_field_tag "contestant_name[]" %>
+<br>
+	
+</div>
+<div>
+	<%= label_tag :contestant_name %>
+	<%= text_field_tag "contestant_name[]" %>
+<br>
+</div>
+
+<%= submit_tag "submit", :id => "submit" %>
+
+<br>
+<% end %>
+
+<button id="add_public_contestant">Add Contestant</button>

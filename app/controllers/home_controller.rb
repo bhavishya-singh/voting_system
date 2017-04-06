@@ -11,6 +11,11 @@ class HomeController < ApplicationController
   def user_home
   	@user = current_user
   	@groups = current_user.groups
+    uni_polls_deleted_mapping = current_user.uni_polls_deleted.pluck(:uni_poll_id); 
+    @uni_polls = UniPoll.all.order(:created_at => "desc")
+    if uni_polls_deleted_mapping.length > 0
+      @uni_polls = @uni_polls.where('id NOT IN (?)',uni_polls_deleted_mapping)
+    end
   end
 
   def user_json
@@ -24,7 +29,7 @@ class HomeController < ApplicationController
     end
     group_polls = @group.group_polls.order(created_at: :desc)
     group_polls_deleted = current_user.group_polls_deleted.pluck(:group_poll_id)
-    if group_polls_deleted.length != 0
+    if group_polls_deleted.length > 0
       @group_polls = group_polls.where('id NOT IN (?)',group_polls_deleted)
     else
       @group_polls = group_polls
