@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406140004) do
+ActiveRecord::Schema.define(version: 20170406142149) do
 
   create_table "group_admin_mappings", force: :cascade do |t|
     t.integer  "admin_id"
@@ -90,15 +90,22 @@ ActiveRecord::Schema.define(version: 20170406140004) do
 
   add_index "images", ["user_id"], name: "index_images_on_user_id"
 
+  create_table "uni_poll_admin_mappings", force: :cascade do |t|
+    t.integer  "admin_id"
+    t.integer  "uni_poll_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "uni_poll_admin_mappings", ["admin_id"], name: "index_uni_poll_admin_mappings_on_admin_id"
+  add_index "uni_poll_admin_mappings", ["uni_poll_id"], name: "index_uni_poll_admin_mappings_on_uni_poll_id"
+
   create_table "uni_polls", force: :cascade do |t|
     t.string   "name"
     t.boolean  "poll_end",   default: false
-    t.integer  "admin_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
-
-  add_index "uni_polls", ["admin_id"], name: "index_uni_polls_on_admin_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
