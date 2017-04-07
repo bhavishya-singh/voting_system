@@ -1,0 +1,6 @@
+<h1>result for the public polls - <%= @uni_poll.name %></h1>
+
+<br>
+<% @contestants_mapping.each do |mapp|%>
+<%= render "result_comp", :mapp => mapp %>
+<% end %>

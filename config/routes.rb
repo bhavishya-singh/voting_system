@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   get 'unipoll/:uni_poll_id/vote' => 'uni_poll#vote'
 
+  get 'unipoll/:uni_poll_id/result' => 'uni_poll#result'
+
   post '/public_poll_contribute' => 'uni_poll#contribute'
 
   get 'unipoll/new' => 'uni_poll#new'
