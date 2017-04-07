@@ -1,0 +1,9 @@
+<h1>Vote for your favourite candidate</h1>
+<%= form_tag "/public_poll_contribute" , :method => "POST", :id => "vote_form" do %>
+<%= hidden_field_tag :uni_poll_id , @uni_poll.id %>
+<% @contestants_mapping.each do |mapping| %>
+<%= label_tag mapping.competitor_name %>
+<%= radio_button_tag "your_fav" , mapping.competitor_name %><br>
+<% end %>
+<%= submit_tag "vote"%>
+<%end%>

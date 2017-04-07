@@ -24,11 +24,13 @@ Rails.application.routes.draw do
 
   get 'group_polls/:group_poll_id/delete_user' => 'group_polls#delete_group_poll_for_user', as: "delete_poll"
 
+  get 'unipoll/:uni_poll_id/vote' => 'uni_poll#vote'
+
+  post '/public_poll_contribute' => 'uni_poll#contribute'
+
   get 'unipoll/new' => 'uni_poll#new'
 
   post 'unipoll/create' => 'uni_poll#create'
-
-  get '/uni_poll_dummie' => 'uni_poll#dummie'
 
   get 'groups' => 'groups#index'
 
