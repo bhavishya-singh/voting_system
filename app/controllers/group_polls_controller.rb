@@ -66,6 +66,10 @@ class GroupPollsController < ApplicationController
   end
 
   def result
+    poll_voter_mapping = GroupPollVoterMapping.where(:group_poll_id => params[:group_poll_id], :voter_id => current_user.id).first
+    unless poll_voter_mapping
+      return redirect_to "/group_polls/#{@group_poll.id}/vote"
+    end
     @group_poll_competitor_mappings = @group_poll.group_poll_competitor_mappings
     @competitors = @group_poll.competitors
   end
