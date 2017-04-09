@@ -11,7 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     initialize_image resource
-
+    UserMailer.welcome_email(resource).deliver_later
   end
 
   # GET /resource/edit

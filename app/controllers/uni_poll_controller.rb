@@ -1,7 +1,7 @@
 class UniPollController < ApplicationController
 
 	before_action :authenticate_user!
-	before_action :set_uni_poll, :only => [:vote,:contribute,:result]
+	before_action :set_uni_poll, :only => [:vote,:contribute,:result,:stop_poll]
 
 	def new 
 
@@ -12,7 +12,6 @@ class UniPollController < ApplicationController
 		UniPollAdminMapping.create(:uni_poll_id => @poll.id, :admin_id => current_user.id)
 		contestants = params[:contestant_name]
 		contestants.each do |contestant|
-			byebug
 			@poll.uni_poll_competitor_mappings.create(:competitor_name => contestant)
 		end
 		return redirect_to '/user_home'
@@ -41,12 +40,15 @@ class UniPollController < ApplicationController
 	end
 
 	def stop_poll
-
+		if isuserAdminOfPublicPoll? current_user, @uni_poll
+			@uni_poll.update(:poll_end => true)
+		end
+		return redirect_to '/user_home'
 	end
 
 	def result
 		voter_mapping = UniPollVoterMapping.where(:uni_poll_id => params[:uni_poll_id],:voter_id => current_user.id).first
-		unless voter_mapping
+		unless voter_mapping || @uni_poll.poll_end
 			return redirect_to "unipoll/#{params[:uni_poll_id]}/vote"
 		end
 		@contestants_mapping = @uni_poll.uni_poll_competitor_mappings
