@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
 
   def isUserAdmin? user, group
-    byebug
+    # byebug
   	admins = group.admins
   	admins.each do |admin|
 

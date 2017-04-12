@@ -1,3 +1,21 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+	ul#ui-id-1{
+   		background-color: white;
+   		list-style: none;
+   	}
+   	li {
+    	border: 1px solid black;
+   		max-width: 300px;
+   	}
+ 
+   	li:hover{
+     	background-color: lightgoldenrodyellow;
+   	}
+
+   	.ui-helper-hidden-accessible{
+   	 	display: none;
+   	}

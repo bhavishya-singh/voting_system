@@ -70,6 +70,8 @@ Rails.application.routes.draw do
 
   get 'user_json' => 'home#user_json'
 
+  get '/autocomplete_user_user_name' => 'home#autocomplete_user_user_name'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations', sessions: 'users/sessions'}
   
   root to: "home#index"

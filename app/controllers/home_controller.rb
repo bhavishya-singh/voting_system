@@ -4,6 +4,8 @@ class HomeController < ApplicationController
   before_action :set_current_user , :only => [:group]
   before_action :set_group, :only => [:group]
   before_action :check_user_belongs_to_group, :only => [:group]
+  autocomplete :user, :user_name
+
 
   def index
     if user_signed_in?

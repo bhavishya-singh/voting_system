@@ -43,6 +43,7 @@ class GroupsController < ApplicationController
   end
 
   def search_json
+    # byebug
     search_user = params[:content]
     query  = "%#{search_user}%"
     @search_user = User.where("user_name LIKE ?",query).all - [current_user]
