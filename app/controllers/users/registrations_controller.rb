@@ -46,11 +46,20 @@ protected
 
   def initialize_image resource
     original_filename = params["user"]["image"].original_filename
-    @image = Image.create(:filename => original_filename, :user_id => resource.id)
-
-    file_name = resource.id.to_s + "_" + original_filename
+    temp_file_name = SecureRandom.hex+ "." + original_filename.split(".")[1]
+    # @image = Image.create(:filename => original_filename, :user_id => resource.id)
+    # file_name = resource.id.to_s + "_" + original_filename
     temp_file = params["user"]["image"]
-    File.open(Rails.root.join('public', 'uploads', file_name), 'wb') do |file|
+
+    begin
+      user = User.where(:profile_picture => temp_file_name).first
+      if user
+        temp_file_name = SecureRandom.hex+ "." + original_filename.split(".")[1]
+      end
+    end while user
+    resource.profile_picture = temp_file_name
+    resource.save!
+    File.open(Rails.root.join('public', 'uploads', temp_file_name), 'wb') do |file|
       file.write(temp_file.read)
     end
 

@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
 
   def isUserAdmin? user, group
+    byebug
   	admins = group.admins
   	admins.each do |admin|
 
@@ -18,6 +19,7 @@ class ApplicationController < ActionController::Base
 
 
   def isuserAdminOfPublicPoll? user, public_poll
+    byebug
     admin = public_poll.admin
     if admin.id == user.id
       return true

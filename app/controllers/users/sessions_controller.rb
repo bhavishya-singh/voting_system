@@ -21,7 +21,7 @@ class Users::SessionsController < Devise::SessionsController
   protected
 
   def after_sign_in_path_for(resource)
-      stored_location_for(resource) || :user_home
+      request.env['omniauth.origin'] || stored_location_for(resource) || :user_home
   end
 
   # If you have extra params to permit, append them to the sanitizer.

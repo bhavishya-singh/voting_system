@@ -70,7 +70,7 @@ Rails.application.routes.draw do
 
   get 'user_json' => 'home#user_json'
 
-  devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions'}
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations', sessions: 'users/sessions'}
   
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.

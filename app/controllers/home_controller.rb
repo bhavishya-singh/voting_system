@@ -6,6 +6,10 @@ class HomeController < ApplicationController
   before_action :check_user_belongs_to_group, :only => [:group]
 
   def index
+    if user_signed_in?
+      return redirect_to '/user_home'
+    end
+
   end
 
   def user_home
