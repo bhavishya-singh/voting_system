@@ -2,8 +2,8 @@
 	<div>
 		<h2><%= group_poll.name%></h2>
 	</div>
+</a>
 	<%= link_to "Delete" ,delete_poll_path(:group_poll_id => group_poll.id) %>
 	<% if isUserAdmin? current_user, @group %>
 		<%= link_to "End Poll" ,stop_poll_path(:group_poll_id => group_poll.id) %>
 	<% end %>
-</a>

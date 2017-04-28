@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
 
 
   def isuserAdminOfPublicPoll? user, public_poll
-    byebug
     admin = public_poll.admin
     if admin.id == user.id
       return true

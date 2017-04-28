@@ -32,9 +32,10 @@ class GroupPollsController < ApplicationController
   end
 
   def vote
+     byebug
     poll_voter_mapping = GroupPollVoterMapping.where(:group_poll_id => params[:group_poll_id], :voter_id => current_user.id).first
     if poll_voter_mapping || @group_poll.poll_end
-      return redirect_to "/group_polls/#{params[:group_poll_id]}/result"     
+      return redirect_to "/group_polls/#{params[:group_poll_id]}/result"
     end  
     @poll_contestants = @group_poll.competitors
 
@@ -42,6 +43,7 @@ class GroupPollsController < ApplicationController
   end
 
   def stop_poll
+    byebug
     group = @group_poll.group
     if isUserAdmin? current_user, group
       @group_poll.update(:poll_end => true)
@@ -67,7 +69,7 @@ class GroupPollsController < ApplicationController
 
   def result
     poll_voter_mapping = GroupPollVoterMapping.where(:group_poll_id => params[:group_poll_id], :voter_id => current_user.id).first
-    unless poll_voter_mapping
+    unless poll_voter_mapping || @group_poll.poll_end
       return redirect_to "/group_polls/#{@group_poll.id}/vote"
     end
     @group_poll_competitor_mappings = @group_poll.group_poll_competitor_mappings
