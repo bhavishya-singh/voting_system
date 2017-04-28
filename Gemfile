@@ -16,6 +16,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'devise'
 
 gem 'cancancan'
+gem 'redis'
+gem 'resque', :require => "resque/server"
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 

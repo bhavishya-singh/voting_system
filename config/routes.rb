@@ -72,6 +72,7 @@ Rails.application.routes.draw do
 
   get '/autocomplete_user_user_name' => 'home#autocomplete_user_user_name'
 
+  mount Resque::Server, :at => "/resque"
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations', sessions: 'users/sessions'}
   
   root to: "home#index"
