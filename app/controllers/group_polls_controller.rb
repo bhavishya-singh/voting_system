@@ -11,6 +11,7 @@ class GroupPollsController < ApplicationController
     if isUserAdmin? current_user, @group
       @members = @group.users
     else
+      flash[:notice] = 'errror'
       return redirect_to "/group/#{@group.id}/show"
     end
   end
@@ -22,8 +23,11 @@ class GroupPollsController < ApplicationController
       contestant_list.each do |contestant_id|
         @group_poll.group_poll_competitor_mappings.create(:competitor_id => contestant_id)
       end
+      return redirect_to "/group/#{@group.id}/show"
+    else
+      flash[:notice] = 'errror'
+      return redirect_to "/group/#{@group.id}/show"
     end
-    return redirect_to "/group/#{@group.id}/show"
   end
 
   def delete_group_poll_for_user
