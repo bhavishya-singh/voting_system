@@ -16,7 +16,8 @@
 //= require jquery-ui
 //= require autocomplete-rails
 //= require_tree .
-
+//= require jquery
+//= require bootstrap-sprockets
 
 function onload(){
 
