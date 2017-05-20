@@ -13,16 +13,24 @@
  //*= require_tree .
  //*= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
 *{
   padding: 0;
   margin: 0;
 }
 
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
-
+#content{
+  margin-top: 50px;
+}
+#alert{
+  color:transparent;
+  padding:0px;
+}
 //colors
 $navGrey: #9d9d9d;
 $navGreen: #8eb640;
@@ -74,7 +82,16 @@ hr {
      color: $navGreen;
  }
 }
-
+#navigation{
+  .btn{
+    margin-top: 11px;
+    box-sizing: border-box;
+  }
+  .facebook-icon{
+    font-size: 16px;
+    padding-top: 2px;
+  }
+}
 .navbar {
 .navbar-toggle {
     border-color: $navGreen;
