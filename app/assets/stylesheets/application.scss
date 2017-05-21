@@ -17,25 +17,70 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
-
-*{
-  padding: 0;
-  margin: 0;
-}
-
-
-#content{
-  margin-top: 50px;
-}
-#alert{
-  color:transparent;
-  padding:0px;
-}
 //colors
 $navGrey: #9d9d9d;
 $navGreen: #8eb640;
 $navBack: #222;
 $backgroundGrey: #262626;
+*{
+  padding: 0;
+  margin: 0;
+}
+#my-header{
+  background-color: $backgroundGrey;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.header-container{
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  color: $navGrey;
+  .my-brand{
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  .header-option{
+
+    .loged-in{
+      display: flex;
+      align-items: center;
+      .user-image{
+        img{
+          margin-left: 5px;
+          border: 1px solid black;
+          border-radius: 20px;
+        }
+      }
+    }
+    #my-login{
+      button{
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        border-radius: 10px;
+        i{
+          font-size: 20px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+#content{
+  margin-top: -10px;
+}
+#alert{
+  color:transparent;
+  padding:0px;
+}
+
 
 //images
 $bannerImg: "https://images.pexels.com/photos/114907/pexels-photo-114907.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb";

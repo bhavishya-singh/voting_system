@@ -11,29 +11,31 @@
 </head>
 <body>
 <!--  Navigation Bar    -->
-<nav id="navigation" class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">VOTEME</a>
-
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarButtons" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+<header id="my-header">
+  <div class="header-container">
+    <div class="my-brand">
+      Vote Me
     </div>
-
-    <div class="collapse navbar-collapse" id="navbarButtons">
-      <ul class="nav navbar-nav navbar-right">
-        <li id="navAbout" class="btn navbar-btn navActive">About</li>
-        <li id="navServices" class="btn navbar-btn">Services</li>
-        <li id="navContact" class="btn navbar-btn">Contact</li>
-        <li id="facebook-login" class="btn navbar-btn"><i class="fa fa-facebook-square facebook-icon" aria-hidden="true"></i> Facebook Login</li>
-      </ul>
+    <div class="header-option">
+      <% if user_signed_in? %>
+          <div class="loged-in">
+            hello <%= current_user.email %>
+            <div class="user-image">
+              <% if current_user.provider == nil %>
+                  <img src="/uploads/<%= current_user.profile_picture %>" style="height:40px;width:40px">
+              <% else %>
+                <img src="<%= current_user.profile_picture %>" style="height:40px;width:40px">
+              <% end %>
+            </div>
+          </div>
+          <% else %>
+      <div id="my-login">
+        <button ><i class="fa fa-facebook-square" aria-hidden="true"></i>FaceBook Login</button>
+      </div>
     </div>
+          <% end %>
   </div>
-</nav>
+</header>
 <div id="content">
   <p class="notice"><%= notice %></p>
   <p class="alert" id="alert"><%= alert %></p>
