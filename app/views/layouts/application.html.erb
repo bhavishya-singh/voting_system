@@ -28,20 +28,17 @@
               <% end %>
             </div>
           </div>
-          <% else %>
-      <div id="my-login">
-        <button ><i class="fa fa-facebook-square" aria-hidden="true"></i>FaceBook Login</button>
-      </div>
+      <% else %>
+        <div id="my-login">
+          <a href="<%= url_for(user_facebook_omniauth_authorize_path)%>"><button type="button" ><i class="fa fa-facebook-square" aria-hidden="true"></i>FaceBook Login</button></a>
+        </div>
+      <% end %>
     </div>
-          <% end %>
   </div>
 </header>
-<div id="content">
-  <p class="notice"><%= notice %></p>
-  <p class="alert" id="alert"><%= alert %></p>
-  <%= yield %>
-</div>
-
+<p class="notice"><%= notice %></p>
+<p class="alert" id="alert"><%= alert %></p>
+<%= yield %>
 <!--  Contact info      -->
 <div id="contactInfo"><!--removed class "row"-->
   <div class="container">

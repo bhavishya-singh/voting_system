@@ -77,11 +77,10 @@ $backgroundGrey: #262626;
   margin-top: -10px;
 }
 #alert{
-  color:transparent;
-  padding:0px;
+  border:none;
+  padding: 0;
+  margin-bottom: 0;
 }
-
-
 //images
 $bannerImg: "https://images.pexels.com/photos/114907/pexels-photo-114907.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb";
 $servicesBack: "https://images.pexels.com/photos/247932/pexels-photo-247932.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb";
