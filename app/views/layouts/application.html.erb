@@ -14,18 +14,24 @@
 <header id="my-header">
   <div class="header-container">
     <div class="my-brand">
-      Vote Me
+      <a href="/">Vote Me</a>
     </div>
     <div class="header-option">
       <% if user_signed_in? %>
           <div class="loged-in">
             hello <%= current_user.email %>
             <div class="user-image">
-              <% if current_user.provider == nil %>
-                  <img src="/uploads/<%= current_user.profile_picture %>" style="height:40px;width:40px">
-              <% else %>
-                <img src="<%= current_user.profile_picture %>" style="height:40px;width:40px">
-              <% end %>
+              <div class="dropdown">
+                <% if current_user.provider == nil %>
+                    <img src="/uploads/<%= current_user.profile_picture %>" style="height:40px;width:40px">
+                <% else %>
+                    <img src="<%= current_user.profile_picture %>" style="height:40px;width:40px">
+                <% end %>
+                <div class="dropdown-content">
+                  <a href="#">Profile</a>
+                  <%= link_to "Logout", :destroy_user_session , :method => "DELETE"%>
+                </div>
+              </div>
             </div>
           </div>
       <% else %>
@@ -38,7 +44,9 @@
 </header>
 <p class="notice"><%= notice %></p>
 <p class="alert" id="alert"><%= alert %></p>
-<%= yield %>
+<div class="container">
+  <%= yield %>
+</div>
 <!--  Contact info      -->
 <div id="contactInfo"><!--removed class "row"-->
   <div class="container">

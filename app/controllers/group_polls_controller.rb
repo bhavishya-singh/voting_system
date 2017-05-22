@@ -36,7 +36,6 @@ class GroupPollsController < ApplicationController
   end
 
   def vote
-     byebug
     poll_voter_mapping = GroupPollVoterMapping.where(:group_poll_id => params[:group_poll_id], :voter_id => current_user.id).first
     if poll_voter_mapping || @group_poll.poll_end
       return redirect_to "/group_polls/#{params[:group_poll_id]}/result"
