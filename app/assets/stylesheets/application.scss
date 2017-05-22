@@ -112,6 +112,18 @@ $backgroundGrey: #262626;
 #content{
   margin-top: -10px;
 }
+.outter-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .my-container{
+    width: 85%;
+    background-color: rgba(157, 157, 157, 0.57);
+    padding: 20px 30px;
+  }
+}
+
 #alert{
   border:none;
   padding: 0;

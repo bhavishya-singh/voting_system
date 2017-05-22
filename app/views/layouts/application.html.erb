@@ -42,10 +42,12 @@
     </div>
   </div>
 </header>
-<p class="notice"><%= notice %></p>
-<p class="alert" id="alert"><%= alert %></p>
-<div class="container">
+<div class="outter-container">
+<div class="my-container">
+  <p class="notice"><%= notice %></p>
+  <p class="alert" id="alert"><%= alert %></p>
   <%= yield %>
+</div>
 </div>
 <!--  Contact info      -->
 <div id="contactInfo"><!--removed class "row"-->
