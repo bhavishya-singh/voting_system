@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170522120411) do
+ActiveRecord::Schema.define(version: 20170522180935) do
 
   create_table "group_admin_mappings", force: :cascade do |t|
     t.integer  "admin_id"
@@ -132,9 +132,11 @@ ActiveRecord::Schema.define(version: 20170522120411) do
 
   create_table "uni_polls", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "poll_end",   default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "poll_end",      default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "country_based"
+    t.string   "country"
   end
 
   create_table "users", force: :cascade do |t|

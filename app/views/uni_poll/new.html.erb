@@ -17,6 +17,14 @@
 <br>
 </div>
 
+    <div>
+      <%= label_tag :country %>
+      <%= radio_button_tag :country_based, 'yes', :checked => true %> Yes
+      <%= radio_button_tag :country_based, 'no' %> No
+      <br>
+      <br>
+    </div>
+
 <%= submit_tag "submit", :id => "submit" %>
 
 <br>

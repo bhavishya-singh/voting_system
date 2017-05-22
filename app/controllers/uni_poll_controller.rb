@@ -14,6 +14,13 @@ class UniPollController < ApplicationController
 		contestants.each do |contestant|
 			@poll.uni_poll_competitor_mappings.create(:competitor_name => contestant)
 		end
+		if params[:country_based] == "yes"
+			@poll.country_based = true
+			@poll.country = current_user.country
+		else
+			@poll.country_based == false
+		end
+		@poll.save!
 		return redirect_to '/user_home'
 	end
 
