@@ -36,10 +36,16 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+    <div class="field">
+      <%= f.label :country %><br />
+      <%= f.country_select :country %>
+    </div>
+
   <div class="field">
     <%= f.label :image %><br />
     <%= f.file_field :image %>
   </div>
+
 
   <div class="actions">
     <%= f.submit "Sign up" %>

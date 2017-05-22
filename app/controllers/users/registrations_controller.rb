@@ -9,8 +9,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    byebug
     super
-    initialize_image resource
+    if params[:image] != nil
+      initialize_image resource
+    end
   end
 
   # GET /resource/edit
@@ -66,12 +69,12 @@ protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def sign_up_params
-    return params.require(:user).permit(:email, :password, :password_confirmation,:first_name, :last_name,:user_name)
+    return params.require(:user).permit(:email, :password, :password_confirmation,:first_name, :last_name,:user_name,:country)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def account_update_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :first_name, :last_name, :user_name)
+    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :first_name, :last_name, :user_name,:country)
   end
   # protected
 

@@ -181,6 +181,8 @@
     <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.4.1, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.12.2, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.0.5, rbenv: 2.3.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="countries (v2.0.8, rbenv: 2.3.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="country_select (v3.0.0, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug_inspector (v0.0.2, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="devise (v4.2.1, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, rbenv: 2.3.0) [gem]" level="application" />
@@ -190,6 +192,7 @@
     <orderEntry type="library" scope="PROVIDED" name="globalid (v0.3.7, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hashie (v3.5.5, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.8.1, rbenv: 2.3.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="i18n_data (v0.7.0, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.6.3, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v4.3.1, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jquery-ui-rails (v6.0.1, rbenv: 2.3.0) [gem]" level="application" />
@@ -201,6 +204,7 @@
     <orderEntry type="library" scope="PROVIDED" name="mime-types-data (v3.2016.0521, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_portile2 (v2.1.0, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.10.1, rbenv: 2.3.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="money (v6.9.0, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mono_logger (v1.1.0, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.12.1, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_xml (v0.6.0, rbenv: 2.3.0) [gem]" level="application" />
@@ -230,6 +234,8 @@
     <orderEntry type="library" scope="PROVIDED" name="sass-rails (v5.0.6, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sdoc (v0.4.2, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sinatra (v1.4.7, rbenv: 2.3.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sixarm_ruby_unaccent (v1.1.1, rbenv: 2.3.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sort_alphabetical (v1.1.0, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="spring (v2.0.1, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v3.7.1, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.2.0, rbenv: 2.3.0) [gem]" level="application" />
@@ -239,6 +245,7 @@
     <orderEntry type="library" scope="PROVIDED" name="tilt (v2.0.7, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.3, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v3.1.11, rbenv: 2.3.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="unicode_utils (v1.4.0, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="vegas (v0.1.11, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="warden (v1.2.7, rbenv: 2.3.0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="web-console (v2.3.0, rbenv: 2.3.0) [gem]" level="application" />

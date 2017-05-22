@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'devise'
-
+gem 'country_select'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.1'
 gem 'cancancan'

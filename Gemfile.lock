@@ -56,6 +56,14 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    countries (2.0.8)
+      i18n_data (~> 0.7.0)
+      money (~> 6.7)
+      sixarm_ruby_unaccent (~> 1.1)
+      unicode_utils (~> 1.4)
+    country_select (3.0.0)
+      countries (~> 2.0)
+      sort_alphabetical (~> 1.0)
     debug_inspector (0.0.2)
     devise (4.2.1)
       bcrypt (~> 3.0)
@@ -73,6 +81,7 @@ GEM
       activesupport (>= 4.1.0)
     hashie (3.5.5)
     i18n (0.8.1)
+    i18n_data (0.7.0)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
@@ -93,6 +102,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    money (6.9.0)
+      i18n (>= 0.6.4, < 0.9)
     mono_logger (1.1.0)
     multi_json (1.12.1)
     multi_xml (0.6.0)
@@ -172,6 +183,9 @@ GEM
       rack (~> 1.5)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
+    sixarm_ruby_unaccent (1.1.1)
+    sort_alphabetical (1.1.0)
+      unicode_utils (>= 1.2.2)
     spring (2.0.1)
       activesupport (>= 4.2)
     sprockets (3.7.1)
@@ -189,6 +203,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.1.11)
       execjs (>= 0.3.0, < 3)
+    unicode_utils (1.4.0)
     vegas (0.1.11)
       rack (>= 1.0.0)
     warden (1.2.7)
@@ -207,6 +222,7 @@ DEPENDENCIES
   byebug
   cancancan
   coffee-rails (~> 4.1.0)
+  country_select
   devise
   font-awesome-rails (~> 4.7, >= 4.7.0.1)
   jbuilder (~> 2.0)
