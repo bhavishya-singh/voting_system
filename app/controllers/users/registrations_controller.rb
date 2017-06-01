@@ -3,14 +3,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  def new
-    super
-  end
+  # def new
+  #   super
+  # end
 
   # POST /resource
   def create
     super
-    if params[:image] != nil
+    byebug
+    if params["user"]["image"] != nil
       initialize_image resource
     end
   end
@@ -46,6 +47,7 @@ protected
   end
 
   def initialize_image resource
+    byebug
     original_filename = params["user"]["image"].original_filename
     temp_file_name = SecureRandom.hex+ "." + original_filename.split(".")[1]
     # @image = Image.create(:filename => original_filename, :user_id => resource.id)
