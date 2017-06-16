@@ -16,6 +16,9 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.create(group_params)
+    if params["group"]["image"] != nil
+      initialize_image @group
+    end
     GroupUserMapping.create(:user_id => current_user.id, :group_id => @group.id)
     GroupAdminMapping.create(:admin_id => current_user.id, :group_id => @group.id)
     return redirect_to "/user_home"
@@ -104,6 +107,27 @@ class GroupsController < ApplicationController
 
   def set_group
     @group = Group.find(params[:id])
+  end
+
+  def initialize_image group
+    original_filename = params["group"]["image"].original_filename
+    temp_file_name = SecureRandom.hex+ "." + original_filename.split(".")[1]
+    # @image = Image.create(:filename => original_filename, :user_id => resource.id)
+    # file_name = resource.id.to_s + "_" + original_filename
+    temp_file = params["group"]["image"]
+
+    begin
+      cgroup = Group.where(:group_picture => temp_file_name).first
+      if cgroup
+        temp_file_name = SecureRandom.hex+ "." + original_filename.split(".")[1]
+      end
+    end while cgroup
+    group.group_picture = temp_file_name
+    group.save!
+    File.open(Rails.root.join('public', 'uploads/group_pictures', temp_file_name), 'wb') do |file|
+      file.write(temp_file.read)
+    end
+
   end
 
 end

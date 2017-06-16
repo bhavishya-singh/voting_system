@@ -1,5 +1,11 @@
 <%= form_for (@group) do |f| %>
-<%= f.label :group_name %><br>
-<%= f.text_field :name %><br>
+    <div class="field">
+      <%= f.label :group_name %><br />
+      <%= f.text_field :name, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.label :image %><br />
+      <%= f.file_field :image %>
+    </div>
 <%= f.submit %>
 <% end %>

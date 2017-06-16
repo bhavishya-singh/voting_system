@@ -47,7 +47,6 @@ protected
   end
 
   def initialize_image resource
-    byebug
     original_filename = params["user"]["image"].original_filename
     temp_file_name = SecureRandom.hex+ "." + original_filename.split(".")[1]
     # @image = Image.create(:filename => original_filename, :user_id => resource.id)

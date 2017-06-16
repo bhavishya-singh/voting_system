@@ -1,11 +1,9 @@
 <h1>welcome # <%= @user.user_name%> </h1>
-
-<%= link_to "logout",  :destroy_user_session , :method => "DELETE"%>
 <%= link_to "create group", :groups_new %>
 <%= link_to "create public poll", 'unipoll/new' %>
 
-<h2>Universe Polls</h2>
-<div id="uni_polls">
+<h2>Public Polls</h2>
+<div id="public_polls_list">
 	<% @uni_polls.each do |uni_poll|%>
 	<%= render "uni_poll", :uni_poll => uni_poll %>
 	<% end %>
@@ -15,5 +13,6 @@
 <div id="cuurent_user_groups">
 	<% @groups.each do |group| %>
 	<%= render "group", :group => group %>
+      <hr class="fade-2">
 	<% end %>
 </div>

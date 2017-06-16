@@ -19,3 +19,80 @@
    	.ui-helper-hidden-accessible{
    	 	display: none;
    	}
+    #public_polls_list{
+      display: flex;
+      .public_poll_items:hover{
+        .end_poll_link{
+          display: block;
+        }
+        a{
+          h2{
+            bottom: -140px;
+          }
+        }
+      }
+      .public_poll_items{
+        background-color: #730E15;
+        height: 200px;
+        width: 150px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        a {
+          text-decoration: none;
+          h2 {
+            position: relative;
+            bottom: -190px;
+            transition: all 0.5s ease;
+            color: #222222;
+          }
+        }
+        .end_poll_link{
+          display: none;
+          position: relative;
+          top: -50px;
+        }
+      }
+    }
+    #cuurent_user_groups{
+      hr:last-child{
+        display: none;
+      }
+      .group{
+
+        a:hover{
+          text-decoration: none;
+        }
+        a{
+          display: flex;
+          align-items: center;
+          .group_picture{
+            height: 70px;
+            width: 70px;
+            border-radius: 35px;
+            overflow: hidden;
+          }
+          h3{
+            padding-left: 15px;
+          }
+
+        }
+      }
+    }
+
+
+.fade-2 {
+  width: 100%;
+  margin: 5px 0;
+  border-width: 0 0 1px;
+  $color: grey;
+  color: $color;
+  border-image: linear-gradient(
+                  90deg,
+                  rgba($color, 0),
+                  rgba($color, 1) 50%,
+                  rgba($color, 0) 100%) 0 0 100%;
+  border-style: solid;
+}
