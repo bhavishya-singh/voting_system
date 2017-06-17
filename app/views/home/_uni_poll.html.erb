@@ -1,6 +1,11 @@
-<div class="public_poll_items">
-<a href="/unipoll/<%= uni_poll.id %>/vote" class="public_poll_items_name"><h2> <%= uni_poll.name%> </h2></a>
-<% if isuserAdminOfPublicPoll? current_user, uni_poll %>
+
+<% if uni_poll.poll_picture%>
+<div class="public_poll_items" style="background-image: url('/uploads/public_poll_pictures/<%= uni_poll.poll_picture%>') ; background-size: 100% 100% ;">
+<% else %>
+    <div class="public_poll_items">
+    <% end %>
+  <a href="/unipoll/<%= uni_poll.id %>/vote" class="public_poll_items_name"><h2> <%= uni_poll.name%> </h2></a>
+  <% if ( isuserAdminOfPublicPoll?(current_user, uni_poll) && !uni_poll.poll_end ) %>
 	<%= link_to "End Poll" ,stop_public_poll_path(:uni_poll_id => uni_poll.id), :class => "end_poll_link" %>
 <% end %>
 </div>

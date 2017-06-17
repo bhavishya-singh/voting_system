@@ -21,6 +21,9 @@ class UniPollController < ApplicationController
 			@poll.country_based == false
 		end
 		@poll.save!
+		if params["public_poll_image"] != nil
+			initialize_image @poll
+		end
 		return redirect_to '/user_home'
 	end
 
@@ -65,6 +68,27 @@ class UniPollController < ApplicationController
 
 	def set_uni_poll
 		@uni_poll = UniPoll.find(params[:uni_poll_id])
+	end
+
+	def initialize_image poll
+		original_filename = params["public_poll_image"].original_filename
+		temp_file_name = SecureRandom.hex+ "." + original_filename.split(".")[1]
+		# @image = Image.create(:filename => original_filename, :user_id => resource.id)
+		# file_name = resource.id.to_s + "_" + original_filename
+		temp_file = params["public_poll_image"]
+
+		begin
+			cpoll = UniPoll.where(:poll_picture => temp_file_name).first
+			if cpoll
+				temp_file_name = SecureRandom.hex+ "." + original_filename.split(".")[1]
+			end
+		end while cpoll
+		poll.poll_picture = temp_file_name
+		poll.save!
+		File.open(Rails.root.join('public', 'uploads/public_poll_pictures', temp_file_name), 'wb') do |file|
+			file.write(temp_file.read)
+		end
+
 	end
 
 end

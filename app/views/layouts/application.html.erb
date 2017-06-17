@@ -19,7 +19,7 @@
     <div class="header-option">
       <% if user_signed_in? %>
           <div class="loged-in">
-            hello <%= current_user.email %>
+            hello_<b><%= current_user.email %></b>
             <div class="user-image">
               <div class="dropdown">
                 <% if current_user.provider == nil %>

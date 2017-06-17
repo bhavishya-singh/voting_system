@@ -1,6 +1,6 @@
 <h2>Form for new universal polls</h2>
 
-<%= form_tag "/unipoll/create", :method => "POST", :id => "unipoll_form" do %>
+<%= form_tag "/unipoll/create", :method => "POST", :id => "unipoll_form" , multipart: true do %>
 <div>
 	<%= label_tag :poll_name %>
 	<%= text_field_tag :poll_name %><br>
@@ -9,7 +9,6 @@
 	<%= label_tag :contestant_name %>
 	<%= text_field_tag "contestant_name[]" %>
 <br>
-	
 </div>
 <div>
 	<%= label_tag :contestant_name %>
@@ -24,7 +23,11 @@
       <br>
       <br>
     </div>
-
+    <div>
+      <%= label_tag :public_poll_image %>
+      <%= file_field_tag "public_poll_image" %>
+      <br>
+    </div>
 <%= submit_tag "submit", :id => "submit" %>
 
 <br>

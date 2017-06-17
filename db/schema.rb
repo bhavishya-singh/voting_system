@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170616131800) do
+ActiveRecord::Schema.define(version: 20170617051745) do
 
   create_table "group_admin_mappings", force: :cascade do |t|
     t.integer  "admin_id"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 20170616131800) do
     t.datetime "updated_at",                    null: false
     t.boolean  "country_based"
     t.string   "country"
+    t.string   "poll_picture"
   end
 
   create_table "users", force: :cascade do |t|
