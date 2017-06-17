@@ -21,6 +21,7 @@
    	}
     #public_polls_list{
       display: flex;
+      background-color: #ced3db;
       .public_poll_items:hover{
         .end_poll_link{
           display: block;
@@ -96,3 +97,4 @@
                   rgba($color, 0) 100%) 0 0 100%;
   border-style: solid;
 }
+

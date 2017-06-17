@@ -39,6 +39,8 @@ body{
   a:hover{
     text-decoration: none;
   }
+
+
 }
 .header-container{
   width: 90%;
@@ -126,8 +128,8 @@ body{
   background-color: #dedede;
   min-height: 267px;
   .my-container{
-    width: 90%;
-    padding: 20px 30px;
+    width: 100%;
+    padding: 20px 0px;
   }
 }
 #alert{

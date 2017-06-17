@@ -1,3 +1,32 @@
 // Place all the styles related to the uni_poll controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#public_poll_vote{
+  #list_vote{
+    display: flex;
+    margin: 20px 200px;
+    justify-content: center;
+    flex-wrap: wrap;
+    .user_image_button{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100px;
+      background-color: #666666 ;
+      margin: 20px 40px;
+      border-radius: 10px;
+      overflow: hidden;
+      img{
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        border-radius: 50px;
+      }
+      p{
+        margin: 5px;
+      }
+    }
+  }
+}

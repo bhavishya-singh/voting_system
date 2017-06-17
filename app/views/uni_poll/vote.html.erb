@@ -1,9 +1,17 @@
 <h1>Vote for your favourite candidate</h1>
+<div id="public_poll_vote">
 <%= form_tag "/public_poll_contribute" , :method => "POST", :id => "vote_form" do %>
 <%= hidden_field_tag :uni_poll_id , @uni_poll.id %>
+      <div id="list_vote">
 <% @contestants_mapping.each do |mapping| %>
-<%= label_tag mapping.competitor_name %>
-<%= radio_button_tag "your_fav" , mapping.competitor_name %><br>
+
+        <div class="user_image_button">
+          <img src="/uploads/user.png">
+          <p><%= mapping.competitor_name %></p>
+        </div>
+<%= radio_button_tag "your_fav" , mapping.competitor_name, false,  class: "hidden" %><br>
 <% end %>
+      </div>
 <%= submit_tag "vote"%>
-<%end%>
+  <%end%>
+</div>
