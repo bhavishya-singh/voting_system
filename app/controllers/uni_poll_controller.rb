@@ -40,7 +40,7 @@ class UniPollController < ApplicationController
 		voter_mapping = UniPollVoterMapping.where(:uni_poll_id => params[:uni_poll_id],:voter_id => current_user.id).first
 		unless voter_mapping
 			your_fav = params[:your_fav]
-			uni_poll_competitor_mapping = UniPollCompetitorMapping.where(:uni_poll_id => params[:uni_poll_id],:competitor_name => your_fav).first
+			uni_poll_competitor_mapping = UniPollCompetitorMapping.find(your_fav)
 			uni_poll_competitor_mapping.votes = uni_poll_competitor_mapping.votes + 1
 			uni_poll_competitor_mapping.save
 			UniPollVoterMapping.create(:uni_poll_id => params[:uni_poll_id],:voter_id => current_user.id)

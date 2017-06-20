@@ -1,9 +1,16 @@
 <h1>Vote for your favourite candidate</h1>
+<div id="group_poll_vote">
 <%= form_tag "/contribute" , :method => "POST", :id => "vote_form" do %>
 <%= hidden_field_tag :group_poll_id , @group_poll.id %>
+    <div id="list_vote">
 <% @poll_contestants.each do |contestant| %>
-<%= label_tag contestant.user_name %>
-<%= radio_button_tag "your_fav" , contestant.id %><br>
+          <div class="user_image_button" id="<%= contestant.id %>">
+            <img src="/uploads/user.png">
+            <p><%= contestant.first_name + ' ' + contestant.last_name %></p>
+          </div>
+<%= radio_button_tag "your_fav" , contestant.id, false,  class: "hidden" %><br>
 <% end %>
+    </div>
 <%= submit_tag "vote"%>
 <%end%>
+</div>

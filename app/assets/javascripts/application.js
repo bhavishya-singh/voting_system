@@ -200,17 +200,26 @@ function onload(){
 
  	};
 
- 	var public_vote_contestant = document.getElementsByClassName("user_image_button");
+
+    var public_vote_contestant = document.getElementsByClassName("user_image_button");
     if(public_vote_contestant){
         console.log(public_vote_contestant);
         for(var  i = 0;  i < public_vote_contestant.length; i++ ){
             public_vote_contestant[i].addEventListener("click",function(event){
-                var id = this.getElementsByTagName('p')[0].innerHTML;
-                var x = id.split(" ");
-                id = "your_fav_"+x[0];
-                for(var j  = 0; j < x.length - 1; j++){
-                    id = id + "_" + x[j + 1];
-                }
+                // var id = this.getElementsByTagName('p')[0].innerHTML;
+                // var x = id.split(" ");
+                // id = "your_fav_"+x[0];
+                // for(var j  = 0; j < x.length - 1; j++){
+                //     id = id + "_" + x[j + 1];
+                // }
+                // document.getElementById(id).checked = true;
+                // console.log(document.getElementById(id).checked);
+                // for(var  i1 = 0;  i1 < public_vote_contestant.length; i1++ ){
+                //     public_vote_contestant[i1].style.backgroundColor = "#666666";
+                // }
+                // this.style.backgroundColor = "#99badd";
+                var id = this.getAttribute('id');
+                id = "your_fav_" + id;
                 document.getElementById(id).checked = true;
                 console.log(document.getElementById(id).checked);
                 for(var  i1 = 0;  i1 < public_vote_contestant.length; i1++ ){
