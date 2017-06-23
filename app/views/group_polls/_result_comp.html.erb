@@ -1,3 +1,15 @@
-<div>
-	<h2><%= competitor.user_name%>:</h2><span><%= @group_poll_competitor_mappings.where(:competitor_id => competitor.id).first.votes%></span><br>
+<div class="competitors_group_poll">
+  <div class="image_competitor">
+    <% if competitor.profile_picture && competitor.provider == nil%>
+        <img src="/uploads/<%= competitor.profile_picture %>">
+    <% elsif competitor.provider != nil %>
+        <img src="<%= competitor.profile_picture %>">
+    <% else %>
+        <img src="/uploads/user.png" >
+    <% end %>
+  </div>
+  <div class="details">
+    <marquee><h2><%= competitor.user_name + " " + competitor.last_name%></h2></marquee>
+    <span class="votes"><%= @group_poll_competitor_mappings.where(:competitor_id => competitor.id).first.votes%></span>
+  </div>
 </div>

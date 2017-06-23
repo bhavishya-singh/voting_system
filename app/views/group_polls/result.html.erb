@@ -1,6 +1,8 @@
 <h1>result for the Group polls - <%= @group_poll.name %></h1>
 
 <br>
+<div class="competitors_list">
 <% @competitors.each do |competitor|%>
 <%= render "result_comp", :competitor => competitor %>
 <% end %>
+</div>

@@ -92,39 +92,6 @@ function onload(){
 
 
 	 					});
-	 					// $(div_id).click(function(){
-	 					// 	event.preventDefault();
-	 					// 	console.log("***");
-	 					// 	console.log($(this).children("h2:first").html());
-	 					// 	var user_namee = $(this).children("h2:first").html();
-	 					// 	var group_id = $(this).parent().prop('className').slice(9);
-	 					// 	var user_id = this.id.slice(8);
-	 					// 	console.log("group_id: "+ group_id);
-	 					// 	console.log("user_id: "+ this.id.slice(8));
-					 	// 	var data ={
-					 	// 		user_id: user_id ,
-					 	// 		group_id: group_id	
-					 	// 	}
-					 	// 	var url = "/add_user";
-					 	// 	$.ajax({
-					 	// 			url: url,
-					 	// 			method: "POST",
-					 	// 			data: data,
-					 	// 			success: function(result){
-					 	// 				var user_id = result.user_id;
-					 	// 				$("#group_users").prepend("<div id="+user_id+"><h2>"+user_namee+"</h2></div>");
-					 	// 				console.log("done");
-
-					 	// 			},
-					 	// 			error: function(error){
-					 	// 				console.log(error);
-					 	// 			}
-
-					 	// 		});
-
-	 					// });
-
-
 	 				};
 	 			},
 	 			error: function(error){
@@ -202,7 +169,7 @@ function onload(){
 
 
     var vote_contestant = document.getElementsByClassName("user_image_button");
-    if(vote_contestant){
+    if(vote_contestant.length > 0){
         console.log(vote_contestant);
         for(var  i = 0;  i < vote_contestant.length; i++ ){
             vote_contestant[i].addEventListener("click",function(event){
@@ -218,6 +185,40 @@ function onload(){
             });
         }
 
+    }
+
+    var votes = document.getElementsByClassName("votes");
+    if(votes.length > 0){
+        var array_votes = [];
+        for(var i = 0; i < votes.length ;i++ ){
+            array_votes[i] = parseInt(votes[i].innerHTML);
+            votes[i].innerHTML = "0";
+        }
+        var array_change = [];
+        for(var i = 0; i < votes.length ;i++) {
+            array_change[i] = 0;
+        }
+        var increment = function () {
+            var change = false;
+            for(var j = 0 ; j < array_votes.length ; j++){
+                //console.log(array_change[j] + " ==== "+ array_votes[j]);
+                if(array_change[j] < array_votes[j]){
+                    array_change[j]++;
+                    votes[j].innerHTML = "" + array_change[j] ;
+                    change = true;
+                    //console.log(array_change[j]);
+                }
+            }
+            if(!change){
+                console.log("cleared");
+                stop_interval();
+            }
+        }
+        var caller = setInterval(increment, 100);
+        var stop_interval = function(){
+            clearInterval(caller);
+        }
+        
     }
 
  	var vote_form = document.getElementById("vote_form");
