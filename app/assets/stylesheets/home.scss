@@ -22,6 +22,8 @@
     #public_polls_list{
       display: flex;
       background-color: #ced3db;
+      overflow-x: scroll;
+      scrollbar-base-color: #ced3db ;
       .public_poll_items:hover{
         .end_poll_link{
           display: block;
@@ -35,7 +37,7 @@
       .public_poll_items{
         background-color: #730E15;
         height: 200px;
-        width: 150px;
+        min-width: 150px;
         margin: 10px;
         display: flex;
         flex-direction: column;

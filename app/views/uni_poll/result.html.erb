@@ -1,6 +1,8 @@
 <h1>result for the public polls - <%= @uni_poll.name %></h1>
 
 <br>
+<div class="competitors_list">
 <% @contestants_mapping.each do |mapp|%>
 <%= render "result_comp", :mapp => mapp %>
 <% end %>
+</div>

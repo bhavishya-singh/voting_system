@@ -1,3 +1,13 @@
-<div>
-	<h2><%= mapp.competitor_name%>:</h2><span><%=mapp.votes%></span>
+<div class="competitors_public_poll">
+  <div class="image_competitor">
+    <% if mapp.contestant_picture != nil%>
+        <img src="/uploads/public_contestants/<%= mapp.contestant_picture %>">
+    <% else %>
+        <img src="/uploads/user.png" >
+    <% end %>
+  </div>
+  <div class="details">
+    <marquee><h2><%=  mapp.competitor_name %></h2></marquee>
+    <span class="votes"><%= mapp.votes %></span>
+  </div>
 </div>

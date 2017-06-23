@@ -214,7 +214,7 @@ function onload(){
                 stop_interval();
             }
         }
-        var caller = setInterval(increment, 100);
+        var caller = setInterval(increment, 1000);
         var stop_interval = function(){
             clearInterval(caller);
         }
