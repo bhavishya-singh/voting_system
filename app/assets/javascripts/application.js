@@ -110,7 +110,7 @@ function onload(){
 			event.preventDefault();
 			added++;
 			var id = "added:" + added;
-			contestant_element = "<div><label for='contestant_name'>Contestant name</label><input type='text' name='contestant_name[]' class='added_contestant_name'><span id="+id+">delete</span><br></div>";
+			contestant_element = "<div><label for='contestant_name'>Contestant name</label><input type='text' name='contestant_name[]' class='added_contestant_name'><span id="+id+">delete</span><br><div> <label for='contestant_picture'>Contestant picture</label> <input type='file' name='contestant_pic[]' id='contestant_pic_'> <br> </div></div>";
 			$(contestant_element).insertBefore("#submit");
 			var delete_icon = document.getElementById(id);
 			delete_icon.addEventListener('click', function(){

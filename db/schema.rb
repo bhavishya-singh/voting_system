@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170617051745) do
+ActiveRecord::Schema.define(version: 20170623121351) do
 
   create_table "group_admin_mappings", force: :cascade do |t|
     t.integer  "admin_id"
@@ -103,10 +103,11 @@ ActiveRecord::Schema.define(version: 20170617051745) do
 
   create_table "uni_poll_competitor_mappings", force: :cascade do |t|
     t.integer  "uni_poll_id"
-    t.integer  "votes",           default: 0
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "votes",              default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "competitor_name"
+    t.string   "contestant_picture"
   end
 
   add_index "uni_poll_competitor_mappings", ["uni_poll_id"], name: "index_uni_poll_competitor_mappings_on_uni_poll_id"

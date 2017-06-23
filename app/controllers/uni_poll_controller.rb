@@ -11,9 +11,14 @@ class UniPollController < ApplicationController
 		@poll = UniPoll.create(:name => params[:poll_name]);
 		UniPollAdminMapping.create(:uni_poll_id => @poll.id, :admin_id => current_user.id)
 		contestants = params[:contestant_name]
+		byebug
+		contestant_no = 0;
 		contestants.each do |contestant|
-			@poll.uni_poll_competitor_mappings.create(:competitor_name => contestant)
+			@mapping = @poll.uni_poll_competitor_mappings.create(:competitor_name => contestant)
+			initilize_image_contestant @mapping, contestant_no
+			contestant_no = contestant_no + 1;
 		end
+
 		if params[:country_based] == "yes"
 			@poll.country_based = true
 			@poll.country = current_user.country
@@ -91,4 +96,20 @@ class UniPollController < ApplicationController
 
 	end
 
+	def initilize_image_contestant mapping, contestant_number
+		original_filename = params[:contestant_pic][contestant_number].original_filename
+		temp_file_name = SecureRandom.hex+ "." + original_filename.split(".")[1]
+		temp_file = params[:contestant_pic][contestant_number]
+		begin
+			entry = UniPollCompetitorMapping.where(:contestant_picture => temp_file_name).first
+			if entry
+				temp_file_name = SecureRandom.hex+ "." + original_filename.split(".")[1]
+			end
+		end while entry
+		mapping.contestant_picture = temp_file_name
+		mapping.save!
+		File.open(Rails.root.join('public', 'uploads/public_contestants', temp_file_name), 'wb') do |file|
+			file.write(temp_file.read)
+		end
+	end
 end
