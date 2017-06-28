@@ -11,7 +11,6 @@ class UniPollController < ApplicationController
 		@poll = UniPoll.create(:name => params[:poll_name]);
 		UniPollAdminMapping.create(:uni_poll_id => @poll.id, :admin_id => current_user.id)
 		contestants = params[:contestant_name]
-		byebug
 		contestant_no = 0;
 		contestants.each do |contestant|
 			@mapping = @poll.uni_poll_competitor_mappings.create(:competitor_name => contestant)

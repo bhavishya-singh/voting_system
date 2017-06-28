@@ -226,7 +226,13 @@ function onload(){
             dots: true,
             slidesToShow: 6,
             slidesToScroll: 2,
-            touchMove: false
+            touchMove: false,
+            responsive: false
+        });
+        $('.public_polls_list').ready(function () {
+            $('.public_poll_items').each(function () {
+                $(this).show();
+            });
         });
     }
 

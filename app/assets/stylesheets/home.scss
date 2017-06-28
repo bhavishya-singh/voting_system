@@ -30,10 +30,12 @@
       .public_poll_items:hover{
         .end_poll_link{
           display: block;
+          cursor: pointer;
         }
         a{
+          bottom: -160px;
           h2{
-            bottom: -140px;
+
           }
         }
       }
@@ -42,23 +44,23 @@
         height: 200px;
         min-width: 150px;
         margin: 10px;
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: center;
         overflow: hidden;
         a {
           text-decoration: none;
+          position: relative;
+          bottom: -220px;
+          transition: all 0.5s ease;
           h2 {
-            position: relative;
-            bottom: -190px;
-            transition: all 0.5s ease;
             color: black;
           }
         }
         .end_poll_link{
           display: none;
           position: relative;
-          top: -50px;
+          top: -12px;
         }
       }
     }
@@ -106,3 +108,162 @@
   border-style: solid;
 }
 
+
+/* Dots */
+.slick-dotted.slick-slider
+{
+  margin-bottom: 30px;
+}
+
+.slick-dots
+{
+  position: absolute;
+  bottom: -25px;
+
+  display: block;
+
+  width: 100%;
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+
+  text-align: center;
+}
+.slick-dots li
+{
+  position: relative;
+
+  display: inline-block;
+
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+  padding: 0;
+
+  cursor: pointer;
+}
+.slick-dots li button
+{
+  font-size: 0;
+  line-height: 0;
+
+  display: block;
+
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+
+  cursor: pointer;
+
+  color: transparent;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+.slick-dots li button:hover,
+.slick-dots li button:focus
+{
+  outline: none;
+}
+.slick-dots li button:hover:before,
+.slick-dots li button:focus:before
+{
+  opacity: 1;
+}
+.slick-dots li button:before
+{
+  font-family: 'slick';
+  font-size: 20px;
+  line-height: 20px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 20px;
+  height: 20px;
+
+  content: '•';
+  text-align: center;
+
+  opacity: .25;
+  color: black;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots li.slick-active button:before
+{
+  opacity: .75;
+  color: black;
+}
+
+.slick-list{
+  max-height: 220px;
+}
+
+
+.slick-prev,.slick-next{
+  width: 50px;
+  height: 50px;
+  font-size: 0;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  cursor: pointer;
+
+  color: transparent;
+  border: none;
+  outline: none;
+  background: whitesmoke;
+  opacity: 0.7;
+  border-radius: 25px;
+  overflow: hidden;
+}
+.slick-prev{
+  left: -50px;
+  transition: all 0.5s ease;
+
+}
+.public_polls_list:hover{
+  .slick-prev{
+    left: 20px;
+  }
+  .slick-next{
+    left: auto;
+    right: 20px;
+  }
+}
+.slick-next{
+  left: auto;
+  right: -50px;
+  transition: all 0.5s ease;
+}
+
+.slick-prev:before,
+.slick-next:before
+{
+  font-family: 'slick';
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 1;
+  opacity: .75;
+
+  color: black;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.slick-prev:before
+{
+  content: '<';
+}
+.slick-next:before
+{
+  content: '>';
+}
