@@ -14,8 +14,8 @@
  //*= require_self
  */
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
+//@import "bootstrap-sprockets";
+//@import "bootstrap";
 @import "font-awesome";
 //colors
 $navGrey: #9d9d9d;
@@ -25,21 +25,24 @@ $backgroundGrey: #262626;
 *{
   padding: 0;
   margin: 0;
+  font-family: Roboto,sans-serif;
 }
+a{
+  text-decoration: none;
+}
+
 #my-header{
   background-color: $backgroundGrey;
   height: 50px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-
 }
 body{
   background-color: #f8f8f8;
   a:hover{
     text-decoration: none;
   }
-
 
 }
 .header-container{
@@ -182,33 +185,33 @@ hr {
      color: $navGreen;
  }
 }
-#navigation{
-  .btn{
-    margin-top: 11px;
-    box-sizing: border-box;
-  }
-  .facebook-icon{
-    font-size: 16px;
-    padding-top: 2px;
-  }
-}
-.navbar {
-.navbar-toggle {
-    border-color: $navGreen;
-.icon-bar {
-    background-color: $navGreen;
-}
-}
-.navbar-brand {
-    color: $navGreen;
-&:hover {
-     color: $navGreen;
- }
-}
-.navActive {
-    color: $navGreen;
-}
-}
+//#navigation{
+//  .btn{
+//    margin-top: 11px;
+//    box-sizing: border-box;
+//  }
+//  .facebook-icon{
+//    font-size: 16px;
+//    padding-top: 2px;
+//  }
+//}
+//.navbar {
+//.navbar-toggle {
+//    border-color: $navGreen;
+//.icon-bar {
+//    background-color: $navGreen;
+//}
+//}
+//.navbar-brand {
+//    color: $navGreen;
+//&:hover {
+//     color: $navGreen;
+// }
+//}
+//.navActive {
+//    color: $navGreen;
+//}
+//}
 
 
 
@@ -217,10 +220,20 @@ hr {
 #contactInfo {
   background: $backgroundGrey;
   min-height: 200px;
-  .contactStack {
-    margin: 50px 0;
-    text-align: center;
-    font-size: 16px;
+  display: flex;
+  align-items: center;
+  .container{
+    padding: 20px 0px;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    .contactStack {
+      box-sizing: border-box;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 20px;
+    }
   }
   h4 {
     color: $navGreen;
@@ -258,6 +271,15 @@ hr {
     margin: 30px 5px 0px 5px;
   }
   p {
-    margin: 30px 0;
+    margin: 30px 0 0 0;
+  }
+}
+
+.hidden{
+  display: none;
+}
+@media (max-width : 770px) {
+  .container{
+    flex-direction: column;
   }
 }

@@ -6,7 +6,8 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
-  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+  <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">-->
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
@@ -49,20 +50,23 @@
   <%= yield %>
 </div>
 </div>
+
+
+<div class="footer">
 <!--  Contact info      -->
 <div id="contactInfo"><!--removed class "row"-->
   <div class="container">
-    <div class="contactStack col-md-4">
+    <div class="contactStack">
       <h4>ADDRESS</h4>
       <p>123 Test Avenue</p>
       <p>Charlotte, NC 28216</p>
     </div>
-    <div class="contactStack col-md-4">
+    <div class="contactStack">
       <h4>OPERATION HOURS</h4>
       <p>Mon-Thurs: 10:00 AM - 11:00 PM</p>
       <p>Fri-Sun: 11:00 AM - 02:00 AM</p>
     </div>
-    <div class="contactStack col-md-4">
+    <div class="contactStack">
       <h4>CONTACT INFO</h4>
       <p>Phone: 555-555-5555</p>
       <p>Email: email@company.com</p>
@@ -80,6 +84,8 @@
     <p>&copy; 2017 Company. All rights reserved. Designed and created by Mitchell Console</p>
   </div>
 </div>
+</div>
+<script type="text/javascript" src="slick/slick.min.js"></script>
 </body>
 </html>
 

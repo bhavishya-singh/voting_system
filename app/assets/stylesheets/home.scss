@@ -3,27 +3,30 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-	ul#ui-id-1{
-   		background-color: white;
-   		list-style: none;
-   	}
-   	li {
-    	border: 1px solid black;
-   		max-width: 300px;
-   	}
- 
-   	li:hover{
-     	background-color: lightgoldenrodyellow;
-   	}
+	//ul#ui-id-1{
+   	//	background-color: white;
+   	//	list-style: none;
+   	//}
+   	//li {
+    	//border: 1px solid black;
+   	//	max-width: 300px;
+   	//}
+    //
+   	//li:hover{
+     //	background-color: lightgoldenrodyellow;
+   	//}
 
    	.ui-helper-hidden-accessible{
    	 	display: none;
    	}
-    #public_polls_list{
+    .public_polls_list{
+      //display: flex;
+      //background-color: #ced3db;
+      //overflow-x: scroll;
+      //scrollbar-base-color: #ced3db ;
       display: flex;
-      background-color: #ced3db;
-      overflow-x: scroll;
-      scrollbar-base-color: #ced3db ;
+      flex-direction: column;
+
       .public_poll_items:hover{
         .end_poll_link{
           display: block;
@@ -76,6 +79,9 @@
             width: 70px;
             border-radius: 35px;
             overflow: hidden;
+            img{
+              width: 100%;
+            }
           }
           h3{
             padding-left: 15px;

@@ -17,7 +17,7 @@
 //= require autocomplete-rails
 //= require_tree .
 //= require jquery
-//= require bootstrap-sprockets
+// require bootstrap-sprockets
 
 function onload(){
 
@@ -219,6 +219,15 @@ function onload(){
             clearInterval(caller);
         }
         
+    }
+
+    if(document.getElementsByClassName("public_polls_list").length > 0){
+        $('.public_polls_list').slick({
+            dots: true,
+            slidesToShow: 6,
+            slidesToScroll: 2,
+            touchMove: false
+        });
     }
 
  	var vote_form = document.getElementById("vote_form");

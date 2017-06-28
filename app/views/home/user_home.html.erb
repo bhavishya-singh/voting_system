@@ -3,7 +3,7 @@
 <%= link_to "create public poll", 'unipoll/new' %>
 
 <h2>Public Polls</h2>
-<div id="public_polls_list">
+<div class="public_polls_list">
 	<% @uni_polls.each do |uni_poll|%>
 	<%= render "uni_poll", :uni_poll => uni_poll %>
 	<% end %>
