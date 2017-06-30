@@ -278,8 +278,11 @@ hr {
 .hidden{
   display: none;
 }
-@media (max-width : 770px) {
+@media (max-width : 700px) {
   .container{
     flex-direction: column;
+  }
+  #email{
+    display: none;
   }
 }

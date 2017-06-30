@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-// require turbolinks
+//= require turbolinks
 //= require jquery-ui
 //= require autocomplete-rails
 //= require_tree .
@@ -21,6 +21,11 @@
 
 function onload(){
 
+    if ($('body').attr('data-loaded') == 'T') {
+        console.log("been here");
+        return
+    }
+    $('body').attr('data-loaded','T')
 	console.log("loaded");
  	form = document.getElementById("search_user")
  	if(form){
@@ -219,7 +224,7 @@ function onload(){
             clearInterval(caller);
         }
     }
-
+    console.log("here");
     if(document.getElementsByClassName("public_polls_list").length > 0){
         $('.public_polls_list').slick({
             dots: true,
@@ -276,4 +281,5 @@ function GetElementInsideContainer(containerID, childID) {
     }
     return elm;
 }
-window.addEventListener('load',onload);
+$(document).ready(onload);
+$(document).on('turbolinks:load',onload);
