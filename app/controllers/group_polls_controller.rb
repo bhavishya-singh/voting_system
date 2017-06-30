@@ -22,6 +22,10 @@ class GroupPollsController < ApplicationController
       @group_poll = GroupPoll.create(:group_id => @group.id, :name => params[:name])
       contestant_list.each do |contestant_id|
         @group_poll.group_poll_competitor_mappings.create(:competitor_id => contestant_id)
+        mapp = @group_poll.group_poll_competitor_mappings.where(:competitor_id => contestant_id).first
+        mapp.contestant_tag_line = params["tag_#{contestant_id}"]
+        mapp.save!
+        byebug
       end
       return redirect_to "/group/#{@group.id}/show"
     else
@@ -41,7 +45,7 @@ class GroupPollsController < ApplicationController
       return redirect_to "/group_polls/#{params[:group_poll_id]}/result"
     end  
     @poll_contestants = @group_poll.competitors
-
+    @poll_mappings = @group_poll.group_poll_competitor_mappings
 
   end
 
@@ -52,7 +56,6 @@ class GroupPollsController < ApplicationController
       @group_poll.update(:poll_end => true)
     end
     return redirect_to "/group_polls/#{@group_poll.id}/vote"
-
   end
 
   def contribute

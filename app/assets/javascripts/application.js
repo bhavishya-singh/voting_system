@@ -218,7 +218,6 @@ function onload(){
         var stop_interval = function(){
             clearInterval(caller);
         }
-        
     }
 
     if(document.getElementsByClassName("public_polls_list").length > 0){
@@ -236,6 +235,20 @@ function onload(){
         });
     }
 
+    var group_poll_checkbox = document.getElementsByClassName("new_group_poll_checkbox");
+    if(group_poll_checkbox.length > 0){
+        $(".new_group_poll_checkbox").each(function(){
+            $(this).change(function () {
+                var val_ad = $(this).val();
+                if($(this).is(":checked")){
+                    $(this).parent().append("<div id='tag_"+val_ad+"'><label for='tag_"+val_ad+"'>Tag Line</label><input type='text' name='tag_"+val_ad+"'></div>");
+                }else{
+                    $("#tag_"+val_ad).remove();
+                }
+            });
+        });
+    }
+
  	var vote_form = document.getElementById("vote_form");
  	if(vote_form){
  		console.log("tag");
@@ -249,9 +262,8 @@ function onload(){
       		}
  		});
  	}
-
-	
 };
+
 function GetElementInsideContainer(containerID, childID) {
     var elm = null;
     var elms = document.getElementById(containerID).getElementsByTagName("*");

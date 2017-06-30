@@ -5,8 +5,13 @@
     <div id="list_vote">
 <% @poll_contestants.each do |contestant| %>
           <div class="user_image_button" id="<%= contestant.id %>">
-            <img src="/uploads/user.png">
+            <% if contestant.provider == nil %>
+                <img src="/uploads/<%= contestant.profile_picture %>" >
+            <% else %>
+                <img src="<%= contestant.profile_picture %>" >
+            <% end %>
             <p><%= contestant.first_name + ' ' + contestant.last_name %></p>
+            <marquee><%= @poll_mappings.where(:competitor_id => contestant.id).first.contestant_tag_line %></marquee>
           </div>
 <%= radio_button_tag "your_fav" , contestant.id, false,  class: "hidden" %><br>
 <% end %>
