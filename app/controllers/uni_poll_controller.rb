@@ -13,7 +13,7 @@ class UniPollController < ApplicationController
 		contestants = params[:contestant_name]
 		contestant_no = 0;
 		contestants.each do |contestant|
-			@mapping = @poll.uni_poll_competitor_mappings.create(:competitor_name => contestant)
+			@mapping = @poll.uni_poll_competitor_mappings.create(:competitor_name => contestant, :contestant_tag_line => params[:contestant_tag_line][contestant_no])
 			initilize_image_contestant @mapping, contestant_no
 			contestant_no = contestant_no + 1;
 		end
