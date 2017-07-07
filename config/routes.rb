@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
   get 'group_polls/:group_id/new' => "group_polls#new", as: "new_poll"
 
-  post 'group_polls/create'
+  post 'group_polls/create' => "group_polls#create"
+
+  post 'group_polls/create_asyncronously' => "group_polls#create_async"
 
   get 'group_polls/:group_poll_id/vote' => 'group_polls#vote'
 

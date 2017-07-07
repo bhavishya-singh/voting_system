@@ -37,7 +37,7 @@ function onload(){
 	 		var data ={
 	 			content: content.value
 	 		}
-	 		if(!content.value || (content.value && content.value.length < 1)){
+	 		if(!content.value || (content.value && content.value.length < 3)){
 	 			console.log("cannot search null");
 	 			return;
 	 		}
@@ -106,6 +106,44 @@ function onload(){
 
 	 	});
 	}
+
+    var new_group_poll = document.getElementById("new_group_poll_form");
+ 	if(new_group_poll){
+ 	    $("#new_group_poll_form").submit(
+            function () {
+                console.log("tried submitting");
+                event.preventDefault();
+                var checked = [];
+                var data ={
+
+                };
+                var i = 3;
+                $("input:checkbox[name=contestant_ids]:checked").each(function(){
+                    var id = $(this).val();
+                    checked.push(id);
+                    var string = "input:text[name=tag_"+id+"]";
+                    data["tag_"+id] = $(string).val();
+                });
+                data["group_id"] = $("#group_id").val();
+                data["name"] = $("#name").val();
+                data["contestant_ids"] = checked;
+                console.log(data);
+                $.ajax({
+                    url: "/group_polls/create_asyncronously",
+                    method: "POST",
+                    data: data,
+                    success: function(result){
+                        window.location.replace("http://localhost:3000/group/"+result.group_id+"/show");
+                    },
+                    error: function(error){
+                        console.log("error");
+                    }
+                });
+            }
+        );
+
+    }
+
 	var added =0;
 	var add_public_contestant = document.getElementById("add_public_contestant");
 	if(add_public_contestant){

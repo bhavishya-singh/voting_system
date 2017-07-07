@@ -1,7 +1,7 @@
 class GroupPollsController < ApplicationController
 
   before_action :authenticate_user!  
-  before_action :set_group, :only => [:new,:create]
+  before_action :set_group, :only => [:new,:create,:create_async]
   before_action :set_group_poll, :only => [:stop_poll, :vote, :result, :contribute,:delete_group_poll_for_user]
 
   def index
@@ -21,16 +21,31 @@ class GroupPollsController < ApplicationController
     	contestant_list = params[:contestant_ids]
       @group_poll = GroupPoll.create(:group_id => @group.id, :name => params[:name])
       contestant_list.each do |contestant_id|
-        @group_poll.group_poll_competitor_mappings.create(:competitor_id => contestant_id)
-        mapp = @group_poll.group_poll_competitor_mappings.where(:competitor_id => contestant_id).first
+        mapp = @group_poll.group_poll_competitor_mappings.create(:competitor_id => contestant_id)
+        # mapp = @group_poll.group_poll_competitor_mappings.where(:competitor_id => contestant_id).first
         mapp.contestant_tag_line = params["tag_#{contestant_id}"]
         mapp.save!
-        byebug
       end
       return redirect_to "/group/#{@group.id}/show"
     else
-      flash[:notice] = 'errror'
+      flash[:notice] = 'sorry, you are not the admin of the group!'
       return redirect_to "/group/#{@group.id}/show"
+    end
+  end
+
+  def create_async
+    if isUserAdmin? current_user, @group
+      contestant_list = params[:contestant_ids]
+      @group_poll = GroupPoll.create(:group_id => @group.id, :name => params[:name])
+      contestant_list.each do |contestant_id|
+        mapp = @group_poll.group_poll_competitor_mappings.create(:competitor_id => contestant_id)
+        # mapp = @group_poll.group_poll_competitor_mappings.where(:competitor_id => contestant_id).first
+        mapp.contestant_tag_line = params["tag_#{contestant_id}"]
+        mapp.save!
+      end
+      return render :json => {status: 'complete', group_id: @group.id}
+    else
+      return render :json => {status: 'error', group_id: @group.id}
     end
   end
 
