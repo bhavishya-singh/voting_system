@@ -106,7 +106,18 @@ function onload(){
 
 	 	});
 	}
-
+    var opened_group = document.getElementsByClassName("opened-group");
+ 	if(opened_group.length > 0){
+        var group_id = $(opened_group[0]).attr('id');
+        console.log("was here too once");
+        socket.emit('group_opened',{    group_id: group_id  });
+        socket.on('emit_group_poll',function(result){
+            var folder = document.getElementById("group_polls_add");
+            if(folder){
+                $(folder).prepend("<a href='/group_polls/"+result.group_poll_id+"/vote'> <div> <h2>"+result.group_poll_name+"</h2> </div> </a>");
+            }
+        });
+    }
     var new_group_poll = document.getElementById("new_group_poll_form");
  	if(new_group_poll){
  	    $("#new_group_poll_form").submit(
@@ -114,9 +125,7 @@ function onload(){
                 console.log("tried submitting");
                 event.preventDefault();
                 var checked = [];
-                var data ={
-
-                };
+                var data ={};
                 var i = 3;
                 $("input:checkbox[name=contestant_ids]:checked").each(function(){
                     var id = $(this).val();
@@ -124,6 +133,12 @@ function onload(){
                     var string = "input:text[name=tag_"+id+"]";
                     data["tag_"+id] = $(string).val();
                 });
+                if($("#name").val().length < 3 || checked.length < 2){
+
+
+                    console.log("avoid");
+                    return;
+                }
                 data["group_id"] = $("#group_id").val();
                 data["name"] = $("#name").val();
                 data["contestant_ids"] = checked;
@@ -133,7 +148,13 @@ function onload(){
                     method: "POST",
                     data: data,
                     success: function(result){
-                        window.location.replace("http://localhost:3000/group/"+result.group_id+"/show");
+                        if(result.status == "complete"){
+                            socket.emit("group_poll_created",{ group_id: result.group_id, group_poll_id: result.group_poll_id, group_poll_name: result.group_poll_name });
+                            window.location.replace("http://localhost:3000/group/"+result.group_id+"/show");
+                        }else{
+                            window.location.replace("http://localhost:3000/group/"+result.group_id+"/show");
+                        }
+                        // window.location.replace("http://localhost:3000/group/"+result.group_id+"/show");
                     },
                     error: function(error){
                         console.log("error");
@@ -263,7 +284,8 @@ function onload(){
         }
     }
     console.log("here");
-    if(document.getElementsByClassName("public_polls_list").length > 0){
+    var public_poll_list = document.getElementsByClassName("public_polls_list");
+    if(public_poll_list.length > 0){
         $('.public_polls_list').slick({
             dots: true,
             slidesToShow: 6,
@@ -305,6 +327,9 @@ function onload(){
       		}
  		});
  	}
+
+
+
 };
 
 function GetElementInsideContainer(containerID, childID) {
@@ -321,3 +346,7 @@ function GetElementInsideContainer(containerID, childID) {
 }
 $(document).ready(onload);
 $(document).on('turbolinks:load',onload);
+
+var socket_server = "http://localhost:8000";
+var socket = io(socket_server);
+
