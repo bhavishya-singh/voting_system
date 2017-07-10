@@ -152,6 +152,8 @@ function onload(){
                 data["group_id"] = $("#group_id").val();
                 data["name"] = $("#name").val();
                 data["contestant_ids"] = checked;
+                data["select_date"] = $("#set_date_group").val();
+                data["start_date"] = $("#start_date").val();
                 console.log(data);
                 $.ajax({
                     url: "/group_polls/create_asyncronously",
@@ -316,7 +318,16 @@ function onload(){
             });
         });
     }
-
+    var select_date = document.getElementById("set_date_group");
+    if(select_date){
+        $(select_date).change(function () {
+            if($(select_date).is(":checked")){
+                $("#start_date_select").slideDown();
+            }else{
+                $("#start_date_select").slideUp();
+            }
+        });
+    }
     var group_poll_checkbox = document.getElementsByClassName("new_group_poll_checkbox");
     if(group_poll_checkbox.length > 0){
         $(".new_group_poll_checkbox").each(function(){

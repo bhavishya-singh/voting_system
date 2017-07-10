@@ -36,7 +36,7 @@ class GroupPollsController < ApplicationController
   def create_async
     if isUserAdmin? current_user, @group
       contestant_list = params[:contestant_ids]
-      @group_poll = GroupPoll.create(:group_id => @group.id, :name => params[:name])
+      @group_poll = GroupPoll.create(:group_id => @group.id, :name => params[:name],:start_date => params[:start_date])
       contestant_list.each do |contestant_id|
         mapp = @group_poll.group_poll_competitor_mappings.create(:competitor_id => contestant_id)
         # mapp = @group_poll.group_poll_competitor_mappings.where(:competitor_id => contestant_id).first
@@ -55,6 +55,9 @@ class GroupPollsController < ApplicationController
   end
 
   def vote
+    if(@group_poll.start_date > Time.now)
+      return redirect_to "/user_home", :alert => "The Poll has not yet started and will Start at #{@group_poll.start_date}"
+    end
     poll_voter_mapping = GroupPollVoterMapping.where(:group_poll_id => params[:group_poll_id], :voter_id => current_user.id).first
     if poll_voter_mapping || @group_poll.poll_end
       return redirect_to "/group_polls/#{params[:group_poll_id]}/result"
@@ -89,6 +92,9 @@ class GroupPollsController < ApplicationController
   end
 
   def result
+    if !@group_poll.poll_end
+      return redirect_to "/user_home" , :alert => "Results will be soon Shared"
+    end
     poll_voter_mapping = GroupPollVoterMapping.where(:group_poll_id => params[:group_poll_id], :voter_id => current_user.id).first
     unless poll_voter_mapping || @group_poll.poll_end
       return redirect_to "/group_polls/#{@group_poll.id}/vote"

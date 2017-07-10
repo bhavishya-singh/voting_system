@@ -8,5 +8,11 @@ NAME:
 <% @members.each do |member|%>
 <%= render "members", :member => member%>
 <% end %>
+    <%= "Do you want to set the start date ?" %>
+    <%= check_box_tag :set_date, true, false ,:id => "set_date_group"%><br>
+    <div id="start_date_select" >
+      DATE:
+    <%= datetime_field_tag :start_date, Time.now %>
+    </div>
 <%= submit_tag "submit" %>
 <% end %>

@@ -58,7 +58,8 @@ body{
     }
   }
   .header-option{
-
+    display: flex;
+    align-items: center;
     .loged-in{
       display: flex;
       align-items: center;

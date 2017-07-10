@@ -2,6 +2,8 @@
 <%= link_to "User" , url_for(:controller => "groups", :action => "group_users", :id => @group.id)%>
 <%= link_to "add_users" , add_group_users_path(:id => @group.id) %>
 <%= link_to "new poll", new_poll_path(:group_id => @group.id) %>
+<%= link_to "leave group", url_for(:controller => "groups", :action => "leave_group", :id => @group.id) %>
+
 <div id="group_polls_add">
 <% @group_polls.each do |group_poll| %>
 <%= render "group_polls", :group_poll => group_poll %>

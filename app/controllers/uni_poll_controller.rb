@@ -8,7 +8,7 @@ class UniPollController < ApplicationController
 	end
 
 	def create
-		@poll = UniPoll.create(:name => params[:poll_name]);
+		@poll = UniPoll.create(:name => params[:poll_name], :start_date => params[:start_date]);
 		UniPollAdminMapping.create(:uni_poll_id => @poll.id, :admin_id => current_user.id)
 		contestants = params[:contestant_name]
 		contestant_no = 0;
@@ -32,6 +32,7 @@ class UniPollController < ApplicationController
 	end
 
 	def vote
+
 		if @uni_poll.poll_end || UniPollVoterMapping.where(:uni_poll_id => @uni_poll.id,:voter_id => current_user.id).first
 			return redirect_to "/unipoll/#{@uni_poll.id}/result"
 		else	
@@ -96,6 +97,8 @@ class UniPollController < ApplicationController
 	end
 
 	def initilize_image_contestant mapping, contestant_number
+		byebug
+		if  params[:contestant_pic] && params[:contestant_pic][contestant_number]
 		original_filename = params[:contestant_pic][contestant_number].original_filename
 		temp_file_name = SecureRandom.hex+ "." + original_filename.split(".")[1]
 		temp_file = params[:contestant_pic][contestant_number]
@@ -110,5 +113,6 @@ class UniPollController < ApplicationController
 		File.open(Rails.root.join('public', 'uploads/public_contestants', temp_file_name), 'wb') do |file|
 			file.write(temp_file.read)
 		end
+			end
 	end
 end
