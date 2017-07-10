@@ -23,12 +23,18 @@
       <% if user_signed_in? %>
           <div class="loged-in">
             <div id="email">hello_<b><%= current_user.email %></b></div>
-            <div class="user-image">
+            <div class="dropdown-notification">
+              <i class="fa fa-bell-o" aria-hidden="true"></i>
+              <div class="dropdown-notification-content">
+                  <a href="#">Notifications</a>
+              </div>
+            </div>
+            <div class="user-image" id="<%=current_user.id%>">
               <div class="dropdown">
                 <% if current_user.provider == nil %>
-                    <img src="/uploads/<%= current_user.profile_picture %>" style="height:40px;width:40px">
+                    <img src="/uploads/<%= current_user.profile_picture %>" style="height:34px;width:34px">
                 <% else %>
-                    <img src="<%= current_user.profile_picture %>" style="height:40px;width:40px">
+                    <img src="<%= current_user.profile_picture %>" style="height:34px;width:34px">
                 <% end %>
                 <div class="dropdown-content">
                   <a href="#">Profile</a>
@@ -45,10 +51,12 @@
     </div>
   </div>
 </header>
-<div class="outter-container">
-<div class="my-container">
+<div onclick="hide_warning()" id="warn">
   <p class="notice"><%= notice %></p>
   <p class="alert" id="alert"><%= alert %></p>
+</div>
+<div class="outter-container">
+<div class="my-container">
   <%= yield %>
 </div>
 </div>

@@ -27,6 +27,16 @@ function onload(){
     }
     $('body').attr('data-loaded','T')
 	console.log("loaded");
+
+    var profile_image = document.getElementsByClassName("user-image");
+    if(profile_image){
+        var current_user_id = $(profile_image).attr('id');
+        if(socket === undefined){
+            socket =  io(socket_server,{query :"current_user_id="+current_user_id});
+        }
+    }
+
+
  	form = document.getElementById("search_user")
  	if(form){
 	 	form.addEventListener('submit',function(event){
@@ -251,6 +261,13 @@ function onload(){
 
     }
 
+    function check_warn() {
+        if($('.alert').text().length <=0 && $('.notice').text().length <= 0){
+            $('#warn').hide();
+        }
+    };
+    check_warn();
+
     var votes = document.getElementsByClassName("votes");
     if(votes.length > 0){
         var array_votes = [];
@@ -348,5 +365,9 @@ $(document).ready(onload);
 $(document).on('turbolinks:load',onload);
 
 var socket_server = "http://localhost:8000";
-var socket = io(socket_server);
+var socket;
 
+
+function hide_warning() {
+    $('#warn').slideUp();
+}
