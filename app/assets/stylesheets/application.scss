@@ -53,10 +53,9 @@ body{
   justify-content: space-between;
   color: $navGrey;
   .my-brand{
-    display: flex;
-    align-items: center;
-    font-size: 25px;
-    font-weight: bold;
+    img{
+      height: 40px;
+    }
   }
   .header-option{
 
@@ -347,5 +346,8 @@ $facebookIcon: "http://www.iconarchive.com/download/i54037/danleech/simple/faceb
   }
   #email{
     display: none;
+  }
+  .row{
+    flex-direction: column;
   }
 }
