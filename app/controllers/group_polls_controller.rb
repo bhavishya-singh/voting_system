@@ -43,7 +43,8 @@ class GroupPollsController < ApplicationController
         mapp.contestant_tag_line = params["tag_#{contestant_id}"]
         mapp.save!
       end
-      return render :json => {status: 'complete', group_id: @group.id, group_poll_id: @group_poll.id, group_poll_name: @group_poll.name}
+      @group_member = @group.users.pluck(:id)
+      return render :json => {status: 'complete', group_id: @group.id, group_poll_id: @group_poll.id,group_member: @group_member, group_poll_name: @group_poll.name}
     else
       return render :json => {status: 'error', group_id: @group.id}
     end

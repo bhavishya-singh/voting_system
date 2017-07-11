@@ -34,6 +34,11 @@ function onload(){
         if(socket === undefined){
             socket =  io(socket_server,{query :"current_user_id="+current_user_id});
         }
+        socket.on("pushed_notification",function (result) {
+            $('#red_not').show();
+            $('#note i').effect("shake",{time:3, distance:5})
+            $('.dropdown-notification-content a:eq(0)').after("<a href='/group_polls/"+result.group_poll_id+"/vote'>"+" Group Poll added <b>" +result.group_poll_name+"</b></a>");
+        });
     }
 
 
@@ -161,7 +166,9 @@ function onload(){
                     data: data,
                     success: function(result){
                         if(result.status == "complete"){
+                            socket.emit("push_notification", {group_member: result.group_member, group_id: result.group_id, group_poll_id: result.group_poll_id, group_poll_name: result.group_poll_name });
                             socket.emit("group_poll_created",{ group_id: result.group_id, group_poll_id: result.group_poll_id, group_poll_name: result.group_poll_name });
+                            console.log("emitede");
                             window.location.replace("http://localhost:3000/group/"+result.group_id+"/show");
                         }else{
                             window.location.replace("http://localhost:3000/group/"+result.group_id+"/show");
@@ -177,6 +184,14 @@ function onload(){
 
     }
 
+    $('.dropdown-notification').click(function () {
+        if($('.dropdown-notification-content').is(':visible')){
+            $('.dropdown-notification-content').slideUp();
+        }else{
+            $('#red_not').hide();
+            $('.dropdown-notification-content').slideDown();
+        }
+    });
 	var added =0;
 	var add_public_contestant = document.getElementById("add_public_contestant");
 	if(add_public_contestant){
@@ -270,17 +285,154 @@ function onload(){
     };
     check_warn();
 
+
+
+    var percentageArray = new Array();
+    var answerArray = new Array();
     var votes = document.getElementsByClassName("votes");
     if(votes.length > 0){
         var array_votes = [];
+        var total_votes = 0;
         for(var i = 0; i < votes.length ;i++ ){
             array_votes[i] = parseInt(votes[i].innerHTML);
+            total_votes += array_votes[i];
+            percentageArray.push(parseInt(votes[i].innerHTML));
+            answerArray.push($(votes[i]).parent().find('h2').text());
             votes[i].innerHTML = "0";
         }
         var array_change = [];
         for(var i = 0; i < votes.length ;i++) {
             array_change[i] = 0;
         }
+
+
+        for(var i = 0; i < votes.length ;i++) {
+            percentageArray[i] = percentageArray[i]/total_votes * 100;
+        }
+
+
+        $.fn.createBarchart = function (optionvariables) {
+            var chartContainer = $(this);
+            var defaults = {
+                'maxWidth': 244
+            };
+            var options = $.extend({}, defaults, optionvariables);
+            var self = $(this),
+                graphContainer = self.parent().find('.graph-container .graph'),
+                barChart = $('<ul/>', { class: 'bar-chart' });
+
+            barChart.appendTo(chartContainer);
+
+            $.each(answerArray, function(index, value) {
+                var chartAnswer = $('<li/>', { class: 'answer-' + index }),
+                    answerLabel = $('<span/>', { class: 'label', text: value }),
+                    percentageValue = percentageArray[index].toString(),
+                    answerPercentage = $('<span/>', { class: 'percentage', text: percentageValue.replace('.', ',') + '%' }),
+                    barTrack = $('<span/>', { class: 'bar-track' }),
+                    bar = $('<span />', { class: 'bar', style: 'width: ' + percentageValue + '%;' });
+
+                chartAnswer.appendTo(barChart);
+                answerLabel.appendTo(chartAnswer);
+                answerPercentage.appendTo(chartAnswer);
+                barTrack.appendTo(chartAnswer);
+                bar.appendTo(barTrack);
+            });
+
+                console.log("inside to create canvas");
+                barChart.chart(
+                    {
+                        graphContainer: graphContainer
+                    }
+                );
+
+        };
+
+        $.fn.chart = function (optionvariables) {
+            var chart = $(this);
+            var defaults = {
+                'canvasSize': 220,
+                'graphContainer': $('.graph-container .graph')
+            };
+            var options = $.extend({}, defaults, optionvariables);
+
+            return chart.each(function () {
+                var listItem = chart.find('li'),
+                    listItems = listItem.length,
+                    canvas = document.createElement('canvas'),
+                    canvasWidth = options.canvasSize,
+                    canvasHeight = options.canvasSize,
+                    graphContainer = options.graphContainer,
+                    total = 0,
+                    totalPercentage = 0,
+                    data = [],
+                    newData = [],
+                    i = 0,
+                    startingAngle,
+                    arcSize,
+                    endingAngle;
+
+                $.each(percentageArray, function(index, value) {
+                    newData.push(3.6 * value);
+                });
+
+                function sumTo(a, i) {
+                    var sum = 0;
+                    for (var j = 0; j < i; j++) {
+                        sum += a[j];
+                    }
+                    return sum - 90;
+                }
+
+                function degreesToRadians(degrees) {
+                    return ((degrees * Math.PI)/180);
+                }
+
+                canvas.setAttribute('width', canvasWidth);
+                canvas.setAttribute('height', canvasHeight);
+                canvas.setAttribute('id', 'chartCanvas');
+                graphContainer.append(canvas);
+
+                var cvs = document.getElementById('chartCanvas'),
+                    ctx = cvs.getContext('2d'),
+                    centerX = canvasWidth / 2,
+                    centerY = canvasHeight / 2,
+                    radius = canvasWidth / 2;
+
+                ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+                listItem.each(function(e) {
+                    startingAngle = degreesToRadians(sumTo(newData, i));
+                    arcSize = degreesToRadians(newData[i]);
+                    endingAngle = startingAngle + arcSize;
+                    ctx.beginPath();
+                    ctx.moveTo(centerX, centerY);
+                    ctx.arc(centerX, centerY, radius, startingAngle, endingAngle, false);
+                    ctx.closePath();
+                    ctx.fillStyle = $(this).find('.bar').css('backgroundColor');
+                    ctx.fill();
+                    ctx.restore();
+                    i++;
+                });
+
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius * .45, 0, 2 * Math.PI, false);
+                ctx.closePath();
+                ctx.fillStyle = $('body').css('backgroundColor');
+                ctx.fill();
+            });
+        };
+
+        $('#live-poll-area .answer-list').createBarchart();
+
+        var price = array_votes;
+
+        var chartH = $('#svg').height();
+        var chartW = $('#svg').width();
+
+
+
+
         var increment = function () {
             var change = false;
             for(var j = 0 ; j < array_votes.length ; j++){

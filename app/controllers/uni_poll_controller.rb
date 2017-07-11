@@ -32,7 +32,9 @@ class UniPollController < ApplicationController
 	end
 
 	def vote
-
+		if @uni_poll.start_date > Time.now
+			return redirect_to "/user_home", :alert => "Voting will soon be started @ #{@uni_poll.start_date}"
+		end
 		if @uni_poll.poll_end || UniPollVoterMapping.where(:uni_poll_id => @uni_poll.id,:voter_id => current_user.id).first
 			return redirect_to "/unipoll/#{@uni_poll.id}/result"
 		else	
@@ -62,6 +64,9 @@ class UniPollController < ApplicationController
 	end
 
 	def result
+		if !@uni_poll.poll_end
+			return redirect_to "/user_home" ,:alert =>  "Results will soon be shared"
+		end
 		voter_mapping = UniPollVoterMapping.where(:uni_poll_id => params[:uni_poll_id],:voter_id => current_user.id).first
 		unless voter_mapping || @uni_poll.poll_end
 			return redirect_to "unipoll/#{params[:uni_poll_id]}/vote"

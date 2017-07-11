@@ -45,6 +45,7 @@
   flex-wrap: wrap;
   width:100%;
   padding: 30px;
+  box-sizing: border-box;
   background-color: #666666;
   .competitors_public_poll{
     display: flex;
@@ -68,5 +69,93 @@
         font-size: 50px;
       }
     }
+  }
+}
+
+
+.graph-container {
+  display: block;
+}
+.canvas .graph-container {
+  display: block;
+}
+.graph-container .graph {
+  width: 110px;
+  margin: 0 auto 25px auto;
+}
+.graph-container .graph canvas {
+  max-width: 110px;
+  height: auto;
+}
+.bar-chart {
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 244px;
+}
+.bar-chart li {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.45;
+  overflow: auto;
+}
+.bar-chart span {
+  display: block;
+}
+.bar-chart .label {
+  font-weight: 700;
+  width: 70%;
+  float: left;
+}
+.bar-chart .percentage {
+  width: 30%;
+  float: right;
+  font-size: 12px;
+  text-align: right;
+}
+.bar-chart .bar-track {
+  clear: both;
+  display: block;
+  background: #e6f0f2;
+  box-shadow: 0 2px 0 #cccccc;
+  height: 5px;
+  overflow: visible;
+  margin-bottom: 20px;
+}
+.bar-chart .bar {
+  display: block;
+  height: 5px;
+}
+.bar-chart .answer-0 .bar {
+  background-color: #ce0f42;
+  box-shadow: 0 2px 0 #99102e;
+}
+.bar-chart .answer-1 .bar {
+  background-color: #72be44;
+  box-shadow: 0 2px 0 #538e32;
+}
+.bar-chart .answer-2 .bar {
+  background-color: #f15637;
+  box-shadow: 0 2px 0 #bd4429;
+}
+.bar-chart .answer-3 .bar {
+  background-color: #8b1851;
+  box-shadow: 0 2px 0 #53002c;
+}
+
+
+
+@media only screen and (min-width: 600px) {
+  .canvas .graph-container .graph {
+    margin: 0 30px;
+    padding: 0;
+    float: left;
+  }
+  .canvas .bar-chart {
+    float: left;
+    min-width: 244px;
   }
 }

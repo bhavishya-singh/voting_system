@@ -63,17 +63,33 @@ body{
     .loged-in{
       display: flex;
       align-items: center;
+
       .dropdown-notification{
         position: relative;
         display: inline-block;
+        top:-2px;
+
+        #red_not{
+          left: 11px;
+          top: 5px;
+          color: white;
+          font-size: 10px;
+          border-radius: 4px;
+          overflow: hidden;
+          background-color: red;
+          width: 8px;
+          height: 8px;
+          display: none;
+          position: relative;
+        }
 
         .dropdown-notification-content {
           display: none;
           position: absolute;
-          right: 0;
-          top: 50px;
+          right: -12px;
+          top: 36px;
           background-color: #f9f9f9;
-          min-width: 160px;
+          min-width: 230px;
           box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
           z-index: 1;
           h2{

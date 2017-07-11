@@ -8,6 +8,8 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+  <script src="/snap/snap.svg.js"></script>
+  <script src="/snap/snap.svg-min.js"></script>
   <!--<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>-->
   <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">-->
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
@@ -23,10 +25,11 @@
       <% if user_signed_in? %>
           <div class="loged-in">
             <div id="email">hello_<b><%= current_user.email %></b></div>
-            <div class="dropdown-notification">
+            <div class="dropdown-notification" id="note">
+              <div id="red_not">+</div>
               <i class="fa fa-bell-o" aria-hidden="true"></i>
               <div class="dropdown-notification-content">
-                  <a href="#">Notifications</a>
+                <a href="#"><b>Notifications</b></a>
               </div>
             </div>
             <div class="user-image" id="<%=current_user.id%>">
