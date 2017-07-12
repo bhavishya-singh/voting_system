@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable ,:omniauthable, :omniauth_providers => [:facebook]
 
   def self.from_omniauth(auth)
+    puts " ******** it has been here-------------------------------------"
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
@@ -37,6 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def self.new_with_session(params, session)
+    puts "+++++++++++++++++++++++++++++++++++++++++++++++++ :) here tooo"
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?

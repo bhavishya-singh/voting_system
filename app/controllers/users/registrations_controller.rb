@@ -10,7 +10,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    byebug
     if params["user"]["image"] != nil
       initialize_image resource
     end
