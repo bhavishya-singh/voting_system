@@ -37,6 +37,18 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.create_instance(ses)
+    if ses["info"]["email"]
+      email = ses["info"]["email"]
+    end
+    first_name = ses["info"]["first_name"]
+    last_name = ses["info"]["last_name"]
+    profile_picture = ses["info"]["image"]
+    provider = ses["provider"]
+    uid = ses["uid"]
+    User.create(:email => email, :first_name => first_name, :last_name => last_name, :profile_picture => profile_picture, :provider => provider, :uid => uid)
+  end
+
   def self.new_with_session(params, session)
     puts "+++++++++++++++++++++++++++++++++++++++++++++++++ :) here tooo"
     super.tap do |user|

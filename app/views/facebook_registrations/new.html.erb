@@ -1,0 +1,46 @@
+<h2>FaceBook Sign up</h2>
+<%= 'Welcome ' + @user.first_name%>
+<%= form_for(@user, as: :user, url: '/user/registrations-facebook/create', method: :post) do |f| %>
+
+    <%= f.hidden_field :first_name, :value => @user.first_name %>
+    <%= f.hidden_field :last_name, :value => @user.last_name %>
+    <%= f.hidden_field :provider, :value => @user.provider %>
+    <%= f.hidden_field :uid, :value => @user.uid %>
+    <%= f.hidden_field :profile_picture, :value => @user.profile_picture %>
+
+    <div class="field">
+      <%= f.label :user_name %><br />
+      <%= f.text_field :user_name, autofocus: true  %>
+    </div>
+
+    <% if !@user.email %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email%>
+    </div>
+    <% else %>
+        <%= f.hidden_field :email, :value => @user.email %>
+    <% end %>
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :country %><br />
+      <%= f.country_select :country %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Sign up" %>
+    </div>
+
+<% end %>

@@ -74,8 +74,12 @@ Rails.application.routes.draw do
 
   get '/autocomplete_user_user_name' => 'home#autocomplete_user_user_name'
 
+  get '/user/registrations-facebook' => 'facebook_registrations#new'
+
+  post '/user/registrations-facebook/create' => 'facebook_registrations#create'
+
   mount Resque::Server, :at => "/resque"
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations', sessions: 'users/sessions'}
+  devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations', sessions: 'users/sessions'}
   
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.

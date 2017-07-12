@@ -12,10 +12,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
       # set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     else
-      session["devise.facebook_data"] = request.env["omniauth.auth"]
+      session["facebook_data"] = request.env["omniauth.auth"]
       puts "***********************************************dont worry was here"
       puts new_user_registration_url
-      redirect_to new_user_registration_url @user
+      redirect_to user_registrations_facebook_path
     end
   end
 
