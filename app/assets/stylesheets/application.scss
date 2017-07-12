@@ -203,6 +203,31 @@ body{
   padding: 0;
   margin-bottom: 0;
 }
+
+.set_user_name_div{
+  display: flex;
+  #user_name_available{
+    text-align: center;
+    width: 200px;
+    overflow: hidden;
+    background-color: lightgreen;
+    color: green;
+    border-radius: 8px;
+    margin-left: 5px;
+    display: none;
+  }
+  #user_name_not_valid{
+    text-align: center;
+    width: 200px;
+    overflow: hidden;
+    background-color: orangered;
+    color: darkred;
+    border-radius: 8px;
+    margin-left: 5px;
+    display: none;
+
+  }
+}
 //images
 $bannerImg: "https://images.pexels.com/photos/114907/pexels-photo-114907.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb";
 $servicesBack: "https://images.pexels.com/photos/247932/pexels-photo-247932.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb";

@@ -42,6 +42,16 @@ class HomeController < ApplicationController
     end
   end
 
+  def check_user_name_async
+    @user = User.where(:user_name => params[:user_name]).first
+    puts @user
+    if @user
+      return render :json => {safe: 'false'}
+    else
+      return render :json => {safe: 'true'}
+    end
+  end
+
   private
 
   def set_group 

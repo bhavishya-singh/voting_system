@@ -41,6 +41,33 @@ function onload(){
         });
     }
 
+    $('#set_user_name').keyup(function () {
+        if($(this).val().length >= 3){
+            var data = {"user_name": $(this).val()};
+            var url = '/check_user_name'
+            $.ajax({
+                url: url,
+                method: "POST",
+                data: data,
+                success: function(result){
+                    if(result.safe =='true'){
+                        $('#user_name_not_valid').hide();
+                        $('#user_name_available').show();
+                    }else{
+                        $('#user_name_available').hide();
+                        $('#user_name_not_valid').show();
+                    }
+                },
+                error: function(error){
+                    console.log(error);
+                }
+
+            });
+        }else{
+            $('#user_name_available').hide();
+            $('#user_name_not_valid').show();
+        }
+    });
 
  	form = document.getElementById("search_user")
  	if(form){
