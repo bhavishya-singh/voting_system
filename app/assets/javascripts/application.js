@@ -28,6 +28,13 @@ function onload(){
     $('body').attr('data-loaded','T')
 	console.log("loaded");
 
+    $(".placeholder-input").on("blur", function() {
+        $(this).toggleClass("not-empty", !!$(this).val());
+    });
+
+    $("#user_email").val("");
+    $("#user_password").val("");
+
     var profile_image = document.getElementsByClassName("user-image");
     if(profile_image){
         var current_user_id = $(profile_image).attr('id');

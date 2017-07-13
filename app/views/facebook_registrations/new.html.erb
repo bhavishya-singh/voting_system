@@ -9,7 +9,7 @@
     <%= f.hidden_field :profile_picture, :value => @user.profile_picture %>
 
     <div class="field">
-      <%= f.label :user_name %><br />
+      <%= f.label :user_name %><br>
       <div class="set_user_name_div">
         <%= f.text_field :user_name, autofocus: true, :id => 'set_user_name'  %>
         <div id="user_name_available">User Name is Available</div>
@@ -19,7 +19,7 @@
 
     <% if !@user.email %>
     <div class="field">
-      <%= f.label :email %><br />
+      <%= f.label :email %><br>
       <%= f.email_field :email%>
     </div>
     <% else %>
@@ -34,12 +34,12 @@
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %><br />
+      <%= f.label :password_confirmation %><br>
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
 
     <div class="field">
-      <%= f.label :country %><br />
+      <%= f.label :country %><br>
       <%= f.country_select :country %>
     </div>
 

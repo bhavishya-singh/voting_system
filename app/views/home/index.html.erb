@@ -85,6 +85,35 @@
 </div>
 </div>
 
+<div id="home_login">
+  <span>LOGIN</span>
+  <hr class="center-ball">
+  <div class="login_div">
+    <%= form_for( :user, as: :user, url: '/users/sign_in', method: :post) do |f| %>
+    <div class='form'>
+      <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+      <input style="display:none" type="text" name="fakeusernameremembered"/>
+      <input style="display:none" type="password" name="fakepasswordremembered"/>
+      <div class='field'>
+        <input type="email" value=""  name="user[email]" id="user_email" class='placeholder-input'>
+        <label class='placeholder-label' for='user_email'>Email</label>
+      </div>
+      <div class='field'>
+        <input autocomplete="off" type="password" name="user[password]" id="user_password" class='placeholder-input'>
+        <label class='placeholder-label' for='user_password'>Password</label>
+      </div>
+      <input class="submit_but" type="submit" name="commit" value="login">
+      <hr>
+        <a href="/users/auth/facebook" class="facebook-button"><i class="fa fa-facebook-square" aria-hidden="true"></i>Login with facebook</a>
+
+    </div>
+    <% end %>
+  </div>
+
+
+</div>
+
+
 <!--<h1>Home#index</h1>-->
 <!--<p>Find me in app/views/home/index.html.erb</p>-->
 <% link_to "sign_in" , new_user_session_path %><br>
