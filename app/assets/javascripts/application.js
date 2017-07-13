@@ -32,8 +32,6 @@ function onload(){
         $(this).toggleClass("not-empty", !!$(this).val());
     });
 
-    $("#user_email").val("");
-    $("#user_password").val("");
 
     var profile_image = document.getElementsByClassName("user-image");
     if(profile_image){
@@ -567,4 +565,21 @@ var socket;
 
 function hide_warning() {
     $('#warn').slideUp();
+}
+
+function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#preview_image').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function loadFile(event, calledby){
+    readURL(calledby);
 }

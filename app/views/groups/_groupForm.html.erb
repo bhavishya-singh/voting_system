@@ -5,7 +5,10 @@
     </div>
     <div class="field">
       <%= f.label :image %><br />
-      <%= f.file_field :image %>
+      <%= f.file_field :image , :onChange => "loadFile(event,this)"%>
+    </div>
+    <div class="preview_image_class">
+      <img src="" id="preview_image">
     </div>
 <%= f.submit %>
 <% end %>

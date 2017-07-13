@@ -89,7 +89,7 @@
   <span>LOGIN</span>
   <hr class="center-ball">
   <div class="login_div">
-    <%= form_for( :user, as: :user, url: '/users/sign_in', method: :post) do |f| %>
+    <%= form_for( :user, as: :user, url: '/users/sign_in', method: :post, :html => {:autocomplete => "off"}) do |f| %>
     <div class='form'>
       <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
       <input style="display:none" type="text" name="fakeusernameremembered"/>
