@@ -1,4 +1,5 @@
-<%= form_for (@group) do |f| %>
+<%= form_for (@group), id: :group_form_create do |f| %>
+    <%= f.hidden_field :hidden_image, :value => "create"%>
     <div class="field">
       <%= f.label :group_name %><br />
       <%= f.text_field :name, autofocus: true %>
@@ -9,6 +10,8 @@
     </div>
     <div class="preview_image_class">
       <img src="" id="preview_image">
+      <div id="image_result">
+      </div>
     </div>
 <%= f.submit %>
 <% end %>

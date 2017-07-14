@@ -540,6 +540,27 @@ function onload(){
  		});
  	}
 
+ 	$("#new_group").submit(function (event) {
+        event.preventDefault();
+ 	    console.log("try to submit");
+ 	    if(group_image_blob){
+            var xhr = new XMLHttpRequest();
+            var form = new FormData();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    console.log(xhr.response); //Outputs a DOMString by default
+                    var response = JSON.parse(xhr.responseText);
+                    $('#group_hidden_image').val(response.file_name);
+                    $("#new_group").unbind('submit').submit();
+                }
+            }
+            form.append('image', group_image_blob,'group_image.png');
+            xhr.open('POST', '/upload_group_image', true);
+            xhr.send(form);
+        }else{
+            $("#new_group").unbind('submit').submit();
+        }
+    });
 
 
 };
@@ -574,7 +595,24 @@ function readURL(input) {
 
         reader.onload = function (e) {
             $('#preview_image').attr('src', e.target.result);
-        }
+            var croppie = $('#preview_image').croppie({
+                enableExif: true,
+                viewport: {
+                    width: 200,
+                    height: 200,
+                    type: 'square'
+                },
+                boundary: {
+                    width: 300,
+                    height: 300
+                },
+                update: function (croppe) {
+                    callupdatefunction(croppe,input);
+                }
+            });
+
+        };
+
 
         reader.readAsDataURL(input.files[0]);
     }
@@ -583,3 +621,14 @@ function readURL(input) {
 function loadFile(event, calledby){
     readURL(calledby);
 }
+function callupdatefunction(croppe,input) {
+    console.log("update");
+    $("#preview_image").croppie('result',{
+        type:   'blob',
+        format: 'png'
+    }).then(function (blob) {
+        group_image_blob = blob;
+    });
+}
+
+var group_image_blob;

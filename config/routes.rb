@@ -68,6 +68,8 @@ Rails.application.routes.draw do
 
   get 'home/index'
 
+  post '/upload_group_image' => 'groups#upload_group_image'
+
   get 'group/:id/show' => 'home#group' 
 
   get 'user_json' => 'home#user_json'
