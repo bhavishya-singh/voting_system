@@ -233,7 +233,7 @@ function onload(){
 			event.preventDefault();
 			added++;
 			var id = "added:" + added;
-			contestant_element = "<div><label for='contestant_name'>Contestant name</label><input type='text' name='contestant_name[]' class='added_contestant_name'><span id="+id+">delete</span><br><div> <label for='contestant_picture'>Contestant picture</label> <input type='file' name='contestant_pic[]' id='contestant_pic_'> <br> </div><div> <label for='contestant_tag_line'>Contestant tag line</label> <input type='text' name='contestant_tag_line[]' id='contestant_tag_line_'> <br> </div></div>";
+			contestant_element = "<div><label for='contestant_name'>Contestant name</label><input type='text' name='contestant_name[]' class='added_contestant_name'><span id="+id+">delete</span><br><div> <label for='contestant_picture'>Contestant picture</label> <input type='file' name='contestant_pic[]' id='contestant_pic_' onchange='loadpollcontsimage(event,this)'> <div class='contestant_pic_preview'><img src=''></div><br> </div><div> <label for='contestant_tag_line'>Contestant tag line</label> <input type='text' name='contestant_tag_line[]' id='contestant_tag_line_'> <br> </div></div>";
 			$(contestant_element).insertBefore("#submit");
 			var delete_icon = document.getElementById(id);
 			delete_icon.addEventListener('click', function(){
@@ -669,11 +669,74 @@ function loaduserURL(input) {
     }
 };
 
+function loadcontestantURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var image = $(input).parent().find('.contestant_pic_preview').find('img');
+            image.attr('src', e.target.result);
+            var croppie = $(image).croppie({
+                enableExif: true,
+                viewport: {
+                    width: 200,
+                    height: 200,
+                    type: 'square'
+                },
+                boundary: {
+                    width: 300,
+                    height: 300
+                },
+                update: function (croppe) {
+                    ppollcontstantImageUpdate(croppe,input);
+                }
+            });
+
+        };
+
+
+        reader.readAsDataURL(input.files[0]);
+    }
+};
+
+function loadppollURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#public_poll_image_preview').attr('src', e.target.result);
+            var croppie = $('#public_poll_image_preview').croppie({
+                enableExif: true,
+                viewport: {
+                    width: 200,
+                    height: 200,
+                    type: 'square'
+                },
+                boundary: {
+                    width: 300,
+                    height: 300
+                }
+            });
+
+        };
+
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
 function loadFile(event, calledby){
     readURL(calledby);
 };
 function loadUserImage(event,calledby){
     loaduserURL(calledby);
+};
+function loadppollimageFile(event,calledby){
+    loadppollURL(calledby);
+};
+
+function loadpollcontsimage(event,calledby) {
+    loadcontestantURL(calledby);
 };
 function callupdatefunction(croppe,input) {
     console.log("update");
@@ -694,6 +757,15 @@ function userImageUpdate(croppe,input) {
     });
 
 }
+function ppollImageUpdate(croppe,input) {
+    $("#public_poll_image_preview").croppie('result',{
+        type:   'blob',
+        format: 'png'
+    }).then(function (blob) {
+        public_poll_image_blob = blob;
+    });
+};
 
 var group_image_blob;
 var user_image_blob;
+var public_poll_image_blob;

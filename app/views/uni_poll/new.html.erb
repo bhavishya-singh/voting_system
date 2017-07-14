@@ -11,7 +11,10 @@
 <br>
   <div>
     <%= label_tag :contestant_picture %>
-    <%= file_field_tag "contestant_pic[]" %>
+    <%= file_field_tag "contestant_pic[]" , :onChange => "loadpollcontsimage(event,this)"%>
+    <div class="contestant_pic_preview">
+      <img src="">
+    </div>
     <br>
   </div>
   <div>
@@ -27,7 +30,10 @@
 <br>
   <div>
     <%= label_tag :contestant_picture %>
-    <%= file_field_tag "contestant_pic[]" %>
+    <%= file_field_tag "contestant_pic[]"  , :onChange => "loadpollcontsimage(event,this)"%>
+    <div class="contestant_pic_preview">
+      <img src="">
+    </div>
     <br>
   </div>
   <div>
@@ -47,8 +53,11 @@
     </div>
     <div>
       <%= label_tag :public_poll_image %>
-      <%= file_field_tag "public_poll_image" %>
+      <%= file_field_tag "public_poll_image", :onChange => "loadppollimageFile(event,this)"%>
       <br>
+    </div>
+    <div class="image_preview">
+      <img src="" id="public_poll_image_preview">
     </div>
     <%= "Do you want to set the start date ?" %>
     <%= check_box_tag :set_date, true, false ,:id => "set_date_group"%><br>
