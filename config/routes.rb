@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  
-  get 'image/new'
-
-  get 'image/create'
-
-  get 'image/edit'
-
-  get 'image/update'
 
   get 'group_polls/index'
 
@@ -68,7 +60,7 @@ Rails.application.routes.draw do
 
   get 'home/index'
 
-  post '/upload_group_image' => 'groups#upload_group_image'
+  post '/upload_group_image' => 'image#upload_group_image'
 
   get 'group/:id/show' => 'home#group' 
 
@@ -77,6 +69,8 @@ Rails.application.routes.draw do
   get '/autocomplete_user_user_name' => 'home#autocomplete_user_user_name'
 
   get '/user/registrations-facebook' => 'facebook_registrations#new'
+
+  post '/user_profile_pic_set' => 'image#user_image_set'
 
   post '/user/registrations-facebook/create' => 'facebook_registrations#create'
 

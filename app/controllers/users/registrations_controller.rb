@@ -10,8 +10,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    if params["user"]["image"] != nil
-      initialize_image resource
+    if params["user"]["hidden_image"] != "not_set"
+      resource.profile_picture = params["user"]["hidden_image"]
+      resource.save!
     end
   end
 

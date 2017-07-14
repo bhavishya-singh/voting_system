@@ -562,6 +562,28 @@ function onload(){
         }
     });
 
+    $("#new_user").submit(function (event) {
+        event.preventDefault();
+        console.log("try to submit");
+        if(user_image_blob){
+            var xhr = new XMLHttpRequest();
+            var form = new FormData();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    console.log(xhr.response); //Outputs a DOMString by default
+                    var response = JSON.parse(xhr.responseText);
+                    $('#user_hidden_image').val(response.file_name);
+                    $("#new_user").unbind('submit').submit();
+                }
+            }
+            form.append('user_image', user_image_blob,'user_image.png');
+            xhr.open('POST', '/user_profile_pic_set', true);
+            xhr.send(form);
+        }else{
+            $("#new_user").unbind('submit').submit();
+        }
+    });
+
 
 };
 
@@ -616,11 +638,43 @@ function readURL(input) {
 
         reader.readAsDataURL(input.files[0]);
     }
-}
+};
+
+function loaduserURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#user_image_preview').attr('src', e.target.result);
+            var croppie = $('#user_image_preview').croppie({
+                enableExif: true,
+                viewport: {
+                    width: 200,
+                    height: 200,
+                    type: 'square'
+                },
+                boundary: {
+                    width: 300,
+                    height: 300
+                },
+                update: function (croppe) {
+                    userImageUpdate(croppe,input);
+                }
+            });
+
+        };
+
+
+        reader.readAsDataURL(input.files[0]);
+    }
+};
 
 function loadFile(event, calledby){
     readURL(calledby);
-}
+};
+function loadUserImage(event,calledby){
+    loaduserURL(calledby);
+};
 function callupdatefunction(croppe,input) {
     console.log("update");
     $("#preview_image").croppie('result',{
@@ -629,6 +683,17 @@ function callupdatefunction(croppe,input) {
     }).then(function (blob) {
         group_image_blob = blob;
     });
+};
+
+function userImageUpdate(croppe,input) {
+    $("#user_image_preview").croppie('result',{
+        type:   'blob',
+        format: 'png'
+    }).then(function (blob) {
+        user_image_blob = blob;
+    });
+
 }
 
 var group_image_blob;
+var user_image_blob;

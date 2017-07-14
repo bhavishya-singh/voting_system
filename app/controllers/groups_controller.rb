@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   
   before_action :authenticate_user!
   before_action :set_group, :only => [:edit,:update,:delete,:add_user_to_group,:leave_group,:group_users]
-  skip_before_action :verify_authenticity_token, :only => [:upload_group_image]
+
   def index     
   end
 
@@ -27,24 +27,6 @@ class GroupsController < ApplicationController
     return redirect_to "/user_home"
   end
 
-
-  def upload_group_image
-    temp_file_name = SecureRandom.hex+ ".png"
-    # @image = Image.create(:filename => original_filename, :user_id => resource.id)
-    # file_name = resource.id.to_s + "_" + original_filename
-    temp_file = params["image"]
-    begin
-      cgroup = Group.where(:group_picture => temp_file_name).first
-      if cgroup
-        temp_file_name = SecureRandom.hex+ ".png"
-      end
-    end while cgroup
-    File.open(Rails.root.join('public', 'uploads/group_pictures', temp_file_name), 'wb') do |file|
-      file.write(temp_file.read)
-    end
-    return render :json => {:file_name => temp_file_name}
-
-  end
 
   def update
     @group.update(group_params)

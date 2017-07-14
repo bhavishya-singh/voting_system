@@ -2,6 +2,7 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+    <%= f.hidden_field :hidden_image, :value => "not_set"%>
 
   <div class="field">
     <%= f.label :user_name %><br />
@@ -47,8 +48,11 @@
 
   <div class="field">
     <%= f.label :image %><br />
-    <%= f.file_field :image %>
+    <%= f.file_field :image , :onChange => "loadUserImage(event,this)"%>
   </div>
+    <div class="user_image_set">
+      <img src="" id="user_image_preview">
+    </div>
 
 
   <div class="actions">
