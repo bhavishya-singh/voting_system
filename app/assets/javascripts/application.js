@@ -135,10 +135,10 @@ function onload(){
 									if(!div){
                                         if(result.provider == null){
                                             $(rem_elem).slideUp();
-                                            $("#group_users").prepend("<div class='group-user' id="+div_id+"><div class='user_image'><img src='/uploads/"+result.profile_picture+"'></div><div class='details'><h2>"+result.user_name+"</h2></div></div>");
+                                            $("#group_users").prepend("<div class='group-user added-us' id="+div_id+"><div class='user_image'><img src='/uploads/"+result.profile_picture+"'></div><div class='details'><h2>"+result.user_name+"</h2></div></div>");
                                         }else{
                                             $(rem_elem).slideUp();
-                                            $("#group_users").prepend("<div class='group-user' id="+div_id+"><div class='user_image'><img src='"+result.profile_picture+"'></div><div class='details'><h2>"+result.user_name+"</h2></div></div>");
+                                            $("#group_users").prepend("<div class='group-user added-us' id="+div_id+"><div class='user_image'><img src='"+result.profile_picture+"'></div><div class='details'><h2>"+result.user_name+"</h2></div></div>");
                                         }
 				 						var group_user = GetElementInsideContainer("group_users", user_id);
 				 						group_user.addEventListener("click",remove_user);

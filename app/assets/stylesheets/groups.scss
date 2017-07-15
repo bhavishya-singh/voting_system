@@ -13,6 +13,7 @@
   background-color: #fff;
   margin: auto;
   margin-bottom: 50px;
+  overflow: hidden;
 }
 #result{
   width: 85%;
@@ -28,6 +29,7 @@
   padding: 15px;
   align-items: center;
   box-sizing: border-box;
+  position: relative;
   .user_image{
     margin-left: 40px;
     height: 80px;
@@ -53,4 +55,29 @@
   box-shadow:
           inset 0px 11px 8px -10px #CCC,
           inset 0px -11px 8px -10px #CCC;
+}
+.added-us:hover:before{
+  content: "click to remove user";
+  background-color: #8FAC30;
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  position: absolute;
+  padding: 10px 20px;
+  top: 0;
+  right: 0;
+  border-radius: 0 0 0 10px;
+}
+
+.search:hover:before{
+  content: "click to add user";
+  background-color: #8FAC30;
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  position: absolute;
+  padding: 10px 20px;
+  top: 0;
+  right: 0;
+  border-radius: 0 0 0 10px;
 }
