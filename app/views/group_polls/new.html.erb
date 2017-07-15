@@ -1,18 +1,38 @@
-
-<h1>form for new Group poll</h1>
+<h1 class="form-heading">form for new Group poll</h1>
 
 <%= form_tag "/group_polls/create", :method => "POST" ,:id => "new_group_poll_form" do %>
 <%= hidden_field_tag :group_id, @group.id %>
-NAME:
-<%= text_field_tag :name %><br>
-<% @members.each do |member|%>
-<%= render "members", :member => member%>
-<% end %>
-    <%= "Do you want to set the start date ?" %>
-    <%= check_box_tag :set_date, true, false ,:id => "set_date_group"%><br>
-    <div id="start_date_select" >
-      DATE:
-    <%= datetime_field_tag :start_date, Time.now %>
+    <div class="field">
+      <%= label_tag :name %>
+      <div class="field-input">
+        <%= text_field_tag :name %>
+      </div>
     </div>
-<%= submit_tag "submit" %>
+    <div class="field">
+      <%= label_tag :select_contestant %>
+      <div class="field-input">
+        <% @members.each do |member|%>
+            <%= render "members", :member => member%>
+        <% end %>
+      </div>
+    </div>
+    <div class="field">
+      <%= label_tag "Do you want to set the start date ?" %>
+      <div class="field-input">
+        <%= check_box_tag :set_date, true, false ,:id => "set_date_group"%>
+      </div>
+    </div>
+    <div id="start_date_select" >
+      <div class="field">
+        <%= label_tag :date %>
+        <div class="field-input">
+          <%= datetime_field_tag :start_date, Time.now %>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="action-input">
+        <%= submit_tag "Create" %>
+      </div>
+    </div>
 <% end %>

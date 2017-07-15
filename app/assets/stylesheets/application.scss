@@ -17,6 +17,7 @@
 //@import "bootstrap-sprockets";
 //@import "bootstrap";
 @import "font-awesome";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
 //colors
 $navGrey: #9d9d9d;
 $navGreen: #8eb640;
@@ -40,11 +41,102 @@ a{
   align-items: center;
 }
 body{
-  background-color: #f8f8f8;
+  .form-heading{
+    font-size: 3rem;
+    font-family: 'Open Sans', sans-serif;
+    margin: 20px 50px;
+    color: #8eb640;
+
+  }
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 50px;
+    .action-input{
+      flex: 3;
+      padding-left:8px ;
+      max-width: 75%;
+      button{
+        background-color: #fff;
+        padding: 10px;
+      }
+    }
+  }
+  .errors_displayed{
+    width: 80%;
+    margin: auto;
+    font-family: 'Playfair Display', serif;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  background-color: #eee;
+  font-family: 'Open Sans', sans-serif;
   a:hover{
     text-decoration: none;
   }
   overflow-x: hidden;
+  form {
+    color: #222;
+    margin-bottom: 50px;
+    input, select, textarea {
+      padding: .6rem 1rem;
+      font-size: 0.9rem;
+      border: solid 1px #eee;
+      background: #fff;
+      box-sizing: border-box;
+    }
+    input, select {
+      width: 50%;
+    }
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      .action-input{
+        flex: 3;
+        padding-left:8px ;
+        max-width: 75%;
+      }
+    }
+    input[type="submit"] {
+      width: auto;
+    }
+    .field{
+      display: flex;
+      margin: 0 0 12px 0;
+      label{
+        flex: 1;
+        text-align: right;
+        margin: 0 8px 0 0;
+        padding: 2px 0;
+      }
+      .field_with_errors{
+        flex: 1;
+        text-align: right;
+        margin: 0 8px 0 0;
+        padding: 2px 0;
+      }
+
+      input[type="radio"],
+      input[type="checkbox"],
+      input[type="submit"] {
+        width: auto;
+      }
+      .field-input{
+        flex: 3;
+        .field_with_errors{
+          text-align: left;
+        }
+      }
+      .set_user_name_div{
+        flex: 3;
+        .field_with_errors{
+          text-align: left;
+        }
+      }
+    }
+  }
 }
 .header-container{
   width: 90%;
@@ -391,5 +483,67 @@ $facebookIcon: "http://www.iconarchive.com/download/i54037/danleech/simple/faceb
   }
   .row{
     flex-direction: column;
+  }
+}
+@media (max-width: 720px) {
+  #user_name_field{
+    label{
+      text-align: left;
+      margin: 0;
+    }
+    .field_with_errors{
+      label{
+        text-align: left;
+        margin: 0;
+      }
+    }
+  }
+  body{
+    form{
+      width: 90%;
+      margin: auto;
+      .field{
+        label{
+          text-align: left;
+          margin: 0;
+        }
+      }
+      input, select {
+        width: 60%;
+      }
+    }
+  }
+}
+@media (max-width: 480px) {
+
+  body{
+    form{
+      width: 90%;
+      margin: auto;
+      .actions{
+        .action-input{
+          max-width: 100%;
+          margin: 10px 0 0 0;
+        }
+      }
+      .field{
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 6px 0;
+        label{
+          padding: 0 0 5px 0;
+          margin: 10px 0 0 0;
+        }
+      }
+      input,
+      select {
+        width: 100%;
+      }
+      input[type="radio"],
+      input[type="checkbox"],
+      input[type="submit"] {
+        width: auto;
+      }
+    }
   }
 }

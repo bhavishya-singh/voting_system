@@ -18,7 +18,7 @@ class HomeController < ApplicationController
   	@user = current_user
   	@groups = current_user.groups
     uni_polls_deleted_mapping = current_user.uni_polls_deleted.pluck(:uni_poll_id); 
-    @uni_polls = UniPoll.all.order(:created_at => "desc")
+    @uni_polls = UniPoll.all.order(:created_at => "desc").limit(25);
     if uni_polls_deleted_mapping.length > 0
       @uni_polls = @uni_polls.where('id NOT IN (?)',uni_polls_deleted_mapping)
     end

@@ -1,4 +1,11 @@
 <div class="group_memeber_container">
-  <%= label_tag member.user_name %>
-  <%= check_box_tag "contestant_ids", member.id, false, :class => "new_group_poll_checkbox" %><br>
+  <%= check_box_tag "contestant_ids", member.id, false, :class => "new_group_poll_checkbox" %>
+  <div class="image_select_contestant">
+    <% if member.provider == nil %>
+        <img src="/uploads/<%= member.profile_picture %>" >
+    <% else %>
+        <img src="<%= member.profile_picture %>" >
+    <% end %>
+    <%= label_tag member.user_name %>
+  </div>
 </div>

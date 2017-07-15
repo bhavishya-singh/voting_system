@@ -1,76 +1,106 @@
-<h2>Form for new universal polls</h2>
+<h2 class="form-heading">Form for new universal polls</h2>
 
 <%= form_tag "/unipoll/create", :method => "POST", :id => "unipoll_form" , multipart: true do %>
-<div>
-	<%= label_tag :poll_name %>
-	<%= text_field_tag :poll_name %><br>
-</div>
-<div>
-	<%= label_tag :contestant_name %>
-	<%= text_field_tag "contestant_name[]" %>
-<br>
-  <div>
-    <%= label_tag :contestant_picture %>
-    <%= file_field_tag "contestant_pic[]" , :onChange => "loadpollcontsimage(event,this)"%>
-    <div class="contestant_pic_preview">
-      <%= hidden_field_tag 'contestant_pic_set[]', 'false'%>
-      <img src="">
-    </div>
-    <br>
-  </div>
-  <div>
-    <%= label_tag :contestant_tag_line %>
-    <%= text_field_tag "contestant_tag_line[]" %>
-    <br>
-  </div>
-</div>
 
-<div>
-	<%= label_tag :contestant_name %>
-	<%= text_field_tag "contestant_name[]" %>
-<br>
-  <div>
-    <%= label_tag :contestant_picture %>
-    <%= file_field_tag "contestant_pic[]"  , :onChange => "loadpollcontsimage(event,this)"%>
-    <div class="contestant_pic_preview">
-      <%= hidden_field_tag 'contestant_pic_set[]', 'false'%>
-      <img src="">
-    </div>
-    <br>
-  </div>
-  <div>
-    <%= label_tag :contestant_tag_line %>
-    <%= text_field_tag "contestant_tag_line[]" %>
-    <br>
-  </div>
-</div>
 
+    <div class="field">
+      <%= label_tag :poll_name %>
+      <div class="field-input">
+        <%= text_field_tag :poll_name %>
+      </div>
+    </div>
 
     <div>
+      <div class="field">
+        <%= label_tag :contestant_name %>
+        <div class="field-input">
+          <%= text_field_tag "contestant_name[]" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= label_tag :contestant_picture %>
+        <div class="field-input">
+          <%= file_field_tag "contestant_pic[]" , :onChange => "loadpollcontsimage(event,this)"%>
+          <div class="contestant_pic_preview">
+            <%= hidden_field_tag 'contestant_pic_set[]', 'false'%>
+            <img src="">
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <%= label_tag :contestant_tag_line %>
+        <div class="field-input">
+          <%= text_field_tag "contestant_tag_line[]" %>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="field">
+        <%= label_tag :contestant_name %>
+        <div class="field-input">
+          <%= text_field_tag "contestant_name[]" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= label_tag :contestant_picture %>
+        <div class="field-input">
+          <%= file_field_tag "contestant_pic[]" , :onChange => "loadpollcontsimage(event,this)"%>
+          <div class="contestant_pic_preview">
+            <%= hidden_field_tag 'contestant_pic_set[]', 'false'%>
+            <img src="">
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <%= label_tag :contestant_tag_line %>
+        <div class="field-input">
+          <%= text_field_tag "contestant_tag_line[]" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
       <%= label_tag :country %>
-      <%= radio_button_tag :country_based, 'yes', :checked => true %> Yes
+      <div class="field-input">
+      <%= radio_button_tag :country_based, 'yes', :checked => true %> Yes<br>
       <%= radio_button_tag :country_based, 'no' %> No
-      <br>
-      <br>
+      </div>
     </div>
-    <div>
+    <div class="field">
       <%= label_tag :public_poll_image %>
+      <div class="field-input">
       <%= hidden_field_tag 'public_poll_hidden_image', 'not_set'%>
       <%= file_field_tag "public_poll_image", :onChange => "loadppollimageFile(event,this)"%>
-      <br>
+      </div>
     </div>
     <div class="image_preview">
       <img src="" id="public_poll_image_preview">
     </div>
-    <%= "Do you want to set the start date ?" %>
-    <%= check_box_tag :set_date, true, false ,:id => "set_date_group"%><br>
-    <div id="start_date_select" >
-      DATE:
-      <%= datetime_field_tag :start_date, Time.now %>
+    <div class="field">
+      <%= label_tag "Do you want to set the start date ?" %>
+      <div class="field-input">
+        <%= check_box_tag :set_date, true, false ,:id => "set_date_group"%>
+      </div>
     </div>
-<%= submit_tag "create poll", :id => "create_poll" %>
+    <div id="start_date_select" >
+      <div class="field">
+        <%= label_tag :date %>
+        <div class="field-input">
+          <%= datetime_field_tag :start_date, Time.now %>
+        </div>
+      </div>
+    </div>
 
-<br>
+    <div class="actions">
+      <div class="action-input">
+        <%= submit_tag "create poll", :id => "create_poll" %>
+      </div>
+    </div>
+
 <% end %>
-
-<button id="add_public_contestant">Add Contestant</button>
+<div class="actions">
+  <div class="action-input">
+    <button id="add_public_contestant">Add Contestant</button>
+  </div>
+</div>

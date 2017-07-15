@@ -231,12 +231,12 @@ function onload(){
 			console.log("clicked!");
 			added++;
 			var id = "added:" + added;
-			contestant_element = "<div><label for='contestant_name'>Contestant name</label><input type='text' name='contestant_name[]' class='added_contestant_name'><span id="+id+">delete</span><br><div> <label for='contestant_picture'>Contestant picture</label> <input type='file' name='contestant_pic[]' id='contestant_pic_' onchange='loadpollcontsimage(event,this)'> <div class='contestant_pic_preview'><input type='hidden' name='contestant_pic_set[]' id='contestant_pic_set_' value='false'><img src=''></div><br> </div><div> <label for='contestant_tag_line'>Contestant tag line</label> <input type='text' name='contestant_tag_line[]' id='contestant_tag_line_'> <br> </div></div>";
-			$(contestant_element).insertBefore("#submit");
+			contestant_element = "<div><div class='field'><label for='contestant_name'>Contestant name</label><div class='field-input'><input type='text' name='contestant_name[]' class='added_contestant_name'><span id="+id+">delete</span></div></div><div class='field'><label for='contestant_picture'>Contestant picture</label><div class='field-input'><input type='file' name='contestant_pic[]' id='contestant_pic_' onchange='loadpollcontsimage(event,this)'> <div class='contestant_pic_preview'><input type='hidden' name='contestant_pic_set[]' id='contestant_pic_set_' value='false'><img src=''></div></div></div><div class='field'><label for='contestant_tag_line'>Contestant tag line</label><div class='field-input'><input type='text' name='contestant_tag_line[]' id='contestant_tag_line_'></div> </div></div>";
+			$(contestant_element).insertBefore($("#create_poll").parent().parent());
 			var delete_icon = document.getElementById(id);
 			delete_icon.addEventListener('click', function(){
-				var parent = this.parentNode;
-				this.parentNode.parentNode.removeChild(parent);
+				var parentdiv_p = $(this).parent().parent().parent();
+				$(parentdiv_p).remove();
 			});
 		});
 	}

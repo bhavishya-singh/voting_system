@@ -1,15 +1,23 @@
 <%= form_for (@group), id: :group_form_create do |f| %>
     <%= f.hidden_field :hidden_image, :value => "create"%>
     <div class="field">
-      <%= f.label :group_name %><br />
+      <%= f.label :group_name %>
+      <div class="field-input">
       <%= f.text_field :name, autofocus: true %>
+      </div>
     </div>
     <div class="field">
-      <%= f.label :image %><br />
+      <%= f.label :image %>
+      <div class="field-input">
       <%= f.file_field :image , :onChange => "loadFile(event,this)"%>
+      </div>
     </div>
     <div class="preview_image_class">
       <img src="" id="preview_image">
     </div>
-<%= f.submit %>
+    <div class="actions">
+      <div class="action-input">
+        <%= f.submit "Create Group" %>
+      </div>
+    </div>
 <% end %>
