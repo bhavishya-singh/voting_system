@@ -72,6 +72,10 @@ Rails.application.routes.draw do
 
   post '/user_profile_pic_set' => 'image#user_image_set'
 
+  post '/public_poll_pic_set' => 'image#public_poll_pic_set'
+
+  post '/public_poll_contestant_pic_set' => 'image#public_poll_contestant_pic_set'
+
   post '/user/registrations-facebook/create' => 'facebook_registrations#create'
 
   post '/check_user_name' => 'home#check_user_name_async'

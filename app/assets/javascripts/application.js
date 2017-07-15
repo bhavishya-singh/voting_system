@@ -229,11 +229,9 @@ function onload(){
 	if(add_public_contestant){
 		add_public_contestant.addEventListener('click',function(){
 			console.log("clicked!");
-			event.stopPropagation();
-			event.preventDefault();
 			added++;
 			var id = "added:" + added;
-			contestant_element = "<div><label for='contestant_name'>Contestant name</label><input type='text' name='contestant_name[]' class='added_contestant_name'><span id="+id+">delete</span><br><div> <label for='contestant_picture'>Contestant picture</label> <input type='file' name='contestant_pic[]' id='contestant_pic_' onchange='loadpollcontsimage(event,this)'> <div class='contestant_pic_preview'><img src=''></div><br> </div><div> <label for='contestant_tag_line'>Contestant tag line</label> <input type='text' name='contestant_tag_line[]' id='contestant_tag_line_'> <br> </div></div>";
+			contestant_element = "<div><label for='contestant_name'>Contestant name</label><input type='text' name='contestant_name[]' class='added_contestant_name'><span id="+id+">delete</span><br><div> <label for='contestant_picture'>Contestant picture</label> <input type='file' name='contestant_pic[]' id='contestant_pic_' onchange='loadpollcontsimage(event,this)'> <div class='contestant_pic_preview'><input type='hidden' name='contestant_pic_set[]' id='contestant_pic_set_' value='false'><img src=''></div><br> </div><div> <label for='contestant_tag_line'>Contestant tag line</label> <input type='text' name='contestant_tag_line[]' id='contestant_tag_line_'> <br> </div></div>";
 			$(contestant_element).insertBefore("#submit");
 			var delete_icon = document.getElementById(id);
 			delete_icon.addEventListener('click', function(){
@@ -562,6 +560,70 @@ function onload(){
         }
     });
 
+    $("#unipoll_form").submit(function (event) {
+        console.log("check 1");
+        event.preventDefault();
+        if(public_poll_image_blob){
+            var xhr = new XMLHttpRequest();
+            var form = new FormData();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    console.log(xhr.response); //Outputs a DOMString by default
+                    var response = JSON.parse(xhr.responseText);
+                    $('#public_poll_hidden_image').val(response.file_name);
+                    uploadcontestantpics();
+                }
+            }
+            form.append('public_poll_image', public_poll_image_blob,'public_poll_image.png');
+            xhr.open('POST', '/public_poll_pic_set', true);
+            xhr.send(form);
+
+        }else{
+            console.log("check 2");
+            uploadcontestantpics();
+        }
+    });
+    
+    function uploadcontestantpics() {
+        var last_pic = -1;
+        $('.contestant_pic_preview').each(function (index) {
+            if($($(this).find('img')).attr('src') != ""){
+                last_pic = index;
+            }
+        });
+        if(last_pic == -1){
+            console.log("check 3");
+            $("#unipoll_form").unbind('submit').submit();
+        }else{
+            $('.contestant_pic_preview').each(function (index) {
+                var present_element = this;
+                if($($(this).find('img')).attr('src') != ""){
+                    $($(this).find('img')).croppie('result',{
+                        type:   'blob',
+                        format: 'png'
+                    }).then(function (blob) {
+                        var xhr = new XMLHttpRequest();
+                        var form = new FormData();
+                        var inner_present = present_element;
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === 4) {
+                                console.log(xhr.response); //Outputs a DOMString by default
+                                var response = JSON.parse(xhr.responseText);
+                                $($(inner_present).find('input')).val(response.file_name);
+                                if(index === last_pic){
+                                    $("#unipoll_form").unbind('submit').submit();
+                                }
+                            }
+                        }
+                        form.append('public_poll_contestant_image', blob,'contestant_image.png');
+                        xhr.open('POST', '/public_poll_contestant_pic_set', true);
+                        xhr.send(form);
+                    });
+                }
+            });
+        }
+    };
+
     $("#new_user").submit(function (event) {
         event.preventDefault();
         console.log("try to submit");
@@ -686,9 +748,6 @@ function loadcontestantURL(input) {
                 boundary: {
                     width: 300,
                     height: 300
-                },
-                update: function (croppe) {
-                    ppollcontstantImageUpdate(croppe,input);
                 }
             });
 
@@ -715,6 +774,9 @@ function loadppollURL(input) {
                 boundary: {
                     width: 300,
                     height: 300
+                },
+                update: function (croppe) {
+                    ppollImageUpdate(croppe,input);
                 }
             });
 
@@ -724,6 +786,13 @@ function loadppollURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+function submitunipollform() {
+    $('#unipoll_form').submit();
+    $('#unipoll_form').submit();$('#unipoll_form').submit();
+    $('#unipoll_form').submit();
+
+};
 
 function loadFile(event, calledby){
     readURL(calledby);

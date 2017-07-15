@@ -13,6 +13,7 @@
     <%= label_tag :contestant_picture %>
     <%= file_field_tag "contestant_pic[]" , :onChange => "loadpollcontsimage(event,this)"%>
     <div class="contestant_pic_preview">
+      <%= hidden_field_tag 'contestant_pic_set[]', 'false'%>
       <img src="">
     </div>
     <br>
@@ -32,6 +33,7 @@
     <%= label_tag :contestant_picture %>
     <%= file_field_tag "contestant_pic[]"  , :onChange => "loadpollcontsimage(event,this)"%>
     <div class="contestant_pic_preview">
+      <%= hidden_field_tag 'contestant_pic_set[]', 'false'%>
       <img src="">
     </div>
     <br>
@@ -53,6 +55,7 @@
     </div>
     <div>
       <%= label_tag :public_poll_image %>
+      <%= hidden_field_tag 'public_poll_hidden_image', 'not_set'%>
       <%= file_field_tag "public_poll_image", :onChange => "loadppollimageFile(event,this)"%>
       <br>
     </div>
@@ -65,7 +68,7 @@
       DATE:
       <%= datetime_field_tag :start_date, Time.now %>
     </div>
-<%= submit_tag "submit", :id => "submit" %>
+<%= submit_tag "create poll", :id => "create_poll" %>
 
 <br>
 <% end %>

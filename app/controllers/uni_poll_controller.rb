@@ -14,7 +14,13 @@ class UniPollController < ApplicationController
 		contestant_no = 0;
 		contestants.each do |contestant|
 			@mapping = @poll.uni_poll_competitor_mappings.create(:competitor_name => contestant, :contestant_tag_line => params[:contestant_tag_line][contestant_no])
-			initilize_image_contestant @mapping, contestant_no
+			if params[:contestant_pic_set][contestant_no] != 'false'
+				@mapping.contestant_picture = params[:contestant_pic_set][contestant_no]
+				@mapping.save!
+			else
+				@mapping.contestant_picture = "user.png"
+				@mapping.save!
+			end
 			contestant_no = contestant_no + 1;
 		end
 
@@ -25,8 +31,9 @@ class UniPollController < ApplicationController
 			@poll.country_based == false
 		end
 		@poll.save!
-		if params["public_poll_image"] != nil
-			initialize_image @poll
+		if params["public_poll_hidden_image"] != 'not_set'
+			@poll.poll_picture = params["public_poll_hidden_image"]
+			@poll.save!
 		end
 		return redirect_to '/user_home'
 	end
@@ -102,7 +109,6 @@ class UniPollController < ApplicationController
 	end
 
 	def initilize_image_contestant mapping, contestant_number
-		byebug
 		if  params[:contestant_pic] && params[:contestant_pic][contestant_number]
 		original_filename = params[:contestant_pic][contestant_number].original_filename
 		temp_file_name = SecureRandom.hex+ "." + original_filename.split(".")[1]
@@ -115,9 +121,9 @@ class UniPollController < ApplicationController
 		end while entry
 		mapping.contestant_picture = temp_file_name
 		mapping.save!
-		File.open(Rails.root.join('public', 'uploads/public_contestants', temp_file_name), 'wb') do |file|
-			file.write(temp_file.read)
-		end
+			File.open(Rails.root.join('public', 'uploads/public_contestants', temp_file_name), 'wb') do |file|
+				file.write(temp_file.read)
 			end
+		end
 	end
 end
