@@ -57,8 +57,11 @@ body{
       padding-left:8px ;
       max-width: 75%;
       button{
+        position: relative;
+        top: -40px;
         background-color: #fff;
         padding: 10px;
+        border: solid 1px #eee;
       }
     }
   }
