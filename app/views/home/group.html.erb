@@ -1,4 +1,4 @@
-<div id="<%= @group.id %>" class="opened-group"><h2><%= @group.name %></h2></div>
+<div id="<%= @group.id %>" class="opened-group"><h2 class="form-heading"><%= @group.name %></h2></div>
 <%= link_to "User" , url_for(:controller => "groups", :action => "group_users", :id => @group.id)%>
 <%= link_to "add_users" , add_group_users_path(:id => @group.id) %>
 <%= link_to "new poll", new_poll_path(:group_id => @group.id) %>
@@ -8,4 +8,4 @@
 <% @group_polls.each do |group_poll| %>
 <%= render "group_polls", :group_poll => group_poll %>
 <% end %>
-  </div>
+</div>

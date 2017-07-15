@@ -50,7 +50,6 @@ class GroupsController < ApplicationController
   end
 
   def search_json
-    # byebug
     search_user = params[:content]
     query  = "%#{search_user}%"
     @search_user = User.where("user_name LIKE ?",query).all - [current_user]
@@ -81,7 +80,7 @@ class GroupsController < ApplicationController
         @mapp = GroupUserMapping.create(:user_id => params[:user_id], :group_id => params[:group_id])
       end
     end
-    render :json => @mapp
+    render :json => @mapp.user
   end
 
   def group_users

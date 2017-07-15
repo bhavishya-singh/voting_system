@@ -1,3 +1,56 @@
 // Place all the styles related to the Groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.group-user-list{
+  width: 85%;
+  background-color: #fff;
+  margin: auto;
+  margin-bottom: 50px;
+
+}
+#group_users{
+  width: 85%;
+  background-color: #fff;
+  margin: auto;
+  margin-bottom: 50px;
+}
+#result{
+  width: 85%;
+  background-color: #fff;
+  margin: auto;
+  margin-bottom: 50px;
+}
+#searched-user-heading{
+  display: none;
+}
+.group-user{
+  display: flex;
+  padding: 15px;
+  align-items: center;
+  box-sizing: border-box;
+  .user_image{
+    margin-left: 40px;
+    height: 80px;
+    text-align: right;
+    img{
+      overflow: hidden;
+      border-radius: 20px;
+      height: 100%;
+      width: 80px;
+    }
+  }
+  .details{
+    padding-left: 50px;
+    color: #24292e;
+    p{
+      text-align: right;
+    }
+  }
+}
+.group-user:hover {
+  border: 1px  #CCC solid;
+
+  box-shadow:
+          inset 0px 11px 8px -10px #CCC,
+          inset 0px -11px 8px -10px #CCC;
+}
