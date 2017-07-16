@@ -579,3 +579,41 @@ hr.center-ball:before {
     }
   }
 }
+
+#group_polls_add{
+  width: 80%;
+  background-color: #fff;
+  margin: 30px auto;
+  box-sizing: border-box;
+  .items{
+    position: relative;
+    .item-name{
+      padding: 15px 15px 15px 60px;
+    }
+    .item-name:hover{
+      border: 1px  #CCC solid;
+
+      box-shadow:
+              inset 0px 11px 8px -10px #CCC,
+              inset 0px -11px 8px -10px #CCC;
+    }
+
+    .item-links{
+      position: absolute;
+      display: none;
+      top: 0;
+      right: 0;
+      padding: 10px;
+      border-radius:  0 0 0 10px;
+      background-color: #8eb640;
+      a{
+        padding: 10px;
+      }
+    }
+  }
+  .items:hover{
+    .item-links{
+      display: block;
+    }
+  }
+}

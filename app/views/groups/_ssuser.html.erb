@@ -1,0 +1,15 @@
+<div id="user_id:<%=user.id%>" class="group-user">
+  <div class="user_image">
+    <% if user.provider == nil %>
+        <img src="/uploads/<%= user.profile_picture %>">
+    <% else %>
+        <img src="<%= user.profile_picture %>">
+    <% end %>
+  </div>
+  <div class="details">
+    <h2><%= user.user_name%></h2>
+    <% if(isUserAdmin? user, @group) %>
+        <p>admin</p>
+    <% end %>
+  </div>
+</div>

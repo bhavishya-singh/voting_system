@@ -1,9 +1,13 @@
+<div class="items" >
 <a href="/group_polls/<%= group_poll.id %>/vote">
-	<div>
-		<h2><%= group_poll.name%></h2>
-	</div>
+  <div class="item-name">
+  <h2><%= group_poll.name%></h2>
+  </div>
 </a>
+  <div class="item-links">
 	<%= link_to "Delete" ,delete_poll_path(:group_poll_id => group_poll.id) %>
 	<% if isUserAdmin? current_user, @group %>
 		<%= link_to "End Poll" ,stop_poll_path(:group_poll_id => group_poll.id) %>
 	<% end %>
+  </div>
+</div>
