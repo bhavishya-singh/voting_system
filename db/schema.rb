@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20170710182307) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "group_admin_mappings", force: :cascade do |t|
     t.integer  "admin_id"
     t.integer  "group_id"
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20170710182307) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "group_admin_mappings", ["admin_id"], name: "index_group_admin_mappings_on_admin_id"
-  add_index "group_admin_mappings", ["group_id"], name: "index_group_admin_mappings_on_group_id"
+  add_index "group_admin_mappings", ["admin_id"], name: "index_group_admin_mappings_on_admin_id", using: :btree
+  add_index "group_admin_mappings", ["group_id"], name: "index_group_admin_mappings_on_group_id", using: :btree
 
   create_table "group_poll_competitor_mappings", force: :cascade do |t|
     t.integer  "competitor_id"
@@ -32,8 +35,8 @@ ActiveRecord::Schema.define(version: 20170710182307) do
     t.string   "contestant_tag_line"
   end
 
-  add_index "group_poll_competitor_mappings", ["competitor_id"], name: "index_group_poll_competitor_mappings_on_competitor_id"
-  add_index "group_poll_competitor_mappings", ["group_poll_id"], name: "index_group_poll_competitor_mappings_on_group_poll_id"
+  add_index "group_poll_competitor_mappings", ["competitor_id"], name: "index_group_poll_competitor_mappings_on_competitor_id", using: :btree
+  add_index "group_poll_competitor_mappings", ["group_poll_id"], name: "index_group_poll_competitor_mappings_on_group_poll_id", using: :btree
 
   create_table "group_poll_delete_mappings", force: :cascade do |t|
     t.integer  "group_poll_id"
@@ -42,8 +45,8 @@ ActiveRecord::Schema.define(version: 20170710182307) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "group_poll_delete_mappings", ["group_poll_id"], name: "index_group_poll_delete_mappings_on_group_poll_id"
-  add_index "group_poll_delete_mappings", ["user_id"], name: "index_group_poll_delete_mappings_on_user_id"
+  add_index "group_poll_delete_mappings", ["group_poll_id"], name: "index_group_poll_delete_mappings_on_group_poll_id", using: :btree
+  add_index "group_poll_delete_mappings", ["user_id"], name: "index_group_poll_delete_mappings_on_user_id", using: :btree
 
   create_table "group_poll_voter_mappings", force: :cascade do |t|
     t.integer  "group_poll_id"
@@ -52,8 +55,8 @@ ActiveRecord::Schema.define(version: 20170710182307) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "group_poll_voter_mappings", ["group_poll_id"], name: "index_group_poll_voter_mappings_on_group_poll_id"
-  add_index "group_poll_voter_mappings", ["voter_id"], name: "index_group_poll_voter_mappings_on_voter_id"
+  add_index "group_poll_voter_mappings", ["group_poll_id"], name: "index_group_poll_voter_mappings_on_group_poll_id", using: :btree
+  add_index "group_poll_voter_mappings", ["voter_id"], name: "index_group_poll_voter_mappings_on_voter_id", using: :btree
 
   create_table "group_polls", force: :cascade do |t|
     t.string   "name"
@@ -64,7 +67,7 @@ ActiveRecord::Schema.define(version: 20170710182307) do
     t.datetime "start_date"
   end
 
-  add_index "group_polls", ["group_id"], name: "index_group_polls_on_group_id"
+  add_index "group_polls", ["group_id"], name: "index_group_polls_on_group_id", using: :btree
 
   create_table "group_user_mappings", force: :cascade do |t|
     t.integer  "user_id"
@@ -73,8 +76,8 @@ ActiveRecord::Schema.define(version: 20170710182307) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "group_user_mappings", ["group_id"], name: "index_group_user_mappings_on_group_id"
-  add_index "group_user_mappings", ["user_id"], name: "index_group_user_mappings_on_user_id"
+  add_index "group_user_mappings", ["group_id"], name: "index_group_user_mappings_on_group_id", using: :btree
+  add_index "group_user_mappings", ["user_id"], name: "index_group_user_mappings_on_user_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -91,7 +94,7 @@ ActiveRecord::Schema.define(version: 20170710182307) do
     t.integer  "user_id"
   end
 
-  add_index "images", ["user_id"], name: "index_images_on_user_id"
+  add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
   create_table "uni_poll_admin_mappings", force: :cascade do |t|
     t.integer  "admin_id"
@@ -100,8 +103,8 @@ ActiveRecord::Schema.define(version: 20170710182307) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "uni_poll_admin_mappings", ["admin_id"], name: "index_uni_poll_admin_mappings_on_admin_id"
-  add_index "uni_poll_admin_mappings", ["uni_poll_id"], name: "index_uni_poll_admin_mappings_on_uni_poll_id"
+  add_index "uni_poll_admin_mappings", ["admin_id"], name: "index_uni_poll_admin_mappings_on_admin_id", using: :btree
+  add_index "uni_poll_admin_mappings", ["uni_poll_id"], name: "index_uni_poll_admin_mappings_on_uni_poll_id", using: :btree
 
   create_table "uni_poll_competitor_mappings", force: :cascade do |t|
     t.integer  "uni_poll_id"
@@ -113,7 +116,7 @@ ActiveRecord::Schema.define(version: 20170710182307) do
     t.string   "contestant_tag_line"
   end
 
-  add_index "uni_poll_competitor_mappings", ["uni_poll_id"], name: "index_uni_poll_competitor_mappings_on_uni_poll_id"
+  add_index "uni_poll_competitor_mappings", ["uni_poll_id"], name: "index_uni_poll_competitor_mappings_on_uni_poll_id", using: :btree
 
   create_table "uni_poll_delete_mappings", force: :cascade do |t|
     t.integer  "uni_poll_id"
@@ -122,8 +125,8 @@ ActiveRecord::Schema.define(version: 20170710182307) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "uni_poll_delete_mappings", ["uni_poll_id"], name: "index_uni_poll_delete_mappings_on_uni_poll_id"
-  add_index "uni_poll_delete_mappings", ["user_id"], name: "index_uni_poll_delete_mappings_on_user_id"
+  add_index "uni_poll_delete_mappings", ["uni_poll_id"], name: "index_uni_poll_delete_mappings_on_uni_poll_id", using: :btree
+  add_index "uni_poll_delete_mappings", ["user_id"], name: "index_uni_poll_delete_mappings_on_user_id", using: :btree
 
   create_table "uni_poll_voter_mappings", force: :cascade do |t|
     t.integer  "voter_id"
@@ -132,8 +135,8 @@ ActiveRecord::Schema.define(version: 20170710182307) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "uni_poll_voter_mappings", ["uni_poll_id"], name: "index_uni_poll_voter_mappings_on_uni_poll_id"
-  add_index "uni_poll_voter_mappings", ["voter_id"], name: "index_uni_poll_voter_mappings_on_voter_id"
+  add_index "uni_poll_voter_mappings", ["uni_poll_id"], name: "index_uni_poll_voter_mappings_on_uni_poll_id", using: :btree
+  add_index "uni_poll_voter_mappings", ["voter_id"], name: "index_uni_poll_voter_mappings_on_voter_id", using: :btree
 
   create_table "uni_polls", force: :cascade do |t|
     t.string   "name"
@@ -168,7 +171,21 @@ ActiveRecord::Schema.define(version: 20170710182307) do
     t.string   "country",                default: "India",    null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "group_admin_mappings", "groups"
+  add_foreign_key "group_poll_competitor_mappings", "group_polls"
+  add_foreign_key "group_poll_delete_mappings", "group_polls"
+  add_foreign_key "group_poll_delete_mappings", "users"
+  add_foreign_key "group_poll_voter_mappings", "group_polls"
+  add_foreign_key "group_polls", "groups"
+  add_foreign_key "group_user_mappings", "groups"
+  add_foreign_key "group_user_mappings", "users"
+  add_foreign_key "images", "users"
+  add_foreign_key "uni_poll_admin_mappings", "uni_polls"
+  add_foreign_key "uni_poll_competitor_mappings", "uni_polls"
+  add_foreign_key "uni_poll_delete_mappings", "uni_polls"
+  add_foreign_key "uni_poll_delete_mappings", "users"
+  add_foreign_key "uni_poll_voter_mappings", "uni_polls"
 end
