@@ -81,7 +81,7 @@ Rails.application.routes.draw do
   post '/check_user_name' => 'home#check_user_name_async'
 
   mount Resque::Server, :at => "/resque"
-  devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations', sessions: 'users/sessions'}
+  devise_for :users, :controllers => {:omniauth_callbacks => 'users/omniauth_callbacks', registrations: 'users/registrations', sessions: 'users/sessions'}
   
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.

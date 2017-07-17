@@ -167,12 +167,11 @@ function onload(){
     var opened_group = document.getElementsByClassName("opened-group");
  	if(opened_group.length > 0){
         var group_id = $(opened_group[0]).attr('id');
-        console.log("was here too once");
         socket.emit('group_opened',{    group_id: group_id  });
         socket.on('emit_group_poll',function(result){
             var folder = document.getElementById("group_polls_add");
             if(folder){
-                $(folder).prepend("<a href='/group_polls/"+result.group_poll_id+"/vote'> <div> <h2>"+result.group_poll_name+"</h2> </div> </a>");
+                $(folder).prepend("<div class='items'><a href='/group_polls/"+result.group_poll_id+"/vote'><div class='item-name'><h2>"+result.group_poll_name+"</h2></div></a><div class='item-links'><a href='/group_polls/"+result.group_poll_id+"/delete_user'>Delete</a></div></div>");
             }
         });
     }
@@ -311,9 +310,9 @@ function onload(){
                 document.getElementById(id).checked = true;
                 console.log(document.getElementById(id).checked);
                 for(var  i1 = 0;  i1 < vote_contestant.length; i1++ ){
-                    vote_contestant[i1].style.backgroundColor = "#666666";
+                    vote_contestant[i1].style.backgroundColor = "rgba(102, 102, 102, 0.6)";
                 }
-                this.style.backgroundColor = "#99badd";
+                this.style.backgroundColor = "rgba(142, 182, 64, 0.9)";
             });
         }
 

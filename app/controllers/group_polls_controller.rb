@@ -69,7 +69,6 @@ class GroupPollsController < ApplicationController
   end
 
   def stop_poll
-    byebug
     group = @group_poll.group
     if isUserAdmin? current_user, group
       @group_poll.update(:poll_end => true)

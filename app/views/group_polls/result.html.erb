@@ -1,14 +1,14 @@
-<h1>result for the Group polls - <%= @group_poll.name %></h1>
+<h1 class="form-heading">result for <%= @group_poll.name %></h1>
 
 <br>
-<div class="competitors_list">
+<div class="competitors_list effect2">
 <% @competitors.each do |competitor|%>
 <%= render "result_comp", :competitor => competitor %>
 <% end %>
 </div>
 
 
-<div id="live-poll-area">
+<div id="live-poll-area" class="effect2">
   <div class="graph-container">
     <div class="graph"></div>
   </div>

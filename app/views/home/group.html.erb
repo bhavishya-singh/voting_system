@@ -4,7 +4,7 @@
 <%= link_to "new poll", new_poll_path(:group_id => @group.id) %>
 <%= link_to "leave group", url_for(:controller => "groups", :action => "leave_group", :id => @group.id) %>
 
-<div id="group_polls_add">
+<div id="group_polls_add" class="effect2">
 <% @group_polls.each do |group_poll| %>
 <%= render "group_polls", :group_poll => group_poll %>
 <% end %>

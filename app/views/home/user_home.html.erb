@@ -1,4 +1,4 @@
-<div class="user_home_public_polls">
+<div class="user_home_public_polls effect2">
 <h2 id="user_home_public_polls_h2">PUBLIC POLLS</h2>
 <div class="public_polls_list">
 	<% @uni_polls.each do |uni_poll|%>
@@ -6,10 +6,9 @@
 	<% end %>
 </div>
 </div>
-<div class="user_home_groups">
+<div class="user_home_groups effect2">
   <div class="group_heading"><i class="icon-group"></i><h2>GROUPS</h2></div>
-  <hr class="center-ball">
-<div id="cuurent_user_groups">
+<div id="cuurent_user_groups" >
 	<% @groups.each do |group| %>
 	<%= render "group", :group => group %>
       <hr class="fade-2">

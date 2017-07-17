@@ -6,7 +6,7 @@
 </a>
   <div class="item-links">
 	<%= link_to "Delete" ,delete_poll_path(:group_poll_id => group_poll.id) %>
-	<% if isUserAdmin? current_user, @group %>
+	<% if isUserAdmin?( current_user, @group) && !group_poll.poll_end %>
 		<%= link_to "End Poll" ,stop_poll_path(:group_poll_id => group_poll.id) %>
 	<% end %>
   </div>

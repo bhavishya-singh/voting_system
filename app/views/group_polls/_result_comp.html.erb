@@ -1,4 +1,4 @@
-<div class="competitors_group_poll">
+<div class="competitors_result_card effect2">
   <div class="image_competitor">
     <% if competitor.profile_picture && competitor.provider == nil%>
         <img src="/uploads/<%= competitor.profile_picture %>">
@@ -9,7 +9,7 @@
     <% end %>
   </div>
   <div class="details">
-    <marquee><h2><%= competitor.user_name + " " + competitor.last_name%></h2></marquee>
+    <h2><%= competitor.user_name%></h2>
     <span class="votes"><%= @group_poll_competitor_mappings.where(:competitor_id => competitor.id).first.votes%></span>
   </div>
 </div>

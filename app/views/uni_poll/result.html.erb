@@ -1,14 +1,12 @@
-<h1>result for the public polls - <%= @uni_poll.name %></h1>
-
-<br>
-<div class="competitors_list">
+<h1 class="form-heading">Result for <%= @uni_poll.name %></h1>
+<div class="competitors_list effect2">
 <% @contestants_mapping.each do |mapp|%>
 <%= render "result_comp", :mapp => mapp %>
 <% end %>
 </div>
 
 
-<div id="live-poll-area">
+<div id="live-poll-area" class="effect2">
   <div class="graph-container">
     <div class="graph"></div>
   </div>

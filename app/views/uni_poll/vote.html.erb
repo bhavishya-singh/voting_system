@@ -1,11 +1,11 @@
-<h1>Vote for your favourite candidate</h1>
+<h1 class="form-heading">Vote for your favourite candidate</h1>
 <div id="public_poll_vote">
 <%= form_tag "/public_poll_contribute" , :method => "POST", :id => "vote_form" do %>
 <%= hidden_field_tag :uni_poll_id , @uni_poll.id %>
       <div id="list_vote">
 <% @contestants_mapping.each do |mapping| %>
 
-        <div class="user_image_button" id="<%= mapping.id %>">
+        <div class="user_image_button effect2" id="<%= mapping.id %>">
           <% if mapping.contestant_picture %>
               <img src="/uploads/public_contestants/<%=mapping.contestant_picture%>">
           <%else%>
@@ -17,6 +17,8 @@
 <%= radio_button_tag "your_fav" , mapping.id, false,  class: "hidden" %><br>
 <% end %>
       </div>
+      <div class="vote-btn">
 <%= submit_tag "vote"%>
+      </div>
   <%end%>
 </div>

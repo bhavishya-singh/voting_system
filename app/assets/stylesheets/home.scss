@@ -20,7 +20,8 @@
    	 	display: none;
    	}
 .user_home_public_polls{
-  background-color: rgba(177, 181, 170, 0.75);;
+  background-color: rgba(177, 181, 170, 0.75);
+  overflow-x: hidden;
   padding: 50px 0px 10px 0px;
   #user_home_public_polls_h2{
     margin-left: 30px;
@@ -110,15 +111,18 @@
       }
     }
     #cuurent_user_groups{
+      width: 100%;
       hr:last-child{
         display: none;
       }
       .group{
+        padding: 10px 20px 10px 60px;
 
         a:hover{
           text-decoration: none;
         }
         a{
+          width: 100%;
           display: flex;
           align-items: center;
           .group_picture{
@@ -585,6 +589,9 @@ hr.center-ball:before {
   background-color: #fff;
   margin: 30px auto;
   box-sizing: border-box;
+  a{
+    color: #222222;
+  }
   .items{
     position: relative;
     .item-name{

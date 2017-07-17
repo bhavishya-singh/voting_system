@@ -1,13 +1,9 @@
-<div class="competitors_public_poll">
+<div class="competitors_result_card effect2">
   <div class="image_competitor">
-    <% if mapp.contestant_picture != nil%>
-        <img src="/uploads/public_contestants/<%= mapp.contestant_picture %>">
-    <% else %>
-        <img src="/uploads/user.png" >
-    <% end %>
+    <img src="/uploads/public_contestants/<%=mapp.contestant_picture%>">
   </div>
   <div class="details">
-    <marquee><h2><%=  mapp.competitor_name %></h2></marquee>
+    <h2><%=  mapp.competitor_name %></h2>
     <span class="votes"><%= mapp.votes %></span>
   </div>
 </div>

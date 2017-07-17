@@ -4,72 +4,7 @@
 
 
 #public_poll_vote{
-  #list_vote{
-    display: flex;
-    margin: 20px 200px;
-    padding: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-    .user_image_button:hover{
-      transform: scale(1.1);
-    }
-    .user_image_button{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 150px;
-      background-color: #666666 ;
-      margin: 20px 40px;
-      border-radius: 10px;
-      overflow: hidden;
-      padding: 20px;
-      box-sizing: border-box;
 
-      img{
-        width: 100px;
-        height: 100px;
-        overflow: hidden;
-        border-radius: 50px;
-      }
-      p{
-        margin: 5px;
-      }
-    }
-  }
-}
-
-
-.competitors_list{
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  width:100%;
-  padding: 30px;
-  box-sizing: border-box;
-  background-color: #666666;
-  .competitors_public_poll{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 200px;
-    background-color: #bfe2b7;
-    .image_competitor{
-      img{
-        height: 200px;
-        width: 200px;
-      }
-    }
-    .details{
-      display: flex;
-      height: 100px;
-      flex-direction: column;
-      align-items: center;
-      span{
-        margin-top:4px ;
-        font-size: 50px;
-      }
-    }
-  }
 }
 
 
