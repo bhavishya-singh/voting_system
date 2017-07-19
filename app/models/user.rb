@@ -24,13 +24,12 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
     puts " ******** it has been here-------------------------------------"
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
       user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.user_name =  auth.info.first_name + "_" + auth.info.last_name # assuming the user model has a name
       user.profile_picture = auth.info.image
       user.first_name = auth.info.first_name
-      user.last_name = auth.info.last_name# assuming the user model has an image
+      user.last_name = auth.info.last_name
+      # assuming the user model has an image
       # If you are using confirmable and the provider(s) you use validate emails,
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
@@ -46,7 +45,7 @@ class User < ActiveRecord::Base
     profile_picture = ses["info"]["image"]
     provider = ses["provider"]
     uid = ses["uid"]
-    User.create(:email => email, :first_name => first_name, :last_name => last_name, :profile_picture => profile_picture, :provider => provider, :uid => uid)
+    User.new(:email => email, :first_name => first_name, :last_name => last_name, :profile_picture => profile_picture, :provider => provider, :uid => uid)
   end
 
   def self.new_with_session(params, session)
