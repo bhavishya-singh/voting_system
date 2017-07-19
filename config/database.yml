@@ -9,14 +9,15 @@ default: &default
   encoding: unicode
   pool: 5
   timeout: 5000
-  username: bhavishyasingh
-  password: thispass
+
 
 development:
   <<: *default
   database: voteme_development
   host: localhost
   port: 5432
+  username: bhavishyasingh
+  password: thispass
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -26,9 +27,13 @@ test:
   database: voteme_test
   host: localhost
   port: 5432
+  username: bhavishyasingh
+  password: thispass
 
 production:
   <<: *default
   database: voteme_production
   host: localhost
   port: 5432
+  username: votemeuser
+  password: <%= ENV['VOTEME_DATABASE_PASSWORD'] %>

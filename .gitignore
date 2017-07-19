@@ -17,3 +17,8 @@
 /log/*
 !/log/.keep
 /tmp
+
+/public/uploads
+
+.rbenv-vars.swp
+/tmp
