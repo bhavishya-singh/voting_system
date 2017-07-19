@@ -1,10 +1,13 @@
 <div id="<%= @group.id %>" class="opened-group"><h2 class="form-heading"><%= @group.name %></h2></div>
-<%= link_to "User" , url_for(:controller => "groups", :action => "group_users", :id => @group.id)%>
-<%= link_to "add_users" , add_group_users_path(:id => @group.id) %>
-<%= link_to "new poll", new_poll_path(:group_id => @group.id) %>
-<%= link_to "leave group", url_for(:controller => "groups", :action => "leave_group", :id => @group.id) %>
+<ul id="group-nav" class="effect1">
+  <li><%= link_to "USERS" , url_for(:controller => "groups", :action => "group_users", :id => @group.id)%></li>
+  <li><%= link_to "ADD USERS" , add_group_users_path(:id => @group.id) %></li>
+  <li><%= link_to "NEW POLL", new_poll_path(:group_id => @group.id) %></li>
+  <li><%= link_to "LEAVE GROUP", url_for(:controller => "groups", :action => "leave_group", :id => @group.id) %></li>
+</ul>
 
-<div id="group_polls_add" class="effect2">
+<div id="group_polls_add" class="effect1">
+  <div class="group_heading effect1"><i class="icon-group"></i><h2>GROUP POLLS</h2></div>
 <% @group_polls.each do |group_poll| %>
 <%= render "group_polls", :group_poll => group_poll %>
 <% end %>

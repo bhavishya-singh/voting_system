@@ -1,13 +1,13 @@
-<div class="user_home_public_polls effect2">
-<h2 id="user_home_public_polls_h2">PUBLIC POLLS</h2>
+<div class="user_home_public_polls">
+<h2 id="user_home_public_polls_h2" class="form-heading">PUBLIC POLLS</h2>
 <div class="public_polls_list">
 	<% @uni_polls.each do |uni_poll|%>
 	<%= render "uni_poll", :uni_poll => uni_poll %>
 	<% end %>
 </div>
 </div>
-<div class="user_home_groups effect2">
-  <div class="group_heading"><i class="icon-group"></i><h2>GROUPS</h2></div>
+<div class="user_home_groups effect1">
+  <div class="group_heading effect1"><i class="icon-group"></i><h2>GROUPS</h2></div>
 <div id="cuurent_user_groups" >
 	<% @groups.each do |group| %>
 	<%= render "group", :group => group %>

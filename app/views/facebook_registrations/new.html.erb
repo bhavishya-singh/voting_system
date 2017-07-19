@@ -1,5 +1,5 @@
-<h2>FaceBook Sign up</h2>
-<%= 'Welcome ' + @user.first_name%>
+<h2 class="form-heading">FaceBook Sign up</h2>
+<span style="padding-left: 70px"><%= 'Welcome ' %></span><span style="color: #8eb640"><b><%= @user.first_name%></b></span>
 <%= form_for(@user, as: :user, url: '/user/registrations-facebook/create', method: :post) do |f| %>
 
     <%= f.hidden_field :first_name, :value => @user.first_name %>
@@ -20,7 +20,9 @@
     <% if !@user.email %>
     <div class="field">
       <%= f.label :email %><br>
+      <div class="field-input">
       <%= f.email_field :email%>
+      </div>
     </div>
     <% else %>
         <%= f.hidden_field :email, :value => @user.email %>
@@ -29,22 +31,30 @@
       <%= f.label :password %>
       <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
+      <% end %>
+      <div class="field-input">
       <%= f.password_field :password, autocomplete: "off" %>
+      </div>
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %><br>
+      <%= f.label :password_confirmation %>
+      <div class="field-input">
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
     </div>
 
     <div class="field">
-      <%= f.label :country %><br>
+      <%= f.label :country %>
+      <div class="field-input">
       <%= f.country_select :country %>
+      </div>
     </div>
 
     <div class="actions">
+      <div class="action-input">
       <%= f.submit "Sign up" %>
+      </div>
     </div>
 
 <% end %>

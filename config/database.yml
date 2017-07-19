@@ -9,6 +9,8 @@ default: &default
   encoding: unicode
   pool: 5
   timeout: 5000
+  username: bhavishyasingh
+  password: thispass
 
 development:
   <<: *default

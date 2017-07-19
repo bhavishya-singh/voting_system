@@ -6,7 +6,7 @@
     <div class="field">
       <%= label_tag :poll_name %>
       <div class="field-input">
-        <%= text_field_tag :poll_name %>
+        <%= text_field_tag :poll_name , :required => true %>
       </div>
     </div>
 
@@ -14,7 +14,7 @@
       <div class="field">
         <%= label_tag :contestant_name %>
         <div class="field-input">
-          <%= text_field_tag "contestant_name[]" %>
+          <%= text_field_tag "contestant_name[]" , :required => true%>
         </div>
       </div>
       <div class="field">
@@ -39,7 +39,7 @@
       <div class="field">
         <%= label_tag :contestant_name %>
         <div class="field-input">
-          <%= text_field_tag "contestant_name[]" %>
+          <%= text_field_tag "contestant_name[]" , :required => true%>
         </div>
       </div>
       <div class="field">

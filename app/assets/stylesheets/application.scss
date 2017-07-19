@@ -41,8 +41,13 @@ a{
   justify-content: space-around;
   align-items: center;
 }
+
+#outter-container{
+
+}
 body{
   width: 100vw;
+  height: 100vh;
   .form-heading{
     font-size: 3rem;
     font-family: 'Open Sans', sans-serif;
@@ -637,11 +642,16 @@ $facebookIcon: "http://www.iconarchive.com/download/i54037/danleech/simple/faceb
   transform:skew(8deg) rotate(3deg);
 }
 
-.effect2:hover {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+.effect1{
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+
 @media (orientation: portrait) {
+
+  .outter-container{
+    min-height: 68.5vh;
+  }
   .container{
     flex-direction: column;
   }

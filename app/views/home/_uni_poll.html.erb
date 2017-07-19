@@ -1,6 +1,6 @@
 
 <% if uni_poll.poll_picture%>
-    <div class="public_poll_items" style="background-image: url('/uploads/public_poll_pictures/<%= uni_poll.poll_picture%>') ; background-size: 100% 100% ;">
+    <div class="public_poll_items effect1"  style="background-image: url('/uploads/public_poll_pictures/<%= uni_poll.poll_picture%>') ; background-size: 100% 100% ;">
       <div class="public_poll_items_inner">
       <a href="/unipoll/<%= uni_poll.id %>/vote" class="public_poll_items_name"><h2> <%= uni_poll.name%> </h2></a>
       <% if ( isuserAdminOfPublicPoll?(current_user, uni_poll) && !uni_poll.poll_end ) %>
@@ -9,7 +9,7 @@
       </div>
     </div>
 <% else %>
-    <div class="public_poll_items">
+    <div class="public_poll_items effect1">
       <div class="public_poll_items_inner">
       <a href="/unipoll/<%= uni_poll.id %>/vote" class="public_poll_items_name"><h2> <%= uni_poll.name%> </h2></a>
       <% if ( isuserAdminOfPublicPoll?(current_user, uni_poll) && !uni_poll.poll_end ) %>
