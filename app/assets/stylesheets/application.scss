@@ -268,17 +268,35 @@ body{
       }
     }
     #my-login{
-      button{
+      .facebook-header {
+        color: #fff;
+        text-decoration: none;
+        padding: 6px 12px;
+        background-image: -webkit-linear-gradient(#3b5998, #314b83);
         display: flex;
         align-items: center;
-        padding: 5px;
-        border-radius: 10px;
-        background-color: rgba(22, 10, 71, 0.67);
-        color: white;
+        justify-content: space-around;
+        border-radius: 4px;
+        width: 174px;
+        border: solid 1px #283e6b;
+        box-shadow: inset 0px 1px rgba(255, 255, 255, 0.2);
+        text-shadow: 0px 1px rgba(0, 0, 0, 0.4);
+        font-weight: bold;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        transition: all 0.3s;
         i{
           font-size: 20px;
           margin-right: 5px;
         }
+      }
+      .facebook-header:hover {
+        background-image: -webkit-linear-gradient(#4466ac, #34518e);
+      }
+      .facebook-header:active {
+        box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.3), 0px 1px rgba(255, 255, 255, 0.2);
       }
     }
   }
