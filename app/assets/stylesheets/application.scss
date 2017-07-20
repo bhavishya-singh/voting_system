@@ -265,9 +265,6 @@ body{
             z-index:9999;
           }
         }
-        .dropdown:hover .dropdown-content {
-          display: block;
-        }
       }
     }
     #my-login{
@@ -285,6 +282,13 @@ body{
       }
     }
   }
+}
+
+.ui-menu-item{
+  background-color: #fff;
+  width: 400px;
+  padding: 10px;
+  color: #2E2F30;
 }
 #content{
   margin-top: -10px;

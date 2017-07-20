@@ -80,6 +80,8 @@ Rails.application.routes.draw do
 
   post '/check_user_name' => 'home#check_user_name_async'
 
+  get '/profile/:username' => 'home#profile'
+
   mount Resque::Server, :at => "/resque"
   devise_for :users, :controllers => {:omniauth_callbacks => 'users/omniauth_callbacks', registrations: 'users/registrations', sessions: 'users/sessions'}
   

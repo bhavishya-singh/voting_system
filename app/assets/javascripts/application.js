@@ -234,6 +234,13 @@ function onload(){
             $('.dropdown-notification-content').slideDown();
         }
     });
+    $('.dropdown').click(function () {
+        if($('.dropdown-content').is(':visible')){
+            $('.dropdown-content').slideUp();
+        }else{
+            $('.dropdown-content').slideDown();
+        }
+    });
 	var added =0;
 	var add_public_contestant = document.getElementById("add_public_contestant");
 	if(add_public_contestant){

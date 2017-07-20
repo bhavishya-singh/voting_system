@@ -1,0 +1,65 @@
+<div id="profile">
+<div id="left-profile">
+  <div id="inner-left">
+    <div id="profile-image">
+      <% if current_user.provider == nil %>
+          <img src="/uploads/<%= @user.profile_picture %>" >
+      <% else %>
+          <img src="<%= @user.profile_picture %>" >
+      <% end %>
+    </div>
+    <div id="profile-name">
+      <h2><%= @user.first_name + " "%><%= @user.last_name %></h2>
+      <h4><%= @user.user_name%></h4>
+    </div>
+  </div>
+</div>
+<div id="right-profile">
+  <h1 class="form-heading">Details</h1>
+  <div id="inner-right">
+    <div class="detail-field">
+      <div class="detail-label">
+        First Name:
+      </div>
+      <div class="detail-value">
+        <%= @user.first_name %>
+      </div>
+    </div>
+    <div class="detail-field">
+      <div class="detail-label">
+        Last Name:
+      </div>
+      <div class="detail-value">
+        <%= @user.last_name %>
+      </div>
+    </div>
+    <div class="detail-field">
+      <div class="detail-label">
+        Email:
+      </div>
+      <div class="detail-value">
+        <%= @user.email %>
+      </div>
+    </div>
+    <div class="detail-field">
+      <div class="detail-label">
+        Username:
+      </div>
+      <div class="detail-value">
+        <%= @user.user_name %>
+      </div>
+    </div>
+    <div class="detail-field">
+      <div class="detail-label">
+        Country:
+      </div>
+      <div class="detail-value">
+        <%= @user.country %>
+      </div>
+    </div>
+    <div class="edit-prof">
+      <%= link_to :edit, '/users/edit' %>
+    </div>
+  </div>
+</div>
+</div>

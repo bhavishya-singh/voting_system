@@ -24,6 +24,10 @@ class HomeController < ApplicationController
     end
   end
 
+  def profile
+    @user = User.where(:user_name => params[:username]).first
+  end
+
   def user_json
   	@groups = current_user.groups
   	render :json => @groups.to_json(:only => [:id,:name])
