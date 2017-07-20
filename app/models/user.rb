@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
-  after_create :send_welcome_mail_async
 	validates :user_name, :presence => true, :uniqueness => true
+  after_create :send_welcome_mail_async
 
   has_one :image
 
@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
   end
 
   def send_welcome_mail_async
+    puts ".......................................................................222"
     Resque.enqueue(UserMailerWorker, self.id)
   end
 

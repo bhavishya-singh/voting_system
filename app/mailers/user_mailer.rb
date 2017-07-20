@@ -4,7 +4,10 @@ class UserMailer < ApplicationMailer
 
 	def welcome_email(user)
 	    @user = user
-	    @url  = 'http://localhost:3000/user_home'
-	    mail(to: @user.email, subject: 'Welcome to My VoteMe')
+	    @url  = 'http://35.154.36.142/user_home'
+	    mail(to: @user.email, subject: 'Welcome to VoteMe')
 	end
+
+
+
 end

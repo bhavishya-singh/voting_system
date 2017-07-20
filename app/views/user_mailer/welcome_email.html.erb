@@ -1,10 +1,23 @@
-
-    <h1>Welcome to voteme.com, <%= @user.user_name %></h1>
-    <p>
-      You have successfully signed up to vote.com,
-      your username is: <%= @user.user_name %>.<br>
-    </p>
-    <p>
-      To login to the site, just follow this link: <%= @url %>.
-    </p>
-    <p>Thanks for joining and have a great day!</p>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .form-heading{
+    font-size: 2rem;
+    font-family: 'Open Sans', sans-serif;
+    color: #8eb640;
+  }
+</style>
+</head>
+<body>
+<h1>Welcome to <span class="form-heading">voteme.com</span>, <%= @user.user_name %></h1>
+<p>
+  You have successfully signed up to vote.com,<br>
+  your username is: <%= @user.user_name %>.<br>
+</p>
+<p>
+  To login to the site, just follow this link: <%= @url %>.
+</p>
+<p>Thanks for joining and have a great day!</p>
+</body>
+</html>
